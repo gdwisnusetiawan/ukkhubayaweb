@@ -13,3 +13,6 @@ const mix = require('laravel-mix');
 
 mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css');
+
+mix.copyDirectory('node_modules/admin-lte/dist', 'public/admin-lte/dist');
+mix.copyDirectory('node_modules/admin-lte/plugins', 'public/admin-lte/plugins');

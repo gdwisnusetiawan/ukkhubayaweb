@@ -70,7 +70,19 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validatedData = $request->validate([
+            'id' => 'required|max:255',
+            'name' => 'required|max:255',
+            'email' => 'required|email|ends_with:gmail.com',
+        ]);
+
+        $user = User::find($id);
+        $user->id = $request->get('id');
+        $user->name = $request->get('name');
+        $user->email = $request->get('email');
+        $user->save();
+
+        return redirect('users')->with('status', 'test');
     }
 
     /**

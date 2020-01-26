@@ -76,23 +76,45 @@
 		          <div class="form-group row">
 		            <label for="id" class="col-sm-2 col-form-label">ID</label>
 		            <div class="col-sm-10">
-		              <input type="text" class="form-control @error('id') is-invalid @enderror" id="id" value="{{ $user->id }}" required autocomplete="id" autofocus placeholder="ID / NRP">
+		              <input id="id" type="text" class="form-control @error('id') is-invalid @enderror" name="id" value="{{ $user->id }}" required autocomplete="id" autofocus placeholder="ID / NRP">
+		              @error('id')
+		                <span class="invalid-feedback" role="alert">
+		                  <strong>{{ $message }}</strong>
+		                </span>
+		              @enderror
 		            </div>
 		          </div>
 		          <div class="form-group row">
 		            <label for="name" class="col-sm-2 col-form-label">Nama</label>
 		            <div class="col-sm-10">
-		              <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" value="{{ $user->name }}" required autocomplete="name" placeholder="Nama">
+		              <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $user->name }}" required autocomplete="name" placeholder="Nama">
+		              @error('name')
+		                <span class="invalid-feedback" role="alert">
+		                  <strong>{{ $message }}</strong>
+		                </span>
+		              @enderror
 		            </div>
 		          </div>
 		          <div class="form-group row">
 		            <label for="email" class="col-sm-2 col-form-label">Email</label>
 		            <div class="col-sm-10">
-		              <input id="email" type="text" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $user->email }}" required autocomplete="email" placeholder="Email">
+		              <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $user->email }}" required autocomplete="email" placeholder="Email">
+		              @error('email')
+		                <span class="invalid-feedback" role="alert">
+		                  <strong>{{ $message }}</strong>
+		                </span>
+		              @enderror
 		            </div>
 		          </div>
 		        </form>
 	      	@endcomponent
+	      	@if ($errors->any())
+		      	@push ('js')
+		      		<script type="text/javascript">
+		      			$('#modal-edit-{{ $user->id }}').modal('show')
+		      		</script>
+		      	@endpush
+	      	@endif
 	      	<!-- /.modal -->
 
 	      	<!-- Modal Delete -->

@@ -26,7 +26,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
   @stack('css')
 </head>
-<body class="hold-transition sidebar-mini">
+<body class="hold-transition sidebar-mini @yield('body-class')">
+@guest
+  @yield('content')
+@else
 <div class="wrapper">
   @include('layouts.navbar')
 
@@ -43,6 +46,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   @include('layouts.footer')
 </div>
 <!-- ./wrapper -->
+@endguest
 
 <!-- REQUIRED SCRIPTS -->
 

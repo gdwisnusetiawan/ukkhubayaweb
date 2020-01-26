@@ -71,6 +71,7 @@
 
 	      		<form action="{{ route('users.update', $user) }}" method="post" class="form-horizontal" id="form-edit-{{ $user->id }}">
 		        	@csrf
+		        	@method('put')
 
 		          <div class="form-group row">
 		            <label for="id" class="col-sm-2 col-form-label">ID</label>

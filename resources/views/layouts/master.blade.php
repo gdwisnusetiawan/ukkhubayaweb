@@ -13,6 +13,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="{{ asset('admin-lte/plugins/fontawesome-free/css/all.min.css') }}">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- pace-progress -->
+  <link rel="stylesheet" href="{{ asset('admin-lte/plugins/pace-progress/themes/blue/pace-theme-minimal.css') }}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset('admin-lte/dist/css/adminlte.min.css') }}">
   <!-- Google Font: Source Sans Pro -->
@@ -41,6 +45,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="{{ asset('admin-lte/plugins/jquery/jquery.min.js') }}"></script>
 <!-- Bootstrap 4 -->
 <script src="{{ asset('admin-lte/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<!-- pace-progress -->
+<script src="{{ asset('admin-lte/plugins/pace-progress/pace.min.js') }}"></script>
 <!-- AdminLTE App -->
 <script src="{{ asset('admin-lte/dist/js/adminlte.min.js') }}"></script>
 

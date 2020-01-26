@@ -67,6 +67,7 @@
 	      		@slot('title') Ubah User @endslot
 	      		@slot('button_type') primary @endslot
 	      		@slot('button_name') Ubah @endslot
+	      		@slot('form_id') form-edit-{{ $user->id }} @endslot
 
 	      		<form action="{{ route('users.update', $user) }}" method="post" class="form-horizontal" id="form-edit-{{ $user->id }}">
 		        	@csrf
@@ -99,6 +100,7 @@
 	      		@slot('title') Hapus User @endslot
 	      		@slot('button_type') danger @endslot
 	      		@slot('button_name') Hapus @endslot
+	      		@slot('form_id') form-delete-{{ $user->id }} @endslot
 
 	      		<p>Apakah Anda yakin ingin menghapus data <strong>({{ $user->id }}) {{ $user->name }}</strong>?</p>
 	      	@endcomponent

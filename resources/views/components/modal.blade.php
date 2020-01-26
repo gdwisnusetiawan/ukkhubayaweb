@@ -12,7 +12,7 @@
       </div>
       <div class="modal-footer justify-content-between">
         <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
-        <button type="submit" class="btn btn-{{ $button_type }}">{{ $button_name }}</button>
+        <button type="submit" class="btn btn-{{ $button_type }}" form="{{ $form_id }}">{{ $button_name }}</button>
       </div>
     </div>
     <!-- /.modal-content -->

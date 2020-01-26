@@ -27,9 +27,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
   @stack('css')
 </head>
 <body class="hold-transition sidebar-mini @yield('body-class')">
+
 @guest
+
   @yield('content')
+  
 @else
+
 <div class="wrapper">
   @include('layouts.navbar')
 
@@ -37,7 +41,30 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-    @yield('content')
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0 text-dark">Beranda</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              @yield('breadcumb')
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <div class="content">
+      <div class="container-fluid">
+        @yield('content')
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
 

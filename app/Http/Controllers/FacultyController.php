@@ -14,7 +14,9 @@ class FacultyController extends Controller
      */
     public function index()
     {
-        //
+        $faculties = Faculty::all();
+        $colors = Faculty::colors();
+        return view('faculties.index', compact('faculties', 'colors'));
     }
 
     /**
@@ -35,7 +37,19 @@ class FacultyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required|unique:faculties',
+            'color' => 'required',
+        ]);
+
+        $faculty = new Faculty();
+        $faculty->name = $request->get('name');
+        $faculty->color = $request->get('color');
+        $faculty->icon = $request->get('icon');
+
+        $faculty->save();
+
+        return redirect('faculties')->with('status', 'Sukses menambah data.');
     }
 
     /**

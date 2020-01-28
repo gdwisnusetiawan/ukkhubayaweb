@@ -10,9 +10,10 @@
       <div class="modal-body">
         {{ $slot }}
       </div>
-      <div class="modal-footer justify-content-between">
+      <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
         <button type="submit" class="btn btn-{{ $button_type }}" form="{{ $form_id }}">{{ $button_name }}</button>
+        {{ $slot_footer ?? '' }}
       </div>
     </div>
     <!-- /.modal-content -->

@@ -84,7 +84,7 @@ class FacultyController extends Controller
     public function update(Request $request, Faculty $faculty)
     {
         $validatedData = $request->validate([
-            'name' => 'required|unique:faculties',
+            'name' => 'required',
             'color' => 'required',
         ]);
 

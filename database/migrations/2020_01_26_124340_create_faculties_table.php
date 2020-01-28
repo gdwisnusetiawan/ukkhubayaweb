@@ -17,6 +17,7 @@ class CreateFacultiesTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('color');
+            $table->string('icon');
             $table->timestamps();
         });
     }

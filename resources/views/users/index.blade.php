@@ -41,7 +41,7 @@
 	            <td>{{ $user->name }}</td>
 	            <td>{{ $user->email }}</td>
 	            <td>
-	            	<button type="button" class="btn btn-outline-primary btn-sm m-1" data-toggle="modal" data-target="#modal-edit-{{ $user->id }}"><i class="fas fa-edit"></i></button>
+	            	<button type="button" class="btn btn-outline-primary btn-sm m-1" data-toggle="modal" data-target="#modal-edit-{{ $user->id }}" disabled><i class="fas fa-edit"></i></button>
 	            	<button type="button" class="btn btn-outline-danger btn-sm m-1" data-toggle="modal" data-target="#modal-delete-{{ $user->id }}"><i class="fas fa-trash"></i></button>
 	            </td>
 	          </tr>
@@ -126,6 +126,10 @@
 	      		@slot('form_id') form-delete-{{ $user->id }} @endslot
 
 	      		<p>Apakah Anda yakin ingin menghapus data <strong>({{ $user->id }}) {{ $user->name }}</strong>?</p>
+	      		<form action="{{ route('users.destroy', $user) }}" method="post" class="form-horizontal" id="form-delete-{{ $user->id }}">
+	      			@csrf
+	      			@method('delete')
+	      		</form>
 	      	@endcomponent
 	      	<!-- /.modal -->
       	@endforeach

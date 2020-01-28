@@ -41,6 +41,7 @@
 	      	    </div>
       	  	</button>
       	  </div>
+      	  @if ($loop->last)
       	  <div class="col-md-3 mb-3">
       	  	<button type="button" class="btn btn-block btn-light" data-toggle="modal" data-target="#modal-add">
 	      	    <div class="card h-100 m-0 text-center bg-secondary">
@@ -51,6 +52,7 @@
 	      	    </div>
       	    </button>
       	  </div>
+      	  @endif
       	  @empty
       	  <div class="col-md-3 mb-3">
       	  	<button type="button" class="btn btn-block btn-light" data-toggle="modal" data-target="#modal-add">

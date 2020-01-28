@@ -83,7 +83,18 @@ class FacultyController extends Controller
      */
     public function update(Request $request, Faculty $faculty)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required|unique:faculties',
+            'color' => 'required',
+        ]);
+
+        $faculty->name = $request->get('name');
+        $faculty->color = $request->get('color');
+        $faculty->icon = $request->get('icon');
+
+        $faculty->save();
+
+        return redirect('faculties')->with('status', 'Sukses mengubah data.');
     }
 
     /**

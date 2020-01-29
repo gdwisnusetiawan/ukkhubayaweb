@@ -25,7 +25,7 @@
       <h5 class="card-header">
 	      Daftar Anggota
 	      <span class="float-right">
-	      	<a href="{{ route('members.create') }}" class="btn btn-primary"><i class="fas fa-cloud-upload-alt"></i> Upload</a>
+	      	<a href="" class="btn btn-primary"><i class="fas fa-cloud-upload-alt"></i> Upload</a>
 		      <a href="{{ route('members.create') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Tambah</a>
 	      </span>
 	  </h5>
@@ -49,7 +49,7 @@
 	            <td>{{ $member->name }}</td>
 	            <td>{{ $member->faculty->name }}</td>
 	            <td>{{ $member->year }}</td>
-	            <td>{{ $member->type }}</td>
+	            <td>{{ ucfirst($member->type) }}</td>
 	            <td>
 	            	<a href="{{ route('members.edit') }}" class="btn btn-outline-primary btn-sm m-1"><i class="fas fa-edit"></i></a>
 	            	<button type="button" class="btn btn-outline-danger btn-sm m-1" data-toggle="modal" data-target="#modal-delete-{{ $member->id }}"><i class="fas fa-trash"></i></button>

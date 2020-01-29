@@ -49,7 +49,7 @@
 	          <tr>
 	            <td>{{ $member->id }}</td>
 	            <td>{{ $member->name }}</td>
-	            <td>{{ $member->faculty->name }}</td>
+	            <td>@isset($member->faculty) {{ $member->faculty->name }} @endisset</td>
 	            <td>{{ $member->year }}</td>
 	            <td>{{ ucfirst($member->type) }}</td>
 	            <td>

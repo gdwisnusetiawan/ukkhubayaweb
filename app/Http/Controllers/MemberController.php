@@ -39,7 +39,25 @@ class MemberController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'id' => 'required|max:255',
+            'name' => 'required|max:255',
+            'year' => 'required|digits:4|integer',
+            'type' => 'required',
+        ]);
+
+        $member = new Member();
+        $member->id = $request->get('id');
+        $member->name = $request->get('name');
+        $member->year = $request->get('year');
+        $member->type = $request->get('type');
+        if($request->get('faculty') != 'none')
+        {
+            $member->faculty()->associate($request->get('faculty'));
+        }
+        $member->save();
+
+        return redirect('members')->with('status', 'Sukses menambah data.');
     }
 
     /**

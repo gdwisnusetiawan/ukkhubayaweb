@@ -1,8 +1,6 @@
 @extends('layouts.master')
 
 @push('css')
-  <!-- DataTables -->
-  <link rel="stylesheet" href="{{ asset('admin-lte/plugins/datatables-bs4/css/dataTables.bootstrap4.css') }}">
   <!-- Select2 -->
   <link rel="stylesheet" href="{{ asset('admin-lte/plugins/select2/css/select2.min.css') }}">
   <link rel="stylesheet" href="{{ asset('admin-lte/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
@@ -239,16 +237,6 @@
 	<!-- page script -->
 	<script>
 	  $(document).ready(function () {
-	    $("#example1").DataTable();
-	    $('#example2').DataTable({
-	      "paging": true,
-	      "lengthChange": false,
-	      "searching": false,
-	      "ordering": true,
-	      "info": true,
-	      "autoWidth": false,
-	    });
-
 	    function formatState (state) {
 	      if (!state.id) { return state.text; }
 	      var $state = $(

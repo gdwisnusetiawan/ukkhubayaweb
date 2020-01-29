@@ -24,7 +24,10 @@
     <div class="card">
       <h5 class="card-header">
 	      Daftar Anggota
-	      <a href="{{ route('members.create') }}" class="btn btn-primary float-right"><i class="fas fa-plus"></i> Tambah</a>
+	      <span class="float-right">
+	      	<a href="{{ route('members.create') }}" class="btn btn-primary"><i class="fas fa-cloud-upload-alt"></i> Upload</a>
+		      <a href="{{ route('members.create') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Tambah</a>
+	      </span>
 	  </h5>
       <div class="card-body">
       	<div class="table-responsive">

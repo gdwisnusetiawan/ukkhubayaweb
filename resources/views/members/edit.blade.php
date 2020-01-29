@@ -65,7 +65,11 @@
 	              <select class="form-control select2bs4 @error('faculty') is-invalid @enderror" name="faculty" required style="width: 100%;">
 	              	<option value="none">None</option>
 	              	@foreach ($faculties as $faculty)
-	              		<option value="{{ $faculty->id }}" {{ $member->faculty->id == $faculty->id ? 'selected' : '' }}>{{ $faculty->name }}</option>
+	              		<option value="{{ $faculty->id }}" 
+	              			@isset($member->faculty)
+	              				{{ $member->faculty->id == $faculty->id ? 'selected' : '' }}
+	              			@endisset
+	              		>{{ $faculty->name }}</option>
 	              	@endforeach
                 </select>
 	              @error('faculty')

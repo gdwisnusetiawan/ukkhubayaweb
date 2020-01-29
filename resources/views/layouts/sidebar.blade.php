@@ -25,8 +25,12 @@
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="true">
         <!-- Add icons to the links using the .nav-icon class
              with font-awesome or any other icon font library -->
-        <li class="nav-item has-treeview menu-open">
-          <a href="#" class="nav-link active">
+        <li class="nav-item has-treeview
+          @if (request()->is('home*'))
+            {{ 'menu-open' }}
+          @endif
+        ">
+          <a href="#" class="nav-link">
             <i class="nav-icon fas fa-home"></i>
             <p>
               Beranda
@@ -35,7 +39,7 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="#" class="nav-link active">
+              <a href="#" class="nav-link {{ (request()->is('home*')) ? 'active' : '' }}">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Dasboard</p>
               </a>
@@ -48,7 +52,11 @@
             </li>
           </ul>
         </li>
-        <li class="nav-item has-treeview menu-close">
+        <li class="nav-item has-treeview
+          @if (request()->is('users*') || request()->is('members*') || request()->is('faculties*'))
+            {{ 'menu-open' }}
+          @endif
+        ">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-th"></i>
             <p>
@@ -58,19 +66,19 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="{{ route('users.index') }}" class="nav-link">
+              <a href="{{ route('users.index') }}" class="nav-link {{ (request()->is('users*')) ? 'active' : '' }}">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Users</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{ route('members.index') }}" class="nav-link">
+              <a href="{{ route('members.index') }}" class="nav-link {{ (request()->is('members*')) ? 'active' : '' }}">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Anggota</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{ route('faculties.index') }}" class="nav-link">
+              <a href="{{ route('faculties.index') }}" class="nav-link {{ (request()->is('faculties*')) ? 'active' : '' }}">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Fakultas</p>
               </a>

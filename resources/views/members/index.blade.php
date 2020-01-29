@@ -10,6 +10,11 @@
   	table.dataTable tbody td {
   	  vertical-align: middle;
   	}
+  	@media screen and (max-width: 480px) {
+	    .button-text {
+        display: none;
+	    }
+  	}
   </style>
 @endpush
 
@@ -27,8 +32,8 @@
       <h5 class="card-header">
 	      Daftar Anggota
 	      <span class="float-right">
-	      	<a href="" class="btn btn-primary"><i class="fas fa-cloud-upload-alt"></i> Upload</a>
-		      <a href="{{ route('members.create') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Tambah</a>
+	      	<a href="" class="btn btn-primary"><i class="fas fa-cloud-upload-alt"></i><span class="button-text"> Upload</span></a>
+		      <a href="{{ route('members.create') }}" class="btn btn-primary"><i class="fas fa-plus"></i><span class="button-text"> Tambah</span></a>
 	      </span>
 	  </h5>
       <div class="card-body">
@@ -53,6 +58,7 @@
 	            <td>{{ $member->year }}</td>
 	            <td>{{ ucfirst($member->type) }}</td>
 	            <td>
+	            	<a href="{{ route('members.show', $member) }}" class="btn btn-outline-primary btn-sm m-1"><i class="fas fa-eye"></i></a>
 	            	<a href="{{ route('members.edit', $member) }}" class="btn btn-outline-primary btn-sm m-1"><i class="fas fa-edit"></i></a>
 	            	<button type="button" class="btn btn-outline-danger btn-sm m-1" data-toggle="modal" data-target="#modal-delete-{{ $member->id }}"><i class="fas fa-trash"></i></button>
 	            </td>

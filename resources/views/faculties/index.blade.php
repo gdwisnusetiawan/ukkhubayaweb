@@ -139,11 +139,11 @@
 	      		@slot('button_name') Ubah @endslot
 	      		@slot('form_id') form-edit-{{ $faculty->id }} @endslot
 	      		@slot('slot_footer')
-	      		<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-delete-{{ $faculty->id }}" id="button-modal-delete">Hapus</button>
+	      		<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-delete-{{ $faculty->id }}" id="button-modal-delete-{{ $faculty->id }}">Hapus</button>
 	      		@endslot
 	      		@push ('js')
 	      			<script type="text/javascript">
-	      				$('#button-modal-delete').click(function() {
+	      				$('#button-modal-delete-{{ $faculty->id }}').click(function() {
 	      					$('#modal-edit-{{ $faculty->id }}').modal('hide');
 	      				});
 	      			</script>
@@ -213,7 +213,11 @@
 	      		@slot('button_name') Hapus @endslot
 	      		@slot('form_id') form-delete-{{ $faculty->id }} @endslot
 
-	      		<p>Apakah Anda yakin ingin menghapus data <strong>({{ $faculty->id }}) {{ $faculty->name }}</strong>?</p>
+	      		<p>Apakah Anda yakin ingin menghapus data <strong>{{ $faculty->name }}</strong>?</p>
+	      		<form action="{{ route('faculties.destroy', $faculty) }}" method="post" class="form-horizontal" id="form-delete-{{ $faculty->id }}">
+	      			@csrf
+	      			@method('delete')
+	      		</form>
 	      	@endcomponent
 	      	<!-- /.modal -->
       	@endforeach

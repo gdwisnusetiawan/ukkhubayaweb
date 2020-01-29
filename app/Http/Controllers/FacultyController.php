@@ -46,7 +46,6 @@ class FacultyController extends Controller
         $faculty->name = $request->get('name');
         $faculty->color = $request->get('color');
         $faculty->icon = $request->get('icon');
-
         $faculty->save();
 
         return redirect('faculties')->with('status', 'Sukses menambah data.');
@@ -91,7 +90,6 @@ class FacultyController extends Controller
         $faculty->name = $request->get('name');
         $faculty->color = $request->get('color');
         $faculty->icon = $request->get('icon');
-
         $faculty->save();
 
         return redirect('faculties')->with('status', 'Sukses mengubah data.');
@@ -105,6 +103,8 @@ class FacultyController extends Controller
      */
     public function destroy(Faculty $faculty)
     {
-        //
+        $faculty->delete();
+
+        return redirect('faculties')->with('status', 'Sukses menghapus data.');
     }
 }

@@ -35,7 +35,7 @@
       	<div class="row">
       		@forelse ($faculties as $faculty)
       	  <div class="col-md-3 mb-3">
-      	  	<button type="button" class="btn btn-block btn-light h-100" data-toggle="modal" data-target="#modal-edit-{{ $faculty->id }}">
+      	  	<a href="{{ route('faculties.edit', $faculty) }}" type="button" class="btn btn-block btn-light h-100">
 	      	    <div class="card h-100 m-0 text-center bg-{{ $faculty->color }}">
 	      	      <div class="card-body d-flex justify-content-center">
 	      	      	<span class="align-self-center">
@@ -44,7 +44,7 @@
 	      	        </span>
 	      	      </div>
 	      	    </div>
-      	  	</button>
+      	  	</a>
       	  </div>
       	  @empty
       	  <p>Tidak ada data.</p>
@@ -113,99 +113,6 @@
 	      	@endif
 	      	<!-- /.modal -->
       	</div>
-
-      	@foreach ($faculties as $faculty)
-	      	<!-- Modal Edit -->
-	      	@component('components.modal')
-	      		@slot('id') modal-edit-{{ $faculty->id }} @endslot
-	      		@slot('title') Ubah Fakultas @endslot
-	      		@slot('button_type') primary @endslot
-	      		@slot('button_name') Ubah @endslot
-	      		@slot('form_id') form-edit-{{ $faculty->id }} @endslot
-	      		@slot('slot_footer')
-	      		<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-delete-{{ $faculty->id }}" id="button-modal-delete-{{ $faculty->id }}">Hapus</button>
-	      		@endslot
-	      		@push ('js')
-	      			<script type="text/javascript">
-	      				$('#button-modal-delete-{{ $faculty->id }}').click(function() {
-	      					$('#modal-edit-{{ $faculty->id }}').modal('hide');
-	      				});
-	      			</script>
-	      		@endpush
-
-	      		<form action="{{ route('faculties.update', $faculty) }}" method="post" class="form-horizontal" id="form-edit-{{ $faculty->id }}">
-		        	@csrf
-		        	@method('put')
-
-		          <div class="form-group row">
-		            <label for="name" class="col-sm-2 col-form-label">Nama</label>
-		            <div class="col-sm-10">
-		              <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $faculty->name }}" required autocomplete="name" placeholder="Nama">
-		              @error('name')
-		                <span class="invalid-feedback" role="alert">
-		                  <strong>{{ $message }}</strong>
-		                </span>
-		              @enderror
-		            </div>
-		          </div>
-		          <div class="form-group row">
-		            <label for="color" class="col-sm-2 col-form-label">Warna</label>
-		            <div class="col-sm-10">
-		              <select class="form-control select2bs4 @error('color') is-invalid @enderror" name="color" required style="width: 100%;">
-		              	@foreach ($colors as $color)
-		              		<option value="{{ $color }}" class="text-{{ $color }}" {{ $faculty->color == $color ? 'selected' : '' }}>{{ $color }}</option>
-		              	@endforeach
-                  </select>
-		              @error('color')
-		                <span class="invalid-feedback" role="alert">
-		                  <strong>{{ $message }}</strong>
-		                </span>
-		              @enderror
-		            </div>
-		          </div>
-		          <div class="form-group row">
-		            <label for="icon" class="col-sm-2 col-form-label">Icon</label>
-		            <div class="col-sm-10">
-		              <input type="text" class="form-control @error('icon') is-invalid @enderror" name="icon" value="{{ $faculty->icon }}" required autocomplete="icon" autofocus placeholder="ex: fas fa-circle">
-		              <small class="form-text text-muted">
-		                You can see all supported icons here: <a href="https://fontawesome.com/icons?d=gallery&m=free" target="_BLANK">Font Awesome</a><br>
-		                <a href="#">How to use it?</a>
-		              </small>
-		              @error('icon')
-		                <span class="invalid-feedback" role="alert">
-		                  <strong>{{ $message }}</strong>
-		                </span>
-		              @enderror
-		            </div>
-		          </div>
-		        </form>
-	      	@endcomponent
-	      	@if ($errors->any())
-		      	@push ('js')
-		      		<script type="text/javascript">
-		      			$('#modal-edit-{{ $faculty->id }}').modal('show')
-		      		</script>
-		      	@endpush
-	      	@endif
-	      	<!-- /.modal -->
-
-	      	<!-- Modal Delete -->
-	      	@component('components.modal')
-	      		@slot('id') modal-delete-{{ $faculty->id }} @endslot
-	      		@slot('title') Hapus Fakultas @endslot
-	      		@slot('button_type') danger @endslot
-	      		@slot('button_name') Hapus @endslot
-	      		@slot('form_id') form-delete-{{ $faculty->id }} @endslot
-
-	      		<p>Apakah Anda yakin ingin menghapus data <strong>{{ $faculty->name }}</strong>?</p>
-	      		<form action="{{ route('faculties.destroy', $faculty) }}" method="post" class="form-horizontal" id="form-delete-{{ $faculty->id }}">
-	      			@csrf
-	      			@method('delete')
-	      		</form>
-	      	@endcomponent
-	      	<!-- /.modal -->
-      	@endforeach
-
       </div><!-- /.card-body -->
     </div><!-- /.card -->
   </div>

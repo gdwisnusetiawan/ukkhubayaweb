@@ -122,9 +122,6 @@
 @endsection
 
 @push('js')
-	<!-- DataTables -->
-	<script src="{{ asset('admin-lte/plugins/datatables/jquery.dataTables.js') }}"></script>
-	<script src="{{ asset('admin-lte/plugins/datatables-bs4/js/dataTables.bootstrap4.js') }}"></script>
 	<!-- Select2 -->
 	<script src="{{ asset('admin-lte/plugins/select2/js/select2.full.min.js') }}"></script>
 	<!-- SweetAlert2 -->

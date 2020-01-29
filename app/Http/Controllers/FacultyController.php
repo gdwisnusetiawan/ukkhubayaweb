@@ -40,7 +40,7 @@ class FacultyController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|unique:faculties',
             'color' => 'required',
-            'icon' => 'required',
+            'icon' => 'required|starts_with:fas fa-, far fa-, fab fa-',
         ]);
 
         $faculty = new Faculty();

@@ -4,6 +4,8 @@
   <!-- Select2 -->
   <link rel="stylesheet" href="{{ asset('admin-lte/plugins/select2/css/select2.min.css') }}">
   <link rel="stylesheet" href="{{ asset('admin-lte/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
+  <!-- SweetAlert2 -->
+  <link rel="stylesheet" href="{{ asset('admin-lte/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css') }}">
 
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css" rel="stylesheet"/>
   <style type="text/css">
@@ -30,22 +32,26 @@
       	<div class="row">
       		@forelse ($faculties as $faculty)
       	  <div class="col-md-3 mb-3">
-      	  	<button type="button" class="btn btn-block btn-light" data-toggle="modal" data-target="#modal-edit-{{ $faculty->id }}">
+      	  	<button type="button" class="btn btn-block btn-light h-100" data-toggle="modal" data-target="#modal-edit-{{ $faculty->id }}">
 	      	    <div class="card h-100 m-0 text-center bg-{{ $faculty->color }}">
-	      	      <div class="card-body">
-	      	        <h1><i class="{{ $faculty->icon }}"></i></h1>
-	      	        <h2 class="card-text">{{ strtoupper($faculty->name) }}</h2>
+	      	      <div class="card-body d-flex justify-content-center">
+	      	      	<span class="align-self-center">
+		      	        <h1><i class="{{ $faculty->icon }}"></i></h1>
+		      	        <h2 class="card-text">{{ strtoupper($faculty->name) }}</h2>
+	      	        </span>
 	      	      </div>
 	      	    </div>
       	  	</button>
       	  </div>
       	  @if ($loop->last)
       	  <div class="col-md-3 mb-3">
-      	  	<button type="button" class="btn btn-block btn-light" data-toggle="modal" data-target="#modal-add">
+      	  	<button type="button" class="btn btn-block btn-light h-100" data-toggle="modal" data-target="#modal-add">
 	      	    <div class="card h-100 m-0 text-center bg-secondary">
-	      	      <div class="card-body">
-	      	        <h1><i class="fas fa-plus"></i></h1>
-	      	        <h2 class="card-text">Tambah</h2>
+	      	      <div class="card-body d-flex justify-content-center">
+	      	      	<span class="align-self-center">
+		      	        <h1><i class="fas fa-plus"></i></h1>
+		      	        <h2 class="card-text">Tambah</h2>
+		      	      </span>
 	      	      </div>
 	      	    </div>
       	    </button>
@@ -53,11 +59,13 @@
       	  @endif
       	  @empty
       	  <div class="col-md-3 mb-3">
-      	  	<button type="button" class="btn btn-block btn-light" data-toggle="modal" data-target="#modal-add">
+      	  	<button type="button" class="btn btn-block btn-light h-100" data-toggle="modal" data-target="#modal-add">
 	      	    <div class="card h-100 m-0 text-center bg-secondary">
-	      	      <div class="card-body">
-	      	        <h1><i class="fas fa-plus"></i></h1>
-	      	        <h2 class="card-text">Tambah</h2>
+	      	      <div class="card-body d-flex justify-content-center">
+	      	      	<span class="align-self-center">
+		      	        <h1><i class="fas fa-plus"></i></h1>
+		      	        <h2 class="card-text">Tambah</h2>
+		      	      </span>
 	      	      </div>
 	      	    </div>
       	    </button>
@@ -234,6 +242,8 @@
 	<script src="{{ asset('admin-lte/plugins/datatables-bs4/js/dataTables.bootstrap4.js') }}"></script>
 	<!-- Select2 -->
 	<script src="{{ asset('admin-lte/plugins/select2/js/select2.full.min.js') }}"></script>
+	<!-- SweetAlert2 -->
+	<script src="{{ asset('admin-lte/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
 	<!-- page script -->
 	<script>
 	  $(document).ready(function () {
@@ -250,6 +260,20 @@
 	      theme: 'bootstrap4',
 	      templateResult: formatState,
 	    });
+
+	    const Toast = Swal.mixin({
+	      toast: true,
+	      position: 'top-end',
+	      showConfirmButton: false,
+	      timer: 3000
+	    });
+
+	    if('{{ session("status") }}') {
+	    	Toast.fire({
+	        type: 'success',
+	        title: '{{ session("status") }}'
+	      })
+	    }
 	  });
 	</script>
 @endpush

@@ -21,6 +21,11 @@ class Member extends Model
      */
     protected $guarded = [];
 
+    public function faculty()
+    {
+        return $this->belongsTo('App\Faculty');
+    }
+
     public static function getEnumValues(){
         $type = DB::select(DB::raw('SHOW COLUMNS FROM members WHERE Field = "type"'))[0]->Type;
         preg_match('/^enum\((.*)\)$/', $type, $matches);

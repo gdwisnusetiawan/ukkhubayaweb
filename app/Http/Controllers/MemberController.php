@@ -40,8 +40,8 @@ class MemberController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'id' => 'required|max:255',
-            'name' => 'required|max:255',
+            'id' => 'required|max:255|unique:members',
+            'name' => 'required|max:255|unique:members',
             'year' => 'required|digits:4|integer',
             'type' => 'required',
         ]);

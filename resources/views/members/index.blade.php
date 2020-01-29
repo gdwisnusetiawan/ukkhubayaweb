@@ -51,7 +51,7 @@
 	            <td>{{ $member->year }}</td>
 	            <td>{{ ucfirst($member->type) }}</td>
 	            <td>
-	            	<a href="{{ route('members.edit') }}" class="btn btn-outline-primary btn-sm m-1"><i class="fas fa-edit"></i></a>
+	            	<a href="{{ route('members.edit', $member) }}" class="btn btn-outline-primary btn-sm m-1"><i class="fas fa-edit"></i></a>
 	            	<button type="button" class="btn btn-outline-danger btn-sm m-1" data-toggle="modal" data-target="#modal-delete-{{ $member->id }}"><i class="fas fa-trash"></i></button>
 	            </td>
 	          </tr>

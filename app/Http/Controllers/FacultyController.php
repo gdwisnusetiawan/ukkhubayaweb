@@ -40,6 +40,7 @@ class FacultyController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|unique:faculties',
             'color' => 'required',
+            'icon' => 'required',
         ]);
 
         $faculty = new Faculty();
@@ -70,7 +71,8 @@ class FacultyController extends Controller
      */
     public function edit(Faculty $faculty)
     {
-        //
+        $colors = Faculty::colors();
+        return view('faculties.edit', compact('faculty', 'colors'));
     }
 
     /**
@@ -85,6 +87,7 @@ class FacultyController extends Controller
         $validatedData = $request->validate([
             'name' => 'required',
             'color' => 'required',
+            'icon' => 'required',
         ]);
 
         $faculty->name = $request->get('name');

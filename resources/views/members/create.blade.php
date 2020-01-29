@@ -79,7 +79,7 @@
 	            <div class="col-sm-10">
 	              <select class="form-control select2bs4 @error('type') is-invalid @enderror" name="type" required style="width: 100%;">
 	              	@foreach ($types as $type)
-	              		<option value="{{ $type }}">{{ $type }}</option>
+	              		<option value="{{ $type }}">{{ ucfirst($type) }}</option>
 	              	@endforeach
                 </select>
 	              @error('type')

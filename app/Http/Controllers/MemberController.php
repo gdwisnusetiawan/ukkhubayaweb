@@ -79,7 +79,9 @@ class MemberController extends Controller
      */
     public function edit(Member $member)
     {
-        //
+        $faculties = Faculty::all();
+        $types = Member::getEnumValues();
+        return view('members.edit', compact('member','faculties','types'));
     }
 
     /**

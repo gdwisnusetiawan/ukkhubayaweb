@@ -15,6 +15,11 @@ class Faculty extends Model
         'name', 'color',
     ];
 
+    public function members()
+    {
+        return $this->hasMany('App\Member');
+    }
+
     public static function colors()
     {
     	return [

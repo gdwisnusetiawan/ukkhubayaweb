@@ -26,7 +26,10 @@
 <div class="row">
   <div class="col-lg-12">
     <div class="card">
-      <h5 class="card-header">Daftar Fakultas</h5>
+      <h5 class="card-header">
+      	Daftar Fakultas
+      	<button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#modal-add"><i class="fas fa-plus"></i> Tambah</button>
+      </h5>
       <div class="card-body">
 
       	<div class="row">
@@ -43,33 +46,8 @@
 	      	    </div>
       	  	</button>
       	  </div>
-      	  @if ($loop->last)
-      	  <div class="col-md-3 mb-3">
-      	  	<button type="button" class="btn btn-block btn-light h-100" data-toggle="modal" data-target="#modal-add">
-	      	    <div class="card h-100 m-0 text-center bg-secondary">
-	      	      <div class="card-body d-flex justify-content-center">
-	      	      	<span class="align-self-center">
-		      	        <h1><i class="fas fa-plus"></i></h1>
-		      	        <h2 class="card-text">Tambah</h2>
-		      	      </span>
-	      	      </div>
-	      	    </div>
-      	    </button>
-      	  </div>
-      	  @endif
       	  @empty
-      	  <div class="col-md-3 mb-3">
-      	  	<button type="button" class="btn btn-block btn-light h-100" data-toggle="modal" data-target="#modal-add">
-	      	    <div class="card h-100 m-0 text-center bg-secondary">
-	      	      <div class="card-body d-flex justify-content-center">
-	      	      	<span class="align-self-center">
-		      	        <h1><i class="fas fa-plus"></i></h1>
-		      	        <h2 class="card-text">Tambah</h2>
-		      	      </span>
-	      	      </div>
-	      	    </div>
-      	    </button>
-      	  </div>
+      	  <p>Tidak ada data.</p>
 	      	@endforelse
 
 	      	<!-- Modal Add -->

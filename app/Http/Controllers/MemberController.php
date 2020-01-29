@@ -93,7 +93,28 @@ class MemberController extends Controller
      */
     public function update(Request $request, Member $member)
     {
-        //
+        $validatedData = $request->validate([
+            'id' => 'required|max:255',
+            'name' => 'required|max:255',
+            'year' => 'required|digits:4|integer',
+            'type' => 'required',
+        ]);
+
+        $member->id = $request->get('id');
+        $member->name = $request->get('name');
+        $member->year = $request->get('year');
+        $member->type = $request->get('type');
+        if($request->get('faculty') != 'none')
+        {
+            $member->faculty()->associate($request->get('faculty'));
+        }
+        else
+        {
+            $member->faculty()->dissociate();
+        }
+        $member->save();
+
+        return redirect('members')->with('status', 'Sukses mengubah data.');
     }
 
     /**

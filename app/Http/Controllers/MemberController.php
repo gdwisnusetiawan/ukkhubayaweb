@@ -125,6 +125,8 @@ class MemberController extends Controller
      */
     public function destroy(Member $member)
     {
-        //
+        $member->delete();
+
+        return redirect('members')->with('status', 'Sukses menghapus data.');
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Member;
+use App\Faculty;
 use Illuminate\Http\Request;
 
 class MemberController extends Controller
@@ -25,7 +26,9 @@ class MemberController extends Controller
      */
     public function create()
     {
-        //
+        $faculties = Faculty::all();
+        $types = Member::getEnumValues();
+        return view('members.create', compact('faculties', 'types'));
     }
 
     /**

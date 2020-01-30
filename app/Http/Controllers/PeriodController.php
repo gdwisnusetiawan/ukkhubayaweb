@@ -14,7 +14,8 @@ class PeriodController extends Controller
      */
     public function index()
     {
-        //
+        $periods = Period::all();
+        return view('periods.index', compact('periods'));
     }
 
     /**

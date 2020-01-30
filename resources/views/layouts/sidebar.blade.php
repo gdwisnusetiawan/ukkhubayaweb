@@ -53,7 +53,7 @@
           </ul>
         </li>
         <li class="nav-item has-treeview
-          @if (request()->is('users*') || request()->is('members*') || request()->is('faculties*'))
+          @if (request()->is('users*') || request()->is('members*') || request()->is('faculties*') || request()->is('periods*'))
             {{ 'menu-open' }}
           @endif
         ">

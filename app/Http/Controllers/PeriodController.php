@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Period;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class PeriodController extends Controller
 {
@@ -36,10 +37,25 @@ class PeriodController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = request()->validate([
-            'year_begin' => 'required|digits:4|integer|unique:periods',
-            'year_end' => 'required|digits:4|integer|unique:periods',
-        ]);
+        $validator = Validator::make($request->all(), [
+            'year_begin' => [
+                'required',
+                'digits:4',
+                'integer',
+                'unique:periods',
+            ],
+            'year_end' => [
+                'required',
+                'digits:4',
+                'integer',
+                'unique:periods',
+                function ($attribute, $value, $fail) use ($request) {
+                    if ($value - $request->get('year_begin') != 1) {
+                        $fail($attribute.' must be year_begin plus one.');
+                    }
+                },
+            ],
+        ])->validate();
 
         $period = new Period();
         $period->year_begin = $request->get('year_begin');

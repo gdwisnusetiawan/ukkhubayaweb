@@ -26,14 +26,12 @@
       		@forelse ($periods as $period)
       	  <div class="col-md-3 mb-3">
       	    <div class="card h-100 m-0 text-center">
-      	      <div class="card-body d-flex justify-content-center">
-      	      	<span class="align-self-center">
-	      	        <h2 class="card-text">{{ $period->year_begin }} / {{ $period->year_end }}</h2>
-      	        </span>
-      	        <div class="justify-content-between">
-      	        <a href="{{ route('periods.edit', $period) }}" type="button" class="btn btn-block btn-light h-100"> Ubah</a>
-      	        <button type="button" class="btn btn-outline-danger btn-sm m-1" data-toggle="modal" data-target="#modal-delete-{{ $period->id }}"><i class="fas fa-trash"></i> Hapus</button>
-      	        </div>
+      	      <div class="card-body">
+	      	      <h1 class="card-text">{{ $period->year_begin }} / {{ $period->year_end }}</h1>
+      	      </div>
+      	      <div class="card-footer">
+      	      	<a href="{{ route('periods.edit', $period) }}" type="button" class="btn btn-outline-primary btn-sm m-1"><i class="fas fa-edit"></i> Ubah</a>
+	      	        <button type="button" class="btn btn-outline-danger btn-sm m-1" data-toggle="modal" data-target="#modal-delete-{{ $period->id }}"><i class="fas fa-trash"></i> Hapus</button>
       	      </div>
       	    </div>
       	  </div>

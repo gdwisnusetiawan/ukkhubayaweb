@@ -129,6 +129,8 @@ class PeriodController extends Controller
      */
     public function destroy(Period $period)
     {
-        //
+        $period->delete();
+
+        return redirect('periods')->with('status', 'Sukses menghapus data.');
     }
 }

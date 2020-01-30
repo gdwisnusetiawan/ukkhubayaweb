@@ -53,7 +53,7 @@
           </ul>
         </li>
         <li class="nav-item has-treeview
-          @if (request()->is('users*') || request()->is('members*') || request()->is('faculties*') || request()->is('periods*'))
+          @if (request()->is('users*') || request()->is('members*') || request()->is('faculties*') || request()->is('periods*') || request()->is('positions*'))
             {{ 'menu-open' }}
           @endif
         ">
@@ -90,7 +90,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href="{{ route('positions.index') }}" class="nav-link {{ (request()->is('positions*')) ? 'active' : '' }}">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Posisi</p>
               </a>

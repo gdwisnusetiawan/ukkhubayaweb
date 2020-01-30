@@ -51,7 +51,7 @@
 	          <div class="form-group row">
 	            <label for="order" class="col-sm-4 col-form-label">Urutan</label>
 	            <div class="col-sm-8">
-	              <input type="number" class="form-control @error('order') is-invalid @enderror" name="order" value="{{ old('order') }}" required autocomplete="order" placeholder="Urutan">
+	              <input type="number" class="form-control @error('order') is-invalid @enderror" name="order" value="{{ old('order') }}" required autocomplete="order" placeholder="Urutan" min="0" step="1">
 	              @error('order')
 	                <span class="invalid-feedback" role="alert">
 	                  <strong>{{ $message }}</strong>

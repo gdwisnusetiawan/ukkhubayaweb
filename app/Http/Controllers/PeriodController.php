@@ -36,7 +36,17 @@ class PeriodController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = request()->validate([
+            'year_begin' => 'required|digits:4|integer|unique:periods',
+            'year_end' => 'required|digits:4|integer|unique:periods',
+        ]);
+
+        $period = new Period();
+        $period->year_begin = $request->get('year_begin');
+        $period->year_end = $request->get('year_end');
+        $period->save();
+
+        return redirect('periods')->with('status', 'Sukses menambah data.');
     }
 
     /**

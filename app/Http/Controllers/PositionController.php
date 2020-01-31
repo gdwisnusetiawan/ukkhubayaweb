@@ -109,6 +109,8 @@ class PositionController extends Controller
      */
     public function destroy(Position $position)
     {
-        //
+        $position->delete();
+
+        return redirect('positions')->with('status', 'Sukses menghapus data.');
     }
 }

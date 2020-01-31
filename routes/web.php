@@ -24,3 +24,4 @@ Route::resource('faculties', 'FacultyController');
 Route::resource('members', 'MemberController');
 Route::resource('periods', 'PeriodController');
 Route::resource('positions', 'PositionController');
+Route::resource('programs', 'ProgramController');

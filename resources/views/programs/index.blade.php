@@ -1,5 +1,7 @@
 @extends('layouts.master')
 
+@inject('storage','Illuminate\Support\Facades\Storage')
+
 @push('css')
   <!-- DataTables -->
   <link rel="stylesheet" href="{{ asset('admin-lte/plugins/datatables-bs4/css/dataTables.bootstrap4.css') }}">
@@ -41,7 +43,7 @@
       		@forelse ($programs as $program)
       	  <div class="col-md-3 mb-3">
       	    <div class="card h-100 m-0 text-center">
-      	    	<img src="{{ asset('admin-lte/dist/img/AdminLTELogo.png') }}" class="card-img-top" alt="Logo Program Kerja">
+      	    	<img src="{{ asset('images/logos/'.$program->logo) }}" alt="Logo Program Kerja" class="img-fluid">
       	      <div class="card-body">
 	      	      <h2 class="card-text">{{ $program->name }}</h2>
       	      </div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Program;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProgramController extends Controller
 {
@@ -36,7 +37,23 @@ class ProgramController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required|max:255|unique:programs',
+            'logo' => 'required|file|image|mimes:jpeg,png|max:1000|dimensions:ratio=1/1'
+        ]);
+
+        // $path = $request->file('logo')->store('logos');
+        $file = $request->file('logo');
+        $name = $request->get('name');
+        $path = $name.'.'.$file->getClientOriginalExtension();
+        $file->move('images/logos/', $path);
+
+        $program = new Program();
+        $program->name = $request->get('name');
+        $program->logo = $path;
+        $program->save();
+
+        return redirect('programs')->with('status', 'Sukses menambah data.');
     }
 
     /**

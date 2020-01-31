@@ -18,6 +18,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('storage/{filename}', 'HomeController@displayImage')->name('storage.displayImage');
 
 Route::resource('users', 'UserController');
 Route::resource('faculties', 'FacultyController');

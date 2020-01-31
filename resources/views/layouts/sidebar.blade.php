@@ -53,7 +53,7 @@
           </ul>
         </li>
         <li class="nav-item has-treeview
-          @if (request()->is('users*') || request()->is('members*') || request()->is('faculties*') || request()->is('periods*') || request()->is('positions*'))
+          @if (request()->is('users*') || request()->is('members*') || request()->is('faculties*') || request()->is('periods*') || request()->is('positions*') || request()->is('programs*'))
             {{ 'menu-open' }}
           @endif
         ">
@@ -96,15 +96,15 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href="{{ route('programs.index') }}" class="nav-link {{ (request()->is('programs*')) ? 'active' : '' }}">
                 <i class="far fa-circle nav-icon"></i>
-                <p>Kepengurusan</p>
+                <p>Program Kerja</p>
               </a>
             </li>
             <li class="nav-item">
               <a href="#" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
-                <p>Program Kerja</p>
+                <p>Kepengurusan</p>
               </a>
             </li>
           </ul>

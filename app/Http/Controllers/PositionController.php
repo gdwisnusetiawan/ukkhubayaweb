@@ -36,7 +36,19 @@ class PositionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required|max:255|unique:positions',
+            'icon' => 'required|starts_with:fas fa-, far fa-, fab fa-',
+            'order' => 'required|integer|min:0',
+        ]);
+
+        $position = new Position();
+        $position->name = $request->get('name');
+        $position->icon = $request->get('icon');
+        $position->order = $request->get('order');
+        $position->save();
+
+        return redirect('positions')->with('status', 'Sukses menambah data.');
     }
 
     /**

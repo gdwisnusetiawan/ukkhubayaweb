@@ -36,57 +36,43 @@
 	      </span>
 	  </h5>
       <div class="card-body">
-      	<div class="table-responsive">
-	        <table id="example1" class="table">
-	          <thead>
-	          <tr>
-	            <th>#</th>
-	            <th>Nama</th>
-	            <th>Action</th>
-	          </tr>
-	          </thead>
-	          <tbody>
-	          @forelse ($positions as $position)
-	          <tr>
-	            <td>{{ $position->order }}</td>
-	            <td><i class="{{ $position->icon }}"></i> {{ $position->name }}</td>
-	            <td>
-	            	<a href="{{ route('positions.edit', $position) }}" class="btn btn-outline-primary btn-sm m-1"><i class="fas fa-edit"></i></a>
-	            	<button type="button" class="btn btn-outline-danger btn-sm m-1" data-toggle="modal" data-target="#modal-delete-{{ $position->id }}"><i class="fas fa-trash"></i></button>
-	            </td>
-	          </tr>
-	          </tbody>
-	          @empty
-	          	<td colspan="4" class="text-center">Tidak ada data</td>
-	          @endforelse
-	          <!-- <tfoot>
-	          <tr>
-	            <th>NRP</th>
-	            <th>Nama</th>
-	            <th>Email</th>
-	            <th>Action</th>
-	          </tr>
-	          </tfoot> -->
-	        </table>
-      	</div><!-- /.table-responsive -->
 
-      	@foreach ($positions as $position)
+      	<div class="row">
+      		@forelse ($positions as $position)
+      	  <div class="col-md-3 mb-3">
+      	    <div class="card h-100 m-0 text-center">
+      	      <div class="card-body">
+      	      	<h1><i class="{{ $position->icon }}"></i></h1>
+	      	      <h2 class="card-text">{{ $position->name }}</h2>
+      	      </div>
+      	      <div class="card-footer">
+      	      	<a href="{{ route('positions.edit', $position) }}" type="button" class="btn btn-outline-primary btn-sm m-1"><i class="fas fa-edit"></i> Ubah</a>
+	      	        <button type="button" class="btn btn-outline-danger btn-sm m-1" data-toggle="modal" data-target="#modal-delete-{{ $position->id }}"><i class="fas fa-trash"></i> Hapus</button>
+      	      </div>
+      	    </div>
+      	  </div>
+      	  @empty
+      	  <p>Tidak ada data.</p>
+	      	@endforelse
+
+	      	@foreach ($positions as $position)
 	      	<!-- Modal Delete -->
-	      	@component('components.modal')
-	      		@slot('id') modal-delete-{{ $position->id }} @endslot
-	      		@slot('title') Hapus Posisi @endslot
-	      		@slot('button_type') danger @endslot
-	      		@slot('button_name') Hapus @endslot
-	      		@slot('form_id') form-delete-{{ $position->id }} @endslot
+		      	@component('components.modal')
+		      		@slot('id') modal-delete-{{ $position->id }} @endslot
+		      		@slot('title') Hapus Posisi @endslot
+		      		@slot('button_type') danger @endslot
+		      		@slot('button_name') Hapus @endslot
+		      		@slot('form_id') form-delete-{{ $position->id }} @endslot
 
-	      		<p>Apakah Anda yakin ingin menghapus data <strong>({{ $position->id }}) {{ $position->name }}</strong>?</p>
-	      		<form action="{{ route('positions.destroy', $position) }}" method="post" id="form-delete-{{ $position->id }}">
-	      			@csrf
-	      			@method('delete')
-	      		</form>
-	      	@endcomponent
-	      	<!-- /.modal -->
-      	@endforeach
+		      		<p>Apakah Anda yakin ingin menghapus data <strong>{{ $position->name }}</strong>?</p>
+		      		<form action="{{ route('positions.destroy', $position) }}" method="post" id="form-delete-{{ $position->id }}">
+		      			@csrf
+		      			@method('delete')
+		      		</form>
+		      	@endcomponent
+		      	<!-- /.modal -->
+		    	@endforeach
+      	</div>
 
       </div><!-- /.card-body -->
     </div><!-- /.card -->

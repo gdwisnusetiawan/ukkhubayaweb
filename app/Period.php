@@ -18,9 +18,9 @@ class Period extends Model
     /**
      * Get the managements for the period.
      */
-    public function management()
+    public function managements()
     {
-        return $this->hasOne('App\Management');
+        return $this->hasMany('App\Management');
     }
 
     /**

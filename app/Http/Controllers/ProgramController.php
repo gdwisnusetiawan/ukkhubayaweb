@@ -75,7 +75,7 @@ class ProgramController extends Controller
      */
     public function edit(Program $program)
     {
-        //
+        return view('programs.edit', compact('program'));
     }
 
     /**

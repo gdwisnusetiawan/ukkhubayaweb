@@ -30,8 +30,9 @@
 	      	      <h1 class="card-text">{{ $period->year_begin }} / {{ $period->year_end }}</h1>
       	      </div>
       	      <div class="card-footer">
-      	      	<a href="{{ route('periods.edit', $period) }}" type="button" class="btn btn-outline-primary btn-sm m-1"><i class="fas fa-edit"></i> Ubah</a>
-	      	        <button type="button" class="btn btn-outline-danger btn-sm m-1" data-toggle="modal" data-target="#modal-delete-{{ $period->id }}"><i class="fas fa-trash"></i> Hapus</button>
+      	      	<a href="{{ route('periods.show', $period) }}" type="button" class="btn btn-outline-primary btn-sm m-1"><i class="fas fa-eye"></i></a>
+      	      	<a href="{{ route('periods.edit', $period) }}" type="button" class="btn btn-outline-primary btn-sm m-1"><i class="fas fa-edit"></i></a>
+	      	      <button type="button" class="btn btn-outline-danger btn-sm m-1" data-toggle="modal" data-target="#modal-delete-{{ $period->id }}"><i class="fas fa-trash"></i></button>
       	      </div>
       	    </div>
       	  </div>

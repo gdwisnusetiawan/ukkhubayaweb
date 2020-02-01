@@ -21,6 +21,7 @@
       <div class="card-body">
       	<form action="{{ route('programs.update', $program) }}" method="post" class="form-horizontal" id="form-edit" enctype="multipart/form-data">
 	        	@csrf
+	        	@method('put')
 
 	        	<div class="form-group row">
 	            <label for="name" class="col-sm-4 col-form-label">Nama</label>

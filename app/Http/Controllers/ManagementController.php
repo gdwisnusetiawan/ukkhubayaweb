@@ -65,7 +65,13 @@ class ManagementController extends Controller
      */
     public function show(Management $management)
     {
-        //
+        $members = $management->members;
+        $head = null;
+        foreach ($members as $member)
+        {
+            $head = $member->wherePivotIn('role', ['none','head'])->first();
+        }
+        return view('managements.show', compact('management', 'head'));
     }
 
     /**

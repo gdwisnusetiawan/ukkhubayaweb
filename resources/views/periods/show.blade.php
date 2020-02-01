@@ -50,7 +50,7 @@
       <h5 class="card-header">
         Daftar Divisi
         <span class="float-right">
-          <a href="{{ route('managements.create') }}" class="btn btn-primary"><i class="fas fa-plus"></i><span class="button-text"> Tambah</span></a>
+          <a href="{{ route('managements.createPeriod', $period) }}" class="btn btn-primary"><i class="fas fa-plus"></i><span class="button-text"> Tambah</span></a>
         </span>
       </h5>
       <div class="card-body">

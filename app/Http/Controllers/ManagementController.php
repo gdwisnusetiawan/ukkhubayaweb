@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Management;
+use App\Period;
+use App\Position;
 use Illuminate\Http\Request;
 
 class ManagementController extends Controller
@@ -23,9 +25,10 @@ class ManagementController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Period $period)
     {
-        //
+        $positions = Position::all();
+        return view('managements.create', compact('period', 'positions'));
     }
 
     /**

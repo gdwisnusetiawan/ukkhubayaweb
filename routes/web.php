@@ -27,3 +27,5 @@ Route::resource('periods', 'PeriodController');
 Route::resource('positions', 'PositionController');
 Route::resource('programs', 'ProgramController');
 Route::resource('managements', 'ManagementController');
+
+Route::get('managements/create/{period}', 'ManagementController@create')->name('managements.createPeriod');

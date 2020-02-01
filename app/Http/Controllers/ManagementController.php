@@ -14,7 +14,8 @@ class ManagementController extends Controller
      */
     public function index()
     {
-        //
+        $managements = Management::all();
+        return view('managements.index', compact('managements'));
     }
 
     /**

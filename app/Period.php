@@ -26,7 +26,7 @@ class Period extends Model
     /**
      * Get the formatted name for the period.
      */
-    public static function name()
+    public function name()
     {
         return $this->year_begin.' / '.$this->year_end;
     }

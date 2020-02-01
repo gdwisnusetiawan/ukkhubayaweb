@@ -64,8 +64,9 @@
                 <h2 class="card-text">{{ $management->position->name }}</h2>
               </div>
               <div class="card-footer">
-                <a href="{{ route('managements.edit', $management) }}" type="button" class="btn btn-outline-primary btn-sm m-1"><i class="fas fa-edit"></i> Ubah</a>
-                <button type="button" class="btn btn-outline-danger btn-sm m-1" data-toggle="modal" data-target="#modal-delete-{{ $management->id }}"><i class="fas fa-trash"></i> Hapus</button>
+                <a href="{{ route('managements.show', $management) }}" type="button" class="btn btn-outline-primary btn-sm m-1"><i class="fas fa-eye"></i></a>
+                <a href="{{ route('managements.edit', $management) }}" type="button" class="btn btn-outline-primary btn-sm m-1"><i class="fas fa-edit"></i></a>
+                <button type="button" class="btn btn-outline-danger btn-sm m-1" data-toggle="modal" data-target="#modal-delete-{{ $management->id }}"><i class="fas fa-trash"></i></button>
               </div>
             </div>
           </div>
@@ -82,7 +83,7 @@
               @slot('button_name') Hapus @endslot
               @slot('form_id') form-delete-{{ $management->id }} @endslot
 
-              <p>Apakah Anda yakin ingin menghapus data <strong>{{ $management->name }}</strong>?</p>
+              <p>Apakah Anda yakin ingin menghapus data <strong>{{ $management->position->name }}</strong> pada periode <strong>{{ $management->period->name() }}</strong>?</p>
               <form action="{{ route('managements.destroy', $management) }}" method="post" id="form-delete-{{ $management->id }}">
                 @csrf
                 @method('delete')

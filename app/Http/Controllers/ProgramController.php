@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Program;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rule;
 
 class ProgramController extends Controller
 {
@@ -87,7 +88,28 @@ class ProgramController extends Controller
      */
     public function update(Request $request, Program $program)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => [
+                'required',
+                'max:255',
+                Rule::unique('programs')->ignore($program),
+            ],
+            'logo' => 'required|file|image|mimes:jpeg,png|max:1024|dimensions:ratio=1/1'
+        ]);
+
+        $program->name = $request->get('name');
+        // $path = $request->file('logo')->store('logos');
+        $file = $request->file('logo');
+        if ($file->isValid()) {
+            unlink($program->logo);
+            $name = $request->get('name');
+            $filename = $name.'.'.$file->getClientOriginalExtension();
+            $file->move('images/logos/', $filename);
+            $program->logo = 'images/logos/'.$filename;
+        }
+        $program->save();
+
+        return redirect('programs')->with('status', 'Sukses mengubah data.');
     }
 
     /**

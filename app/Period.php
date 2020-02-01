@@ -22,4 +22,12 @@ class Period extends Model
     {
         return $this->hasMany('App\Management');
     }
+
+    /**
+     * Get the formatted name for the period.
+     */
+    public static function name()
+    {
+        return $this->year_begin.' / '.$this->year_end;
+    }
 }

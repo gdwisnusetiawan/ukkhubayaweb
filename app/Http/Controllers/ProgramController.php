@@ -120,6 +120,9 @@ class ProgramController extends Controller
      */
     public function destroy(Program $program)
     {
-        //
+        unlink($program->logo);
+        $program->delete();
+
+        return redirect('programs')->with('status', 'Sukses menghapus data.');
     }
 }

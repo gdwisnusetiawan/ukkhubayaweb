@@ -30,7 +30,8 @@
 	        	<div class="form-group row">
 	            <label for="period_id" class="col-sm-2 col-form-label">Periode</label>
 	            <div class="col-sm-10">
-	              <input type="text" class="form-control @error('period_id') is-invalid @enderror" name="period_id" value="{{ $period->name() }}" required autocomplete="period_id" placeholder="Periode" readonly>
+	            	<input type="text" class="form-control" value="{{ $period->name() }}" readonly>
+	              <input type="hidden" class="form-control @error('period_id') is-invalid @enderror" name="period_id" value="{{ $period->id }}" required autocomplete="period_id" placeholder="Periode" readonly>
 	              @error('period_id')
 	                <span class="invalid-feedback" role="alert">
 	                  <strong>{{ $message }}</strong>
@@ -39,14 +40,14 @@
 	            </div>
 	          </div>
 	          <div class="form-group row">
-	            <label for="position" class="col-sm-2 col-form-label">Posisi</label>
+	            <label for="position_id" class="col-sm-2 col-form-label">Posisi</label>
 	            <div class="col-sm-10">
-	              <select class="form-control select2bs4 @error('position') is-invalid @enderror" name="position" required style="width: 100%;">
+	              <select class="form-control select2bs4 @error('position_id') is-invalid @enderror" name="position_id" required style="width: 100%;">
 	              	@foreach ($positions as $position)
 	              		<option value="{{ $position->id }}">{{ $position->name }}</option>
 	              	@endforeach
                 </select>
-	              @error('position')
+	              @error('position_id')
 	                <span class="invalid-feedback" role="alert">
 	                  <strong>{{ $message }}</strong>
 	                </span>

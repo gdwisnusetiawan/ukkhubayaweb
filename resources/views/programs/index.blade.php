@@ -43,7 +43,9 @@
       		@forelse ($programs as $program)
       	  <div class="col-md-3 mb-3">
       	    <div class="card h-100 m-0 text-center">
-      	    	<img src="{{ asset($program->logo) }}" alt="Logo Program Kerja" class="img-fluid">
+      	    	<div class="mx-3 mt-3">
+      	    		<img src="{{ asset($program->logo) }}" alt="Logo Program Kerja" class="img-fluid card-img-top">
+      	    	</div>
       	      <div class="card-body">
 	      	      <h2 class="card-text">{{ $program->name }}</h2>
       	      </div>

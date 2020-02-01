@@ -74,9 +74,10 @@ class ManagementController extends Controller
      * @param  \App\Management  $management
      * @return \Illuminate\Http\Response
      */
-    public function edit(Management $management)
+    public function edit(Management $management, Period $period)
     {
-        //
+        $positions = Position::all();
+        return view('managements.edit', compact('management', 'period', 'positions'));
     }
 
     /**

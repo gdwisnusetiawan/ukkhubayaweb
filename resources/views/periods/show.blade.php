@@ -65,7 +65,7 @@
               </div>
               <div class="card-footer">
                 <a href="{{ route('managements.show', $management) }}" type="button" class="btn btn-outline-primary btn-sm m-1"><i class="fas fa-eye"></i></a>
-                <a href="{{ route('managements.edit', $management) }}" type="button" class="btn btn-outline-primary btn-sm m-1"><i class="fas fa-edit"></i></a>
+                <a href="{{ route('managements.editPeriod', [$management, $period]) }}" type="button" class="btn btn-outline-primary btn-sm m-1"><i class="fas fa-edit"></i></a>
                 <button type="button" class="btn btn-outline-danger btn-sm m-1" data-toggle="modal" data-target="#modal-delete-{{ $management->id }}"><i class="fas fa-trash"></i></button>
               </div>
             </div>

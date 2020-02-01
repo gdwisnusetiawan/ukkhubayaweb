@@ -46,12 +46,12 @@ class ProgramController extends Controller
         // $path = $request->file('logo')->store('logos');
         $file = $request->file('logo');
         $name = $request->get('name');
-        $path = $name.'.'.$file->getClientOriginalExtension();
-        $file->move('images/logos/', $path);
+        $name = $name.' Logo.'.$file->getClientOriginalExtension();
+        $file->move('images/logos/', $name);
 
         $program = new Program();
         $program->name = $request->get('name');
-        $program->logo = $path;
+        $program->logo = 'images/logos/'.$name;
         $program->save();
 
         return redirect('programs')->with('status', 'Sukses menambah data.');
@@ -103,7 +103,7 @@ class ProgramController extends Controller
         if ($file->isValid()) {
             unlink($program->logo);
             $name = $request->get('name');
-            $filename = $name.'.'.$file->getClientOriginalExtension();
+            $filename = $name.' Logo.'.$file->getClientOriginalExtension();
             $file->move('images/logos/', $filename);
             $program->logo = 'images/logos/'.$filename;
         }

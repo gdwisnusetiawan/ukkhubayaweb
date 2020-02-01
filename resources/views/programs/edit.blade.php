@@ -61,7 +61,7 @@
   </div>
   <!-- /.col -->
   <div class="col-md-6">
-  	<img src="{{ asset('images/logos/'.$program->logo) }}" id="logoDisplay" class="img-fluid img-thumbnail" alt="{{ $program->logo }}" style="max-width: 100%; height: auto;">
+  	<img src="{{ asset($program->logo) }}" id="logoDisplay" class="img-fluid img-thumbnail" alt="{{ $program->logo }}" style="max-width: 100%; height: auto;">
   </div>
 </div>
 <!-- /.row -->

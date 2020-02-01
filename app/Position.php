@@ -14,4 +14,12 @@ class Position extends Model
     protected $fillable = [
         'name', 'icon', 'order',
     ];
+
+    /**
+     * Get the managements for the position.
+     */
+    public function managements()
+    {
+        return $this->hasMany('App\Management');
+    }
 }

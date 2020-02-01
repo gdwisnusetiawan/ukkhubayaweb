@@ -14,4 +14,12 @@ class Period extends Model
     protected $fillable = [
         'year_begin', 'year_end',
     ];
+
+    /**
+     * Get the managements for the period.
+     */
+    public function managements()
+    {
+        return $this->hasMany('App\Management');
+    }
 }

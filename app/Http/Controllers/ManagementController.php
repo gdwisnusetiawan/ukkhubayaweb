@@ -39,7 +39,22 @@ class ManagementController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'period_id' => 'required|exists:periods,id',
+            'position_id' => 'required|exists:positions,id',
+            'job' => 'required',
+            'information' => 'required|nullable',
+        ]);
+
+        $management = new Management();
+        $management->period()->associate($request->get('period_id'));
+        $management->position()->associate($request->get('position_id'));
+        $management->job = $request->get('job');
+        $management->information = $request->get('information');
+        $management->save();
+
+        $period = Period::find($request->get('period_id'));
+        return redirect()->route('periods.show', compact('period'))->with('status', 'Sukses menambah data.');
     }
 
     /**

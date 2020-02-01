@@ -26,3 +26,4 @@ Route::resource('members', 'MemberController');
 Route::resource('periods', 'PeriodController');
 Route::resource('positions', 'PositionController');
 Route::resource('programs', 'ProgramController');
+Route::resource('managements', 'ManagementController');

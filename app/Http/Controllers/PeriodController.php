@@ -73,7 +73,7 @@ class PeriodController extends Controller
      */
     public function show(Period $period)
     {
-        $managements = $period->managements();
+        $managements = $period->managements;
         return view('periods.show', compact('managements', 'period'));
     }
 

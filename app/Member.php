@@ -26,6 +26,14 @@ class Member extends Model
         return $this->belongsTo('App\Faculty');
     }
 
+    /**
+     * The managements that belong to the member.
+     */
+    public function managements()
+    {
+        return $this->belongsToMany('App\Management')->withPivot('role')->withTimestamps();
+    }
+
     public static function getEnumValues(){
         $type = DB::select(DB::raw('SHOW COLUMNS FROM members WHERE Field = "type"'))[0]->Type;
         preg_match('/^enum\((.*)\)$/', $type, $matches);

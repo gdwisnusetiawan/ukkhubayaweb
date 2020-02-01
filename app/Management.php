@@ -30,4 +30,12 @@ class Management extends Model
     {
         return $this->belongsTo('App\Position');
     }
+
+    /**
+     * The members that belong to the management.
+     */
+    public function members()
+    {
+        return $this->belongsToMany('App\Member')->withPivot('role')->withTimestamps();
+    }
 }

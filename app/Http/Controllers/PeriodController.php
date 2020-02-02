@@ -73,7 +73,9 @@ class PeriodController extends Controller
      */
     public function show(Period $period)
     {
-        $managements = $period->managements;
+        $managements = $period->managements->sortBy(function($managements) {
+            return $managements->position->order;
+        });
         return view('periods.show', compact('managements', 'period'));
     }
 

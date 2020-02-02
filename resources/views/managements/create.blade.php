@@ -59,7 +59,7 @@
 	            <div class="col-sm-10">
 	            	<textarea class="textarea form-control @error('job') is-invalid @enderror" name="job" value="{{ old('job') }}" required autocomplete="job"
                           style="font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
-	              @error('name')
+	              @error('job')
 	                <span class="invalid-feedback" role="alert">
 	                  <strong>{{ $message }}</strong>
 	                </span>
@@ -69,7 +69,7 @@
 	          <div class="form-group row">
 	            <label for="information" class="col-sm-2 col-form-label">Informasi</label>
 	            <div class="col-sm-10">
-	              <textarea class="textarea form-control @error('information') is-invalid @enderror" name="information" value="{{ old('information') }}" required autocomplete="information"
+	              <textarea class="textarea form-control @error('information') is-invalid @enderror" name="information" value="{{ old('information') }}" autocomplete="information"
                           style="font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
 	              @error('information')
 	                <span class="invalid-feedback" role="alert">

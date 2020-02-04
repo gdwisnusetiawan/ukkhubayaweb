@@ -16,11 +16,18 @@ class ManagementController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $periods = Period::all();
-        $periodLast = Period::orderBy('year_begin', 'desc')->first();
-        $managements = Management::where('period_id', $periodLast->id)
+        if ($request->has('period_id'))
+        {
+            $periodLast = $request->get('period_id');
+        }
+        else
+        {
+            $periodLast = Period::orderBy('year_begin', 'desc')->first()->id;
+        }
+        $managements = Management::where('period_id', $periodLast)
         ->get()
         ->sortBy(function($management) {
             return $management->position->order;

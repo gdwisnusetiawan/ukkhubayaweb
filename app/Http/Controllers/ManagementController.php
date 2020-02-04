@@ -18,8 +18,14 @@ class ManagementController extends Controller
      */
     public function index()
     {
-        $managements = Management::all();
-        return view('managements.index', compact('managements'));
+        $periods = Period::all();
+        $periodLast = Period::orderBy('year_begin', 'desc')->first();
+        $managements = Management::where('period_id', $periodLast->id)
+        ->get()
+        ->sortBy(function($management) {
+            return $management->position->order;
+        });
+        return view('managements.index', compact('managements', 'periods', 'periodLast'));
     }
 
     /**

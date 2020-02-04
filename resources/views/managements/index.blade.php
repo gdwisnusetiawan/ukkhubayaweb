@@ -34,11 +34,13 @@
       	<div class="d-flex justify-content-between">
       		<span>
     	    <label for="period_id" class="col-form-label">Daftar Pengurus</label>
-		      <select class="select2bs4" name="period_id" required>
-	        	@foreach ($periods as $period)
-	        		<option value="{{ $period->id }}" {{ $periodLast->id == $period->id ? 'selected' : '' }}>Periode {{ $period->name() }}</option>
-	        	@endforeach
-	        </select>
+    	    <form action="{{ route('managements.index') }}" method="get" class="form-horizontal">
+			      <select class="select2bs4" name="period_id" required onchange="this.form.submit()">
+		        	@foreach ($periods as $period)
+		        		<option value="{{ $period->id }}" {{ $periodLast == $period->id ? 'selected' : '' }}>Periode {{ $period->name() }}</option>
+		        	@endforeach
+		        </select>
+	        </form>
 	        </span>
 		      <span class="float-right">
 			      <a href="{{ route('managements.create') }}" class="btn btn-primary"><i class="fas fa-plus"></i><span class="button-text"> Tambah</span></a>

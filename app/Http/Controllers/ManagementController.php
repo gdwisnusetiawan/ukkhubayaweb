@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Management;
 use App\Period;
 use App\Position;
+use App\Member;
+use App\ManagementMember;
 use Illuminate\Http\Request;
 
 class ManagementController extends Controller
@@ -27,8 +29,11 @@ class ManagementController extends Controller
      */
     public function create(Period $period)
     {
+        $members = Member::all();
+        $roles = ManagementMember::getEnumValues();
         $positions = Position::all();
-        return view('managements.create', compact('period', 'positions'));
+        $periods = Period::orderBy('year_begin', 'desc')->get();
+        return view('managements.create', compact('period', 'periods', 'positions', 'members', 'roles'));
     }
 
     /**
@@ -43,18 +48,22 @@ class ManagementController extends Controller
             'period_id' => 'required|exists:periods,id',
             'position_id' => 'required|exists:positions,id',
             'job' => 'required',
-            'information' => 'required|nullable',
+            'information' => 'nullable',
+            'member_id' => 'required|exists:members,id',
+            'role' => 'required|in:none,head,staff',
         ]);
 
-        $management = new Management();
-        $management->period()->associate($request->get('period_id'));
-        $management->position()->associate($request->get('position_id'));
-        $management->job = $request->get('job');
-        $management->information = $request->get('information');
+        // Retrieve flight by period and position, or create it with the job and information
+        $management = Management::firstOrCreate(
+            ['period_id' => $request->get('period_id'), 'position_id' => $request->get('position_id')],
+            ['job' => $request->get('job'), 'information' => $request->get('information')]
+        );
+        // Attach a member with the role to the management
+        $management->members()->attach($request->get('member_id'), ['role' => $request->get('role')]);
         $management->save();
 
         $period = Period::find($request->get('period_id'));
-        return redirect()->route('periods.show', compact('period'))->with('status', 'Sukses menambah data.');
+        return redirect('managements')->with('status', 'Sukses menambah data.');
     }
 
     /**

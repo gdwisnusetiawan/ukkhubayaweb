@@ -1,6 +1,8 @@
 @extends('layouts.master')
 
 @push('css')
+  <!-- summernote -->
+  <link rel="stylesheet" href="{{ asset('admin-lte/plugins/summernote/summernote-bs4.css') }}">
   <!-- SweetAlert2 -->
   <link rel="stylesheet" href="{{ asset('admin-lte/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css') }}">
 
@@ -71,163 +73,25 @@
     <div class="card">
       <div class="card-header p-2">
         <ul class="nav nav-pills">
-          <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab">Information</a></li>
-          <li class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab">Activity</a></li>
+          <li class="nav-item"><a class="nav-link active" href="#job" data-toggle="tab">Tugas</a></li>
+          <li class="nav-item"><a class="nav-link" href="#information" data-toggle="tab">Informasi</a></li>
+          @if ($management->has('members')->where('role', 'staff'))
+          <li class="nav-item"><a class="nav-link" href="#member" data-toggle="tab">Anggota</a></li>
+          @endif
         </ul>
       </div><!-- /.card-header -->
       <div class="card-body">
         <div class="tab-content">
-          <div class="active tab-pane" id="activity">
-            <strong><i class="fas fa-book mr-1"></i> Tempat, Tanggal Lahir</strong>
-            <p class="text-muted">Mataram, 12 Februari 1999</p>
-
-            <hr>
-
-            <strong><i class="fas fa-map-marker-alt mr-1"></i> Alamat</strong>
-            <p class="text-muted">Jalan Rungkut Harapan Blok D No.10, Rungkut, Surabaya</p>
-
-            <hr>
-
-            <strong><i class="fas fa-pencil-alt mr-1"></i> Kontak</strong>
-            <ul class="list-group my-3">
-              <li class="list-group-item d-flex justify-content-between align-items-center">
-                <span><i class="fas fa-phone"></i> &nbsp; Telepon &nbsp;</span><a href="">087 xxx xxx xxx</a>
-              </li>
-              <li class="list-group-item d-flex justify-content-between align-items-center">
-                <span><i class="fas fa-envelope"></i> &nbsp; Email &nbsp;</span><a href="">gedewisnusetiawan@gmail.com</a>
-              </li>
-              <li class="list-group-item d-flex justify-content-between align-items-center">
-                <span><i class="fab fa-whatsapp"></i> &nbsp; Whatsapp &nbsp;</span><a href="">087 xxx xxx xxx</a>
-              </li>
-              <li class="list-group-item d-flex justify-content-between align-items-center">
-                <span><i class="fab fa-instagram"></i> &nbsp; Instagram &nbsp;</span><a href="">gdwisnusetiawan</a>
-              </li>
-              <li class="list-group-item d-flex justify-content-between align-items-center">
-                <span><i class="fab fa-facebook"></i> &nbsp; Facebook &nbsp;</span><a href="">Wisnu Setiawan</a>
-              </li>
-              <li class="list-group-item d-flex justify-content-between align-items-center">
-                <span><i class="fab fa-twitter"></i> &nbsp; Twitter &nbsp;</span><a href="">@gdwisnusetiawan</a>
-              </li>
-              <li class="list-group-item d-flex justify-content-between align-items-center">
-                <span><i class="fab fa-linkedin"></i> &nbsp; LinkedIn &nbsp;</span><a href="">gdwisnusetiawan</a>
-              </li>
-            </ul>
-
-            <hr>
-
-            <strong><i class="far fa-file-alt mr-1"></i> Catatan</strong>
-
-            <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque.</p>
+          <div class="active tab-pane" id="job">
+            <textarea id="textareaJob" class="textarea" name="job" disabled style="font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">{{ $management->job }}</textarea>
           </div>
           <!-- /.tab-pane -->
-          <div class="tab-pane" id="timeline">
-            <!-- The timeline -->
-            <div class="timeline timeline-inverse">
-              <!-- timeline time label -->
-              <div class="time-label">
-                <span class="bg-dark">
-                  2019 / 2020
-                </span>
-              </div>
-              <!-- /.timeline-label -->
-              <!-- timeline item -->
-              <div>
-                <i class="fas fa-check bg-success"></i>
-
-                <div class="timeline-item">
-                  <span class="time"><i class="far fa-clock"></i> Mei 2019</span>
-                  <h3 class="timeline-header">Steering Committee <a href="#">Bali Festival</a></h3>
-                </div>
-              </div>
-              <!-- /.timeline-item -->
-              <!-- timeline item -->
-              <div>
-                <i class="fas fa-check bg-success"></i>
-
-                <div class="timeline-item">
-                  <span class="time"><i class="far fa-clock"></i> Februari 2019</span>
-                  <h3 class="timeline-header">Steering Committee <a href="#">U-Champ</a></h3>
-                </div>
-              </div>
-              <!-- /.timeline-item -->
-              <!-- timeline item -->
-              <div>
-                <i class="fas fa-check bg-success"></i>
-
-                <div class="timeline-item">
-                  <span class="time"><i class="far fa-clock"></i> Agustus 2019</span>
-                  <h3 class="timeline-header">Anggota Mahasiswa Pendamping <a href="#">Dharma Yowana</a></h3>
-                </div>
-              </div>
-              <!-- /.timeline-item -->
-              <!-- timeline time label -->
-              <div class="time-label">
-                <span class="bg-dark">
-                  2018 / 2019
-                </span>
-              </div>
-              <!-- /.timeline-label -->
-              <!-- timeline item -->
-              <div>
-                <i class="fas fa-check bg-success"></i>
-
-                <div class="timeline-item">
-                  <span class="time"><i class="far fa-clock"></i> Mei 2019</span>
-                  <h3 class="timeline-header">Wakil Ketua <a href="#">Bali Festival</a></h3>
-                </div>
-              </div>
-              <!-- /.timeline-item -->
-              <!-- timeline item -->
-              <div>
-                <i class="fas fa-check bg-success"></i>
-
-                <div class="timeline-item">
-                  <span class="time"><i class="far fa-clock"></i> Maret 2019</span>
-                  <h3 class="timeline-header">Steering Committee <a href="#">Tirta Yatra</a></h3>
-                </div>
-              </div>
-              <!-- /.timeline-item -->
-              <!-- timeline item -->
-              <div>
-                <i class="fas fa-check bg-success"></i>
-
-                <div class="timeline-item">
-                  <span class="time"><i class="far fa-clock"></i> Januari 2019</span>
-                  <h3 class="timeline-header">Steering Committee <a href="#">Bazaar</a></h3>
-                </div>
-              </div>
-              <!-- /.timeline-item -->
-              <!-- timeline item -->
-              <div>
-                <i class="fas fa-check bg-success"></i>
-
-                <div class="timeline-item">
-                  <span class="time"><i class="far fa-clock"></i> November 2019</span>
-                  <h3 class="timeline-header">Steering Committee <a href="#">Pekan Olahraga Hindu</a></h3>
-                </div>
-              </div>
-              <!-- /.timeline-item -->
-              <!-- timeline item -->
-              <div>
-                <i class="fas fa-check bg-success"></i>
-
-                <div class="timeline-item">
-                  <span class="time"><i class="far fa-clock"></i> Agustus 2019</span>
-                  <h3 class="timeline-header">Steering Committee <a href="#">Dharma Yowana</a></h3>
-                </div>
-              </div>
-              <!-- /.timeline-item -->
-              <!-- timeline item -->
-              <div>
-                <i class="fas fa-check bg-success"></i>
-
-                <div class="timeline-item">
-                  <span class="time"><i class="far fa-clock"></i> Juli 2019</span>
-                  <h3 class="timeline-header">Wakil Ketua II <a href="#">Badan Pengurus Harian</a></h3>
-                </div>
-              </div>
-              <!-- /.timeline-item -->
-            </div>
+          <div class="tab-pane" id="information">
+            <textarea id="textareaInformation" class="textarea" name="information" disabled style="font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">{{ $management->information }}</textarea>
+          </div>
+          <!-- /.tab-pane -->
+          <div class="tab-pane" id="member">
+            
           </div>
           <!-- /.tab-pane -->
         </div>
@@ -242,20 +106,21 @@
 @endsection
 
 @push('js')
+  <!-- Summernote -->
+  <script src="{{ asset('admin-lte/plugins/summernote/summernote-bs4.min.js') }}"></script>
   <!-- SweetAlert2 -->
   <script src="{{ asset('admin-lte/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
   <!-- page script -->
   <script>
-    $(function () {
-      $("#example1").DataTable();
-      $('#example2').DataTable({
-        "paging": true,
-        "lengthChange": false,
-        "searching": false,
-        "ordering": true,
-        "info": true,
-        "autoWidth": false,
+    $(document).ready(function () {
+      // Summernote
+      $('.textarea').summernote({
+        toolbar: [],
+        height: 'auto',
+        disableResizeEditor: true,
       });
+      $('#textareaJob').summernote('disable');
+      $('#textareaInformation').summernote('disable');
 
       const Toast = Swal.mixin({
         toast: true,

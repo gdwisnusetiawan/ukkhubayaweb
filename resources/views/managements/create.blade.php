@@ -4,6 +4,8 @@
   <!-- Select2 -->
   <link rel="stylesheet" href="{{ asset('admin-lte/plugins/select2/css/select2.min.css') }}">
   <link rel="stylesheet" href="{{ asset('admin-lte/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
+  <!-- iCheck for checkboxes and radio inputs -->
+  <link rel="stylesheet" href="{{ asset('admin-lte/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
   <!-- summernote -->
   <link rel="stylesheet" href="{{ asset('admin-lte/plugins/summernote/summernote-bs4.css') }}">
 @endpush
@@ -18,7 +20,7 @@
 
 @section('content')
 <div class="row">
-  <div class="col-md-8">
+  <div class="col-md-12">
     <div class="card">
       <h5 class="card-header">
       	Tambah Divisi
@@ -30,8 +32,16 @@
 	        	<div class="form-group row">
 	            <label for="period_id" class="col-sm-2 col-form-label">Periode</label>
 	            <div class="col-sm-10">
-	            	<input type="text" class="form-control" value="{{ $period->name() }}" readonly>
-	              <input type="hidden" class="form-control @error('period_id') is-invalid @enderror" name="period_id" value="{{ $period->id }}" required autocomplete="period_id" placeholder="Periode" readonly>
+	            	@isset($period->id)
+		            	<input type="text" class="form-control" value="{{ $period->name() }}" readonly>
+		              <input type="hidden" class="form-control @error('period_id') is-invalid @enderror" name="period_id" value="{{ $period->id }}" required autocomplete="period_id" placeholder="Periode" readonly>
+	              @else
+		              <select class="form-control select2bs4 @error('position_id') is-invalid @enderror" name="period_id" required style="width: 100%;">
+		              	@foreach ($periods as $item)
+		              		<option value="{{ $item->id }}" {{ $period->id == $item->id ? 'selected' : '' }}>{{ $item->name() }}</option>
+		              	@endforeach
+	                </select>
+                @endisset
 	              @error('period_id')
 	                <span class="invalid-feedback" role="alert">
 	                  <strong>{{ $message }}</strong>
@@ -52,6 +62,47 @@
 	                  <strong>{{ $message }}</strong>
 	                </span>
 	              @enderror
+	            </div>
+	          </div>
+	          <div class="form-group row">
+	            <label for="member_id" class="col-sm-2 col-form-label">Pengurus</label>
+	            <div class="col-sm-10">
+	              <select class="form-control select2bs4 @error('member_id') is-invalid @enderror" name="member_id" required style="width: 100%;">
+	              	@foreach ($members as $member)
+	              		<option value="{{ $member->id }}">{{ $member->name }}</option>
+	              	@endforeach
+                </select>
+	              @error('member_id')
+	                <span class="invalid-feedback" role="alert">
+	                  <strong>{{ $message }}</strong>
+	                </span>
+	              @enderror
+	              <small class="form-text text-muted">
+	                Pilih orang yang mengisi posisi ini
+	              </small>
+	            </div>
+	          </div>
+	          <div class="form-group row">
+	            <label for="role" class="col-sm-2 col-form-label">Peran</label>
+	            <div class="col-sm-10">
+                <!-- radio -->
+                <div class="form-group clearfix">
+                	@foreach ($roles as $role)
+                  <div class="icheck-primary d-inline @error('role') is-invalid @enderror">
+                    <input type="radio" id="{{ $role }}" name="role" value="{{ $role }}" required @if($loop->first) {{ 'checked' }} @endif>
+                    <label for="{{ $role }}"> {{ $role }}
+                    </label>
+                  </div>
+                  @endforeach
+                </div>
+	              @error('role')
+	                <span class="invalid-feedback" role="alert">
+	                  <strong>{{ $message }}</strong>
+	                </span>
+	              @enderror
+	              <small class="form-text text-muted">
+	                Jika posisi bukan suatu divisi, pilih 'none'
+	              </small>
 	            </div>
 	          </div>
 	          <div class="form-group row">

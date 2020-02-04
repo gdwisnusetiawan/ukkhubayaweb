@@ -21,6 +21,19 @@ class Member extends Model
      */
     protected $guarded = [];
 
+    public static function getEnumValues(){
+        $type = DB::select(DB::raw('SHOW COLUMNS FROM members WHERE Field = "type"'))[0]->Type;
+        preg_match('/^enum\((.*)\)$/', $type, $matches);
+        $values = array();
+        foreach(explode(',', $matches[1]) as $value){
+            $values[] = trim($value, "'");
+        }
+        return $values;
+    }
+
+    /**
+     * The faculty that owns the member.
+     */
     public function faculty()
     {
         return $this->belongsTo('App\Faculty');
@@ -32,15 +45,5 @@ class Member extends Model
     public function managements()
     {
         return $this->belongsToMany('App\Management')->withPivot('role')->withTimestamps();
-    }
-
-    public static function getEnumValues(){
-        $type = DB::select(DB::raw('SHOW COLUMNS FROM members WHERE Field = "type"'))[0]->Type;
-        preg_match('/^enum\((.*)\)$/', $type, $matches);
-        $values = array();
-        foreach(explode(',', $matches[1]) as $value){
-            $values[] = trim($value, "'");
-        }
-        return $values;
     }
 }

@@ -14,4 +14,12 @@ class Program extends Model
     protected $fillable = [
         'name', 'logo',
     ];
+
+    /**
+     * Get the events for the program.
+     */
+    public function events()
+    {
+        return $this->hasMany('App\Event');
+    }
 }

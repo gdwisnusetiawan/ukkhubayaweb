@@ -38,4 +38,12 @@ class Management extends Model
     {
         return $this->belongsToMany('App\Member')->withPivot('role')->withTimestamps();
     }
+
+    /**
+     * Get the events for the management.
+     */
+    public function events()
+    {
+        return $this->hasMany('App\Event');
+    }
 }

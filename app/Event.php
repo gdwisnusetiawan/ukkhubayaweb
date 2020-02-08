@@ -16,11 +16,11 @@ class Event extends Model
     ];
 
     /**
-     * Get the management that owns the event.
+     * Get the period that owns the event.
      */
-    public function management()
+    public function period()
     {
-        return $this->belongsTo('App\Management');
+        return $this->belongsTo('App\Period');
     }
 
     /**

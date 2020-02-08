@@ -16,6 +16,14 @@ class Period extends Model
     ];
 
     /**
+     * Get the formatted name for the period.
+     */
+    public function name()
+    {
+        return $this->year_begin.' / '.$this->year_end;
+    }
+
+    /**
      * Get the managements for the period.
      */
     public function managements()
@@ -24,10 +32,10 @@ class Period extends Model
     }
 
     /**
-     * Get the formatted name for the period.
+     * Get the events for the management.
      */
-    public function name()
+    public function events()
     {
-        return $this->year_begin.' / '.$this->year_end;
+        return $this->hasMany('App\Event');
     }
 }

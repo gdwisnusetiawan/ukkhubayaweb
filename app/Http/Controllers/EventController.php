@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Event;
+use App\Period;
 use Illuminate\Http\Request;
 
 class EventController extends Controller
@@ -12,9 +13,24 @@ class EventController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        if ($request->has('period_id'))
+        {
+            $periodLast = $request->get('period_id');
+        }
+        else
+        {
+            $periodLast = Period::orderBy('year_begin', 'desc')->first()->id;
+        }
+        $events = Event::where('period_id', $periodLast)
+        ->get()
+        ->sortBy(function($event) {
+            return $event->period->year_begin;
+        });
+        $periods = Period::all();
+        // $events = Event::all();
+        return view('events.index', compact('events', 'periods', 'periodLast'));
     }
 
     /**

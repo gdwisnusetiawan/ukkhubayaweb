@@ -58,7 +58,9 @@
       		    </div>
       		    <div class="col-md-10">
       		      <div class="card-body">
-      		      	<p class="card-text">
+      		        <h3 class="card-title"><strong>{{ $event->program->name }} {{ $event->year }}</strong></h3>
+      		        <p class="card-text text-justify">{{ $event->description }}</p>
+      		        <p class="card-text text-muted"><i class="far fa-calendar-alt"></i>&nbsp;
       		      		@if ($event->date_end == null)
 	      		      		{{ Carbon\Carbon::parse($event->date_begin)->format('d F Y') }}
 			      		  	@else
@@ -77,17 +79,16 @@
 			      		  	@endif
 			      		  
 			      		  @if ($event->time_begin != null)
-      		      		<span class="text-muted">
-			    		  			( {{ Carbon\Carbon::parse($event->time_begin)->format('H:i') }}
+      		      		&nbsp; | &nbsp; 
+      		      		<span class="text-muted"><i class="far fa-clock"></i>&nbsp;
+			    		  			{{ Carbon\Carbon::parse($event->time_begin)->format('H:i') }}
 			    		  			@if ($event->time_end != null)
 			    		  				- {{ Carbon\Carbon::parse($event->time_end)->format('H:i') }}
-			    		  			@endif)
+			    		  			@endif
 			      		  	</span>
 			      		  @endif
 			      		  </p>
-      		        <h3 class="card-title"><strong>{{ $event->program->name }} {{ $event->year }}</strong></h3>
-      		        <p class="card-text text-justify">{{ $event->description }}</p>
-      		        <h5 class="card-text"><small class="text-muted">Lokasi: {{ $event->location }}</small></h5>
+      		        <h5 class="card-text"><small class="text-muted"><i class="fas fa-map-marker-alt"></i>&nbsp; {{ $event->location }}</small></h5>
       		      </div>
       		    </div>
       		  </div>
@@ -98,21 +99,6 @@
       	      </span>
   	      	</div>
       		</div>
-      	  <!-- <div class="col-md-3 mb-3">
-      	    <div class="card h-100 m-0 text-center">
-      	    	<div class="mx-3 mt-3">
-      	    		<img src="{{ asset($event->logo) }}" alt="Logo Kegiatan" class="img-fluid card-img-top">
-      	    	</div>
-      	      <div class="card-body">
-	      	      <h2 class="card-text">{{ $event->name }}</h2>
-	      	      <h4 class="card-text">{{ $event->year }}</h4>
-      	      </div>
-      	      <div class="card-footer">
-      	      	<a href="{{ route('events.edit', $event) }}" type="button" class="btn btn-outline-primary btn-sm m-1"><i class="fas fa-edit"></i> Ubah</a>
-	      	      <button type="button" class="btn btn-outline-danger btn-sm m-1" data-toggle="modal" data-target="#modal-delete-{{ $event->id }}"><i class="fas fa-trash"></i> Hapus</button>
-      	      </div>
-      	    </div>
-      	  </div> -->
       	  @empty
       	  <p class="text-center w-100">Tidak ada data.</p>
 	      	@endforelse
@@ -121,12 +107,12 @@
 	      	<!-- Modal Delete -->
 		      	@component('components.modal')
 		      		@slot('id') modal-delete-{{ $event->id }} @endslot
-		      		@slot('title') Hapus event Kerja @endslot
+		      		@slot('title') Hapus Kegiatan @endslot
 		      		@slot('button_type') danger @endslot
 		      		@slot('button_name') Hapus @endslot
 		      		@slot('form_id') form-delete-{{ $event->id }} @endslot
 
-		      		<p>Apakah Anda yakin ingin menghapus data <strong>{{ $event->name }}</strong>?</p>
+		      		<p>Apakah Anda yakin ingin menghapus data <strong>{{ $event->program->name }} {{ $event->year }}</strong>?</p>
 		      		<form action="{{ route('events.destroy', $event) }}" method="post" id="form-delete-{{ $event->id }}">
 		      			@csrf
 		      			@method('delete')

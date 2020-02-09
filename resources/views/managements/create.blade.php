@@ -36,7 +36,7 @@
 		            	<input type="text" class="form-control" value="{{ $period->name() }}" readonly>
 		              <input type="hidden" class="form-control @error('period_id') is-invalid @enderror" name="period_id" value="{{ $period->id }}" required autocomplete="period_id" placeholder="Periode" readonly>
 	              @else
-		              <select class="form-control select2bs4 @error('position_id') is-invalid @enderror" name="period_id" required style="width: 100%;">
+		              <select class="form-control select2bs4 @error('period_id') is-invalid @enderror" name="period_id" required style="width: 100%;">
 		              	@foreach ($periods as $item)
 		              		<option value="{{ $item->id }}" {{ $period->id == $item->id ? 'selected' : '' }}>{{ $item->name() }}</option>
 		              	@endforeach

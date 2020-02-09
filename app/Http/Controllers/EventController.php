@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Event;
 use App\Period;
+use App\Program;
 use Illuminate\Http\Request;
 
 class EventController extends Controller
@@ -40,7 +41,9 @@ class EventController extends Controller
      */
     public function create()
     {
-        //
+        $periods = Period::all();
+        $programs = Program::all();
+        return view('events.create', compact('periods', 'programs'));
     }
 
     /**

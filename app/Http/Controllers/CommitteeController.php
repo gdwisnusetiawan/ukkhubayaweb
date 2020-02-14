@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Committee;
 use App\Event;
+use App\Position;
+use App\Member;
+use App\CommitteeMember;
 use Illuminate\Http\Request;
 
 class CommitteeController extends Controller
@@ -38,9 +41,13 @@ class CommitteeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Event $event)
     {
-        //
+        $events = Event::orderBy('year', 'desc')->get();
+        $positions = Position::all();
+        $members = Member::all();
+        $roles = CommitteeMember::getEnumValues();
+        return view('committees.create', compact('event', 'events', 'positions', 'members', 'roles'));
     }
 
     /**

@@ -28,6 +28,7 @@ Route::resource('positions', 'PositionController');
 Route::resource('programs', 'ProgramController');
 Route::resource('managements', 'ManagementController');
 Route::resource('events', 'EventController');
+Route::resource('committees', 'CommitteeController');
 
 Route::get('managements/create/{period}', 'ManagementController@create')->name('managements.createPeriod');
 Route::get('managements/{management}/edit/{period}', 'ManagementController@edit')->name('managements.editPeriod');

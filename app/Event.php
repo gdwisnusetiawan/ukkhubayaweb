@@ -16,6 +16,14 @@ class Event extends Model
     ];
 
     /**
+     * Get the formatted name for the event.
+     */
+    public function name()
+    {
+        return $this->program->name.' '.$this->year;
+    }
+
+    /**
      * Get the period that owns the event.
      */
     public function period()

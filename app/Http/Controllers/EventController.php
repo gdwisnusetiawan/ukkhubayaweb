@@ -100,7 +100,9 @@ class EventController extends Controller
      */
     public function edit(Event $event)
     {
-        //
+        $periods = Period::all();
+        $programs = Program::all();
+        return view('events.edit', compact('periods', 'programs', 'event'));
     }
 
     /**

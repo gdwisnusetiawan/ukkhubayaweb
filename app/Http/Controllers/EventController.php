@@ -114,7 +114,29 @@ class EventController extends Controller
      */
     public function update(Request $request, Event $event)
     {
-        //
+        $validatedData = $request->validate([
+            'period_id' => 'required|exists:periods,id',
+            'program_id' => 'required|exists:programs,id',
+            'date_begin' => 'required|date|date_format:Y-m-d',
+            'date_end' => 'nullable|date|date_format:Y-m-d',
+            'time_begin' => 'nullable|date_format:H:i',
+            'time_end' => 'nullable|date_format:H:i|after:time_begin',
+            'location' => 'required',
+            'description' => 'required',
+        ]);
+
+        $event->period()->associate($request->get('period_id'));
+        $event->program()->associate($request->get('program_id'));
+        $event->year = Carbon::parse($request->get('date_begin'))->year;
+        $event->date_begin = $request->get('date_begin');
+        $event->date_end = $request->get('date_end');
+        $event->time_begin = $request->get('time_begin');
+        $event->time_end = $request->get('time_end');
+        $event->location = $request->get('location');
+        $event->description = $request->get('description');
+        $event->save();
+
+        return redirect('events')->with('status', 'Sukses mengubah data.');
     }
 
     /**

@@ -213,16 +213,16 @@
 
 	    //Date Time Picker
 	    $('#date_begin').datetimepicker({
-	      format: 'Y-MM-D'
+	      format: 'Y-MM-DD'
 	    });
 	    $('#date_end').datetimepicker({
-	      format: 'Y-MM-D'
+	      format: 'Y-MM-DD'
 	    });
 	    $('#time_begin').datetimepicker({
-	      format: 'H:m'
+	      format: 'HH:mm'
 	    });
 	    $('#time_end').datetimepicker({
-	      format: 'H:m'
+	      format: 'HH:mm'
 	    });
 	  });
 	</script>

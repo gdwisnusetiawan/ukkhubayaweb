@@ -34,11 +34,11 @@
 	            <div class="col-sm-10">
 	            	@isset($period)
 		            	<input type="text" class="form-control @error('period_id') is-invalid @enderror" value="{{ $period->name() }}" readonly>
-		              <input type="hidden" class="form-control @error('period_id') is-invalid @enderror" name="period_id" value="{{ old('period_id') }}" required autocomplete="period_id" placeholder="Periode" readonly>
+		              <input type="hidden" class="form-control @error('period_id') is-invalid @enderror" name="period_id" value="{{ $period->id }}" required autocomplete="period_id" placeholder="Periode" readonly>
 	              @else
 		              <select class="form-control select2bs4" name="period_id" required style="width: 100%;">
 		              	@foreach ($periods as $item)
-		              		<option value="{{ $item->id }}">{{ $item->name() }}</option>
+		              		<option value="{{ $item->id }}" {{ old('period_id') == $item->id ? 'selected' : '' }}>{{ $item->name() }}</option>
 		              	@endforeach
 	                </select>
                 @endisset
@@ -53,12 +53,12 @@
 	            <label for="program_id" class="col-sm-2 col-form-label">Program Kerja</label>
 	            <div class="col-sm-10">
 	            	@isset($program->id)
-		            	<input type="text" class="form-control @error('program_id') is-invalid @enderror" value="{{ old('program_id') }}" readonly>
+		            	<input type="text" class="form-control @error('program_id') is-invalid @enderror" value="{{ $program->name }}" readonly>
 		              <input type="hidden" class="form-control" name="program_id" value="{{ $program->id }}" required autocomplete="program_id" placeholder="Program" readonly>
 	              @else
 		              <select class="form-control select2bs4 @error('program_id') is-invalid @enderror" name="program_id" required style="width: 100%;">
 		              	@foreach ($programs as $item)
-		              		<option value="{{ $item->id }}">{{ $item->name }}</option>
+		              		<option value="{{ $item->id }}" {{ old('program_id') == $item->id ? 'selected' : '' }}>{{ $item->name }}</option>
 		              	@endforeach
 	                </select>
                 @endisset
@@ -183,7 +183,7 @@
 	          </div>
 	        </form>
 	        <div class="float-right">
-	          <a href="{{ url()->current() == url()->previous() ? route('members.index') : url()->previous() }}" type="button" class="btn btn-default">Kembali</a>
+	          <a href="{{ url()->current() == url()->previous() ? route('events.index') : url()->previous() }}" type="button" class="btn btn-default">Kembali</a>
 	          <button type="submit" class="btn btn-primary" form="form-add">Tambah</button>
 	        </div>
       </div><!-- /.card-body -->

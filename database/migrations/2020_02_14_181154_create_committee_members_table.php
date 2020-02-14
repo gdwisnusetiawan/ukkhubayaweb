@@ -13,7 +13,7 @@ class CreateCommitteeMembersTable extends Migration
      */
     public function up()
     {
-        Schema::create('committee_members', function (Blueprint $table) {
+        Schema::create('committee_member', function (Blueprint $table) {
             $table->unsignedBigInteger('committee_id');
             $table->string('member_id');
             $table->enum('role', ['none', 'head', 'staff']);
@@ -31,6 +31,6 @@ class CreateCommitteeMembersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('committee_members');
+        Schema::dropIfExists('committee_member');
     }
 }

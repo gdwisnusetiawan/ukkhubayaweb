@@ -33,10 +33,10 @@
 	            <label for="period_id" class="col-sm-2 col-form-label">Periode</label>
 	            <div class="col-sm-10">
 	            	@isset($period)
-		            	<input type="text" class="form-control" value="{{ $period->name() }}" readonly>
-		              <input type="hidden" class="form-control @error('period_id') is-invalid @enderror" name="period_id" value="{{ $period->id }}" required autocomplete="period_id" placeholder="Periode" readonly>
+		            	<input type="text" class="form-control @error('period_id') is-invalid @enderror" value="{{ $period->name() }}" readonly>
+		              <input type="hidden" class="form-control @error('period_id') is-invalid @enderror" name="period_id" value="{{ old('period_id') }}" required autocomplete="period_id" placeholder="Periode" readonly>
 	              @else
-		              <select class="form-control select2bs4 @error('period_id') is-invalid @enderror" name="period_id" required style="width: 100%;">
+		              <select class="form-control select2bs4" name="period_id" required style="width: 100%;">
 		              	@foreach ($periods as $item)
 		              		<option value="{{ $item->id }}">{{ $item->name() }}</option>
 		              	@endforeach
@@ -53,8 +53,8 @@
 	            <label for="program_id" class="col-sm-2 col-form-label">Program Kerja</label>
 	            <div class="col-sm-10">
 	            	@isset($program->id)
-		            	<input type="text" class="form-control" value="{{ $program->name }}" readonly>
-		              <input type="hidden" class="form-control @error('program_id') is-invalid @enderror" name="program_id" value="{{ $program->id }}" required autocomplete="program_id" placeholder="Program" readonly>
+		            	<input type="text" class="form-control @error('program_id') is-invalid @enderror" value="{{ old('program_id') }}" readonly>
+		              <input type="hidden" class="form-control" name="program_id" value="{{ $program->id }}" required autocomplete="program_id" placeholder="Program" readonly>
 	              @else
 		              <select class="form-control select2bs4 @error('program_id') is-invalid @enderror" name="program_id" required style="width: 100%;">
 		              	@foreach ($programs as $item)
@@ -75,16 +75,16 @@
 		              <label for="date_begin" class="col-sm-4 col-form-label">Tanggal Mulai</label>
 		              <div class="col-sm-8">
 			              <div class="input-group date" id="date_begin" data-target-input="nearest">
-		                  <input type="text" class="form-control datetimepicker-input" data-target="#date_begin" data-toggle="datetimepicker" name="date_begin">
+		                  <input type="text" class="form-control datetimepicker-input @error('date_begin') is-invalid @enderror" data-target="#date_begin" data-toggle="datetimepicker" name="date_begin" autocomplete="off" value="{{ old('date_begin') }}">
 		                  <div class="input-group-append" data-target="#date_begin" data-toggle="datetimepicker">
 		                    <div class="input-group-text"><i class="far fa-clock"></i></div>
 		                  </div>
+		                  @error('date_begin')
+		                    <span class="invalid-feedback" role="alert">
+		                      <strong>{{ $message }}</strong>
+		                    </span>
+		                  @enderror
 		                </div>
-		                @error('date_begin')
-		                  <span class="invalid-feedback" role="alert">
-		                    <strong>{{ $message }}</strong>
-		                  </span>
-		                @enderror
 		                <small class="form-text text-muted">
 		                	Tanggal mulai harus diisi.
 		                </small>
@@ -96,16 +96,16 @@
 		              <label for="date_end" class="col-sm-4 col-form-label">Tanggal Selesai</label>
 		              <div class="col-sm-8">
 			              <div class="input-group date" id="date_end" data-target-input="nearest">
-		                  <input type="text" class="form-control datetimepicker-input" data-target="#date_end" data-toggle="datetimepicker" name="date_end">
+		                  <input type="text" class="form-control datetimepicker-input @error('date_end') is-invalid @enderror" data-target="#date_end" data-toggle="datetimepicker" name="date_end" autocomplete="off" value="{{ old('date_end') }}">
 		                  <div class="input-group-append" data-target="#date_end" data-toggle="datetimepicker">
 		                    <div class="input-group-text"><i class="far fa-clock"></i></div>
 		                  </div>
+		                  @error('date_end')
+		                    <span class="invalid-feedback" role="alert">
+		                      <strong>{{ $message }}</strong>
+		                    </span>
+		                  @enderror
 		                </div>
-		                @error('date_end')
-		                  <span class="invalid-feedback" role="alert">
-		                    <strong>{{ $message }}</strong>
-		                  </span>
-		                @enderror
 		                <small class="form-text text-muted">
 		                	Tanggal selesai boleh tidak diisi.
 		                </small>
@@ -119,16 +119,16 @@
 		              <label for="time_begin" class="col-sm-4 col-form-label">Waktu Mulai</label>
 		              <div class="col-sm-8">
 			              <div class="input-group date" id="time_begin" data-target-input="nearest">
-		                  <input type="text" class="form-control datetimepicker-input" data-target="#time_begin" data-toggle="datetimepicker" name="time_begin">
+		                  <input type="text" class="form-control datetimepicker-input @error('time_begin') is-invalid @enderror" data-target="#time_begin" data-toggle="datetimepicker" name="time_begin" autocomplete="off" value="{{ old('time_begin') }}">
 		                  <div class="input-group-append" data-target="#time_begin" data-toggle="datetimepicker">
 		                    <div class="input-group-text"><i class="far fa-clock"></i></div>
 		                  </div>
+		                  @error('time_begin')
+		                    <span class="invalid-feedback" role="alert">
+		                      <strong>{{ $message }}</strong>
+		                    </span>
+		                  @enderror
 		                </div>
-		                @error('time_begin')
-		                  <span class="invalid-feedback" role="alert">
-		                    <strong>{{ $message }}</strong>
-		                  </span>
-		                @enderror
 		                <small class="form-text text-muted">
 		                	Waktu mulai boleh tidak diisi.
 		                </small>
@@ -140,16 +140,16 @@
 		              <label for="time_end" class="col-sm-4 col-form-label">Waktu Selesai</label>
 		              <div class="col-sm-8">
 			              <div class="input-group date" id="time_end" data-target-input="nearest">
-		                  <input type="text" class="form-control datetimepicker-input" data-target="#time_end" data-toggle="datetimepicker" name="time_end">
+		                  <input type="text" class="form-control datetimepicker-input @error('time_end') is-invalid @enderror" data-target="#time_end" data-toggle="datetimepicker" name="time_end" autocomplete="off" value="{{ old('time_end') }}">
 		                  <div class="input-group-append" data-target="#time_end" data-toggle="datetimepicker">
 		                    <div class="input-group-text"><i class="far fa-clock"></i></div>
 		                  </div>
+		                  @error('time_end')
+			                  <span class="invalid-feedback" role="alert">
+			                    <strong>{{ $message }}</strong>
+			                  </span>
+			                @enderror
 		                </div>
-		                @error('time_end')
-		                  <span class="invalid-feedback" role="alert">
-		                    <strong>{{ $message }}</strong>
-		                  </span>
-		                @enderror
 		                <small class="form-text text-muted">
 		                	Waktu selesai boleh tidak diisi.
 		                </small>
@@ -160,8 +160,8 @@
 	          <div class="form-group row">
 	            <label for="location" class="col-sm-2 col-form-label">Lokasi</label>
 	            <div class="col-sm-10">
-	            	<textarea class="textarea form-control @error('location') is-invalid @enderror" name="location" value="{{ old('location') }}" required autocomplete="location"
-                          style="font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+	            	<textarea class="textarea form-control @error('location') is-invalid @enderror" name="location" required autocomplete="location"
+                          style="font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">{{ old('location') }}</textarea>
 	              @error('location')
 	                <span class="invalid-feedback" role="alert">
 	                  <strong>{{ $message }}</strong>
@@ -172,8 +172,8 @@
 	          <div class="form-group row">
 	            <label for="description" class="col-sm-2 col-form-label">Deskripsi</label>
 	            <div class="col-sm-10">
-	              <textarea class="textarea form-control @error('description') is-invalid @enderror" name="description" value="{{ old('description') }}" autocomplete="description"
-                          style="font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+	              <textarea class="textarea form-control @error('description') is-invalid @enderror" name="description" autocomplete="description"
+                          style="font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">{{ old('description') }}</textarea>
 	              @error('description')
 	                <span class="invalid-feedback" role="alert">
 	                  <strong>{{ $message }}</strong>
@@ -212,16 +212,16 @@
 
 	    //Date Time Picker
 	    $('#date_begin').datetimepicker({
-	      format: 'L'
+	      format: 'Y-MM-D'
 	    });
 	    $('#date_end').datetimepicker({
-	      format: 'L'
+	      format: 'Y-MM-D'
 	    });
 	    $('#time_begin').datetimepicker({
-	      format: 'LT'
+	      format: 'H:m'
 	    });
 	    $('#time_end').datetimepicker({
-	      format: 'LT'
+	      format: 'H:m'
 	    });
 	  });
 	</script>

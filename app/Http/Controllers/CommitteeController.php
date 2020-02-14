@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Committee;
+use App\Event;
 use Illuminate\Http\Request;
 
 class CommitteeController extends Controller
@@ -12,9 +13,24 @@ class CommitteeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $events = Event::all();
+        if ($request->has('event_id'))
+        {
+            $eventLast = $request->get('event_id');
+        }
+        else
+        {
+            $eventLast = Event::orderBy('year', 'desc')->first()->id;
+        }
+        $committees = Committee::where('event_id', $eventLast)
+        ->get()
+        ->sortBy(function($committee) {
+            return $committee->position->order;
+        });
+
+        return view('committees.index', compact('committees', 'events', 'eventLast'));
     }
 
     /**

@@ -22,4 +22,12 @@ class Position extends Model
     {
         return $this->hasMany('App\Management');
     }
+
+    /**
+     * Get the committess for the position.
+     */
+    public function committees()
+    {
+        return $this->hasMany('App\Committee');
+    }
 }

@@ -61,7 +61,7 @@
       		        <h3 class="card-title"><strong>{{ $event->program->name }} {{ $event->year }}</strong></h3>
       		        <p class="card-text text-justify">{{ $event->description }}</p>
       		        <p class="card-text text-muted"><i class="far fa-calendar-alt"></i>&nbsp;
-      		      		@if ($event->date_end == null)
+      		      		@if ($event->date_end == null || Carbon\Carbon::parse($event->date_begin)->format('d F Y') == Carbon\Carbon::parse($event->date_end)->format('d F Y'))
 	      		      		{{ Carbon\Carbon::parse($event->date_begin)->format('d F Y') }}
 			      		  	@else
 			      		  		@if (Carbon\Carbon::parse($event->date_begin)->format('Y') == Carbon\Carbon::parse($event->date_end)->format('Y'))

@@ -15,7 +15,7 @@ class CreateCommitteeMembersTable extends Migration
     {
         Schema::create('committee_members', function (Blueprint $table) {
             $table->unsignedBigInteger('committee_id');
-            $table->unsignedBigInteger('member_id');
+            $table->string('member_id');
             $table->enum('role', ['none', 'head', 'staff']);
             $table->timestamps();
 

@@ -81,8 +81,8 @@
 			          <div class="card-footer">
 			            <div class="text-right">
   	      	      	<a href="{{ route('members.show', $member->id) }}" type="button" class="btn btn-outline-primary btn-sm m-1"><i class="fas fa-eye"></i></a>
-  	      	      	<a href="{{ route('committees.edit', $committee) }}" type="button" class="btn btn-outline-primary btn-sm m-1"><i class="fas fa-edit"></i></a>
-  		      	      <button type="button" class="btn btn-outline-danger btn-sm m-1" data-toggle="modal" data-target="#modal-delete-{{ $committee->id }}"><i class="fas fa-trash"></i></button>
+  	      	      	<a href="{{ route('committees.editEvent', [$committee, $committee->event]) }}" type="button" class="btn btn-outline-primary btn-sm m-1"><i class="fas fa-edit"></i></a>
+  		      	      <button type="button" class="btn btn-outline-danger btn-sm m-1" data-toggle="modal" data-target="#modal-delete-{{ $member->id }}"><i class="fas fa-trash"></i></button>
 			            </div>
 			          </div>
 			        </div>
@@ -93,6 +93,26 @@
 			    @empty
 			    <p></p>
 			    @endforelse
+
+			    @foreach ($committees as $committee)
+			    	@forelse ($committee->members as $member)
+		      	<!-- Modal Delete -->
+			      	@component('components.modal')
+			      		@slot('id') modal-delete-{{ $member->id }} @endslot
+			      		@slot('title') Hapus Panitia @endslot
+			      		@slot('button_type') danger @endslot
+			      		@slot('button_name') Hapus @endslot
+			      		@slot('form_id') form-delete-{{ $member->id }} @endslot
+
+			      		<p>Apakah Anda yakin ingin menghapus data <strong>{{ $member->name }}</strong> sebagai <strong>{{ $committee->position->name }}</strong>?</p>
+			      		<form action="{{ route('committees.destroy', $committee) }}" method="post" id="form-delete-{{ $member->id }}">
+			      			@csrf
+			      			@method('delete')
+			      		</form>
+			      	@endcomponent
+			      	<!-- /.modal -->
+		    		@endforeach
+		    	@endforeach
   	    </div>
   	    <!-- /.row -->
 

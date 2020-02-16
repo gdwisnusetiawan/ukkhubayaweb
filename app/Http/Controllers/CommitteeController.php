@@ -75,8 +75,11 @@ class CommitteeController extends Controller
         // Attach a member with the role to the committee
         foreach($request->get('member') as $member)
         {
-            $committee->members()->attach($member, ['role' => $request->get('role')]);
-            $committee->save();
+            if(!$committee->members->contains($member))
+            {
+                $committee->members()->attach($member, ['role' => $request->get('role')]);
+                $committee->save();
+            }
         }
 
         $event = Event::find($request->get('event_id'));

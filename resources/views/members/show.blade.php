@@ -100,7 +100,7 @@
                 @slot('button_name') Tambah @endslot
                 @slot('form_id') form-add @endslot
 
-                <form action="{{ route('member.contact.create', $member) }}" method="post" id="form-add">
+                <form action="{{ route('member.contact.store', $member) }}" method="post" id="form-add">
                   @csrf
 
                   <div class="form-group row">
@@ -119,10 +119,10 @@
                     </div>
                   </div>
                   <div class="form-group row">
-                    <label for="body" class="col-sm-2 col-form-label">Isi</label>
+                    <label for="link" class="col-sm-2 col-form-label">Link</label>
                     <div class="col-sm-10">
-                      <input type="text" class="form-control @error('body') is-invalid @enderror" name="body" value="{{ old('body') }}" required autocomplete="body" placeholder="Isi sesuai jenis kontak">
-                      @error('body')
+                      <input type="text" class="form-control @error('link') is-invalid @enderror" name="link" value="{{ old('link') }}" required autocomplete="link" placeholder="Link menuju kontak">
+                      @error('link')
                         <span class="invalid-feedback" role="alert">
                           <strong>{{ $message }}</strong>
                         </span>
@@ -136,10 +136,12 @@
           	<ul class="list-group my-3">
               @forelse($member->contacts as $contact)
           		<li class="list-group-item d-flex justify-content-between align-items-center">
-          	    <span><i class="{{ $contact->icon }}"></i> &nbsp; {{ $contact->name }} &nbsp;</span>
+          	    <span>
+                  <i class="{{ $contact->icon }}"></i> &nbsp; 
+                  <a href="{{ $contact->pivot->link }}" target="_BLANK">{{ $contact->name }}</a> &nbsp;
+                </span>
                 <span>
-                  <a href="">{{ $contact->pivot->body }}</a>
-                  <button type="button" class="btn btn-outline-primary btn-sm m-1" data-toggle="modal" data-target="#modal-edit-{{ $contact->id }}"><i class="fas fa-trash"></i></button>
+                  <a href="{{ route('member.contact.edit', [$member, $contact]) }}" class="btn btn-outline-primary btn-sm m-1"><i class="fas fa-edit"></i></a>
                   <button type="button" class="btn btn-outline-danger btn-sm m-1" data-toggle="modal" data-target="#modal-delete-{{ $contact->id }}"><i class="fas fa-trash"></i></button>
                 </span>
           	  </li>
@@ -148,21 +150,6 @@
               @endforelse
 
               @foreach ($member->contacts as $contact)
-                <!-- Modal Edit -->
-                @component('components.modal')
-                  @slot('id') modal-edit-{{ $contact->id }} @endslot
-                  @slot('title') Hapus Kontak @endslot
-                  @slot('button_type') danger @endslot
-                  @slot('button_name') Hapus @endslot
-                  @slot('form_id') form-edit-{{ $contact->id }} @endslot
-
-                  <p>Apakah Anda yakin ingin menghapus data <strong>{{ $contact->name }}</strong>?</p>
-                  <form action="{{ route('member.contact.destroy', [$member, $contact]) }}" method="post" id="form-edit-{{ $contact->id }}">
-                    @csrf
-                    @method('put')
-                  </form>
-                @endcomponent
-                <!-- /.modal -->
                 <!-- Modal Delete -->
                 @component('components.modal')
                   @slot('id') modal-delete-{{ $contact->id }} @endslot

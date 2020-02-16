@@ -17,7 +17,7 @@ class CreateContactMemberTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('contact_id');
             $table->string('member_id');
-            $table->string('body');
+            $table->string('link');
             $table->timestamps();
         });
     }

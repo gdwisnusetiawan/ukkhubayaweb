@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Member;
+use App\Contact;
 use Illuminate\Http\Request;
 
 class ContactMemberController extends Controller
@@ -32,9 +34,17 @@ class ContactMemberController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Member $member)
     {
-        //
+        $validatedData = $request->validate([
+            'contact_id' => 'required|exists:contacts,id',
+            'link' => 'required|max:255',
+        ]);
+
+        $member->contacts()->attach($request->get('contact_id'), ['link' => $request->get('link')]);
+
+        $request->session()->flash('status', 'Sukses menambah data.');
+        return redirect()->route('members.show', $member);
     }
 
     /**

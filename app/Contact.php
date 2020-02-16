@@ -20,6 +20,6 @@ class Contact extends Model
      */
     public function members()
     {
-        return $this->belongsToMany('App\Member')->withPivot('body')->withTimestamps();
+        return $this->belongsToMany('App\Member')->withPivot('link')->withTimestamps();
     }
 }

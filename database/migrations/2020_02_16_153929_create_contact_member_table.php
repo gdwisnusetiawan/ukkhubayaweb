@@ -14,7 +14,6 @@ class CreateContactMemberTable extends Migration
     public function up()
     {
         Schema::create('contact_member', function (Blueprint $table) {
-            $table->bigIncrements('id');
             $table->unsignedBigInteger('contact_id');
             $table->string('member_id');
             $table->string('link');

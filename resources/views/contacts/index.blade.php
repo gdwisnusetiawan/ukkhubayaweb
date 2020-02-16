@@ -47,7 +47,7 @@
       	      </div>
       	      <div class="card-footer">
       	      	<a href="{{ route('contacts.edit', $contact) }}" type="button" class="btn btn-outline-primary btn-sm m-1"><i class="fas fa-edit"></i> Ubah</a>
-	      	        <button type="button" class="btn btn-outline-danger btn-sm m-1" data-toggle="modal" data-target="#modal-delete-{{ $contact->id }}"><i class="fas fa-trash"></i> Hapus</button>
+	      	      <button type="button" class="btn btn-outline-danger btn-sm m-1" data-toggle="modal" data-target="#modal-delete-{{ $contact->id }}"><i class="fas fa-trash"></i> Hapus</button>
       	      </div>
       	    </div>
       	  </div>

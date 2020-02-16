@@ -30,4 +30,12 @@ class Committee extends Model
     {
         return $this->belongsTo('App\Position');
     }
+
+    /**
+     * The members that belong to the committee.
+     */
+    public function members()
+    {
+        return $this->belongsToMany('App\Member')->withPivot('role')->withTimestamps();
+    }
 }

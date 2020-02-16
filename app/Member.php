@@ -46,4 +46,12 @@ class Member extends Model
     {
         return $this->belongsToMany('App\Management')->withPivot('role')->withTimestamps();
     }
+
+    /**
+     * The committees that belong to the member.
+     */
+    public function committees()
+    {
+        return $this->belongsToMany('App\Committee')->withPivot('role')->withTimestamps();
+    }
 }

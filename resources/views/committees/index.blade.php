@@ -105,7 +105,7 @@
 			      		@slot('form_id') form-delete-{{ $member->id }} @endslot
 
 			      		<p>Apakah Anda yakin ingin menghapus data <strong>{{ $member->name }}</strong> sebagai <strong>{{ $committee->position->name }}</strong>?</p>
-			      		<form action="{{ route('committees.destroy', $committee) }}" method="post" id="form-delete-{{ $member->id }}">
+			      		<form action="{{ route('committee.member.destroy', [$committee, $member]) }}" method="post" id="form-delete-{{ $member->id }}">
 			      			@csrf
 			      			@method('delete')
 			      		</form>

@@ -95,8 +95,9 @@ class CommitteeMemberController extends Controller
      * @param  \App\CommitteeMember  $committeeMember
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CommitteeMember $committeeMember)
+    public function destroy(Committee $committee, Member $member)
     {
-        //
+        $committee->members()->detach($member);
+        return redirect('committees')->with('status', 'Sukses menghapus data.');
     }
 }

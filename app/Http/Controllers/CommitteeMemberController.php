@@ -77,9 +77,16 @@ class CommitteeMemberController extends Controller
      * @param  \App\CommitteeMember  $committeeMember
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, CommitteeMember $committeeMember)
+    public function update(Request $request, Committee $committee, Member $member)
     {
-        //
+        $validatedData = $request->validate([
+            'committee_id' => 'required|exists:committees,id',
+            'member_id' => 'required|exists:members,id',
+            'role' => 'required|in:none,head,staff',
+        ]);
+
+        $committee->members()->updateExistingPivot($request->get('member_id'), ['role' => $request->get('role')]);
+        return redirect('committees')->with('status', 'Sukses mengubah data.');
     }
 
     /**

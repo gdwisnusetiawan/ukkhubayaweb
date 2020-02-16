@@ -25,11 +25,12 @@
 	        	@csrf
 	        	@method('put')
 
+	        	<input type="hidden" name="committee_id" value="{{ $committee->id }}">
 	        	<div class="form-group row">
 	            <label for="event_id" class="col-sm-2 col-form-label">Kegiatan</label>
 	            <div class="col-sm-10">
 	            	<input type="text" class="form-control" value="{{ $committee->event->name() }}" readonly>
-	              <input type="hidden" class="form-control @error('event_id') is-invalid @enderror" name="event_id" value="{{ $committee->event->id }}" required autocomplete="event_id" placeholder="Periode" readonly>
+	              <input type="hidden" class="form-control @error('event_id') is-invalid @enderror" name="event_id" value="{{ $committee->event->id }}" required autocomplete="event_id" placeholder="Periode">
 	              @error('event_id')
 	                <span class="invalid-feedback" role="alert">
 	                  <strong>{{ $message }}</strong>
@@ -41,7 +42,7 @@
 	            <label for="position_id" class="col-sm-2 col-form-label">Posisi</label>
 	            <div class="col-sm-10">
 	            	<input type="text" class="form-control" value="{{ $committee->position->name }}" readonly>
-	              <input type="hidden" class="form-control @error('position_id') is-invalid @enderror" name="position_id" value="{{ $committee->position->id }}" required autocomplete="event_id" placeholder="Periode" readonly>
+	              <input type="hidden" class="form-control @error('position_id') is-invalid @enderror" name="position_id" value="{{ $committee->position->id }}" required autocomplete="event_id" placeholder="Periode">
 	              @error('position_id')
 	                <span class="invalid-feedback" role="alert">
 	                  <strong>{{ $message }}</strong>
@@ -53,7 +54,7 @@
 	            <label for="member" class="col-sm-2 col-form-label">Panitia</label>
 	            <div class="col-sm-10">
 	              <input type="text" class="form-control" value="{{ $member->name }}" readonly>
-	              <input type="hidden" class="form-control @error('member_id') is-invalid @enderror" name="member_id" value="{{ $member->id }}" required autocomplete="event_id" placeholder="Periode" readonly>
+	              <input type="hidden" class="form-control @error('member_id') is-invalid @enderror" name="member_id" value="{{ $member->id }}" required autocomplete="event_id" placeholder="Periode">
 	              @error('member')
 	                <span class="invalid-feedback" role="alert">
 	                  <strong>{{ $message }}</strong>

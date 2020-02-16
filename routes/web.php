@@ -34,4 +34,4 @@ Route::get('managements/create/{period}', 'ManagementController@create')->name('
 Route::get('managements/{management}/edit/{period}', 'ManagementController@edit')->name('managements.editPeriod');
 
 Route::get('committees/create/{event}', 'CommitteeController@create')->name('committees.createEvent');
-Route::get('committees/{committee}/edit/{event}', 'CommitteeController@edit')->name('committees.editEvent');
+Route::get('committees/{committee}/edit/{member}', 'CommitteeController@edit')->name('committees.editMember');

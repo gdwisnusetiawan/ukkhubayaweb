@@ -21,6 +21,7 @@
       <div class="card-body">
       	<form action="{{ route('contacts.update', $contact) }}" method="post" class="form-horizontal" id="form-edit">
 	        	@csrf
+	        	@method('put')
 
 	        	<div class="form-group row">
 	            <label for="name" class="col-sm-4 col-form-label">Nama</label>

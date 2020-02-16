@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Contact;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class ContactController extends Controller
 {
@@ -80,7 +81,19 @@ class ContactController extends Controller
      */
     public function update(Request $request, Contact $contact)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => [
+                'required',
+                Rule::unique('contacts')->ignore($contact->id),
+            ],
+            'icon' => 'required|starts_with:fas fa-,far fa-,fab fa-',
+        ]);
+
+        $contact->name = $request->get('name');
+        $contact->icon = $request->get('icon');
+        $contact->save();
+
+        return redirect('contacts')->with('status', 'Sukses mengubah data.');
     }
 
     /**

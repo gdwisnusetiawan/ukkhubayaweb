@@ -26,7 +26,7 @@
         <!-- Add icons to the links using the .nav-icon class
              with font-awesome or any other icon font library -->
         <li class="nav-item has-treeview
-          @if (request()->is('home*'))
+          @if (request()->is('home*') || request()->is('managements*') || request()->is('events*') || request()->is('committees*'))
             {{ 'menu-open' }}
           @endif
         ">
@@ -50,10 +50,28 @@
                 <p>Organisasi</p>
               </a>
             </li>
+            <li class="nav-item">
+              <a href="{{ route('managements.index') }}" class="nav-link {{ (request()->is('managements*')) ? 'active' : '' }}">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Kepengurusan</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{ route('events.index') }}" class="nav-link {{ (request()->is('events*')) ? 'active' : '' }}">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Kegiatan</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{ route('committees.index') }}" class="nav-link {{ (request()->is('committees*')) ? 'active' : '' }}">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Kepanitiaan</p>
+              </a>
+            </li>
           </ul>
         </li>
         <li class="nav-item has-treeview
-          @if (request()->is('users*') || request()->is('members*') || request()->is('faculties*') || request()->is('periods*') || request()->is('positions*') || request()->is('programs*') || request()->is('managements*'))
+          @if (request()->is('users*') || request()->is('members*') || request()->is('faculties*') || request()->is('periods*') || request()->is('positions*') || request()->is('programs*'))
             {{ 'menu-open' }}
           @endif
         ">
@@ -99,12 +117,6 @@
               <a href="{{ route('programs.index') }}" class="nav-link {{ (request()->is('programs*')) ? 'active' : '' }}">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Program Kerja</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="{{ route('managements.index') }}" class="nav-link {{ (request()->is('managements*')) ? 'active' : '' }}">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Kepengurusan</p>
               </a>
             </li>
           </ul>

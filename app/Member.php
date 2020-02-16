@@ -54,4 +54,12 @@ class Member extends Model
     {
         return $this->belongsToMany('App\Committee')->withPivot('role')->withTimestamps();
     }
+
+    /**
+     * The contacts that belong to the member.
+     */
+    public function contacts()
+    {
+        return $this->belongsToMany('App\Contact')->withPivot('body')->withTimestamps();
+    }
 }

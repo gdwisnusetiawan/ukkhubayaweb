@@ -14,4 +14,12 @@ class Contact extends Model
     protected $fillable = [
         'name', 'icon',
     ];
+
+    /**
+     * The members that belong to the contact.
+     */
+    public function members()
+    {
+        return $this->belongsToMany('App\Member')->withPivot('body')->withTimestamps();
+    }
 }

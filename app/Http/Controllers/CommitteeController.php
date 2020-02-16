@@ -103,17 +103,9 @@ class CommitteeController extends Controller
      * @param  \App\Committee  $committee
      * @return \Illuminate\Http\Response
      */
-    public function edit(Committee $committee, Member $member)
+    public function edit(Committee $committee)
     {
-        foreach ($committee->members as $item)
-        {
-            if($item->id == $member->id)
-            {
-                $role = $item->pivot->role;
-            }
-        }
-        $roles = CommitteeMember::getEnumValues();
-        return view('committees.edit', compact('committee', 'member', 'role', 'roles'));
+        return view('committees.edit', compact('committee'));
     }
 
     /**

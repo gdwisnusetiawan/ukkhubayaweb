@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\CommitteeMember;
+use App\Committee;
+use App\Member;
 use Illuminate\Http\Request;
 
 class CommitteeMemberController extends Controller
@@ -55,9 +57,17 @@ class CommitteeMemberController extends Controller
      * @param  \App\CommitteeMember  $committeeMember
      * @return \Illuminate\Http\Response
      */
-    public function edit(CommitteeMember $committeeMember)
+    public function edit(Committee $committee, Member $member)
     {
-        //
+        foreach ($committee->members as $item)
+        {
+            if($item->id == $member->id)
+            {
+                $role = $item->pivot->role;
+            }
+        }
+        $roles = CommitteeMember::getEnumValues();
+        return view('committee-member.edit', compact('committee', 'member', 'role', 'roles'));
     }
 
     /**

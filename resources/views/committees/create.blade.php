@@ -52,7 +52,7 @@
 	          <div class="form-group row">
 	            <label for="position_id" class="col-sm-2 col-form-label">Posisi</label>
 	            <div class="col-sm-10">
-	              <select class="form-control select2bs4 @error('position_id') is-invalid @enderror" name="position_id" required style="width: 100%;">
+	              <select class="form-control select-position @error('position_id') is-invalid @enderror" name="position_id" required style="width: 100%;">
 	              	@foreach ($positions as $position)
 	              		<option value="{{ $position->id }}">{{ $position->name }}</option>
 	              	@endforeach
@@ -151,6 +151,9 @@
 	<script>
 	  $(document).ready(function () {
 	    //Initialize Select2 Elements
+	    $('.select-position').select2({
+  		  theme: 'bootstrap4',
+  		});
   		$('.select2bs4').select2({
   		  theme: 'bootstrap4',
   		  tags: true,

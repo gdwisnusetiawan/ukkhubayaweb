@@ -31,6 +31,7 @@ Route::resource('events', 'EventController');
 Route::resource('committees', 'CommitteeController');
 Route::resource('committee.member', 'CommitteeMemberController');
 Route::resource('contacts', 'ContactController');
+Route::resource('member.contact', 'ContactMemberController');
 
 Route::get('managements/create/{period}', 'ManagementController@create')->name('managements.createPeriod');
 Route::get('managements/{management}/edit/{period}', 'ManagementController@edit')->name('managements.editPeriod');

@@ -36,7 +36,17 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required|unique:contacts',
+            'icon' => 'required|starts_with:fas fa-,far fa-,fab fa-',
+        ]);
+
+        $contact = new Contact();
+        $contact->name = $request->get('name');
+        $contact->icon = $request->get('icon');
+        $contact->save();
+
+        return redirect('contacts')->with('status', 'Sukses menambah data.');
     }
 
     /**

@@ -89,7 +89,14 @@ class EventController extends Controller
      */
     public function show(Event $event)
     {
-        //
+        $committees = $event->committees->sortBy(function($committees) {
+            return $committees->position->order;
+        });
+        $membersCount = 0;
+        foreach ($committees as $committee) {
+            $membersCount += $committee->members->count();
+        }
+        return view('events.show', compact('committees', 'event', 'membersCount'));
     }
 
     /**

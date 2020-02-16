@@ -117,7 +117,19 @@ class CommitteeController extends Controller
      */
     public function update(Request $request, Committee $committee)
     {
-        //
+        $validatedData = $request->validate([
+            'event_id' => 'required|exists:events,id',
+            'position_id' => 'required|exists:positions,id',
+            'job' => 'required',
+            'information' => 'nullable',
+        ]);
+
+        $committee->job = $request->get('job');
+        $committee->information = $request->get('information');
+        $committee->save();
+
+        $event = Event::find($request->get('event_id'));
+        return redirect('committees')->with('status', 'Sukses mengubah data.');
     }
 
     /**

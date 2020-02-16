@@ -64,9 +64,17 @@ class ContactMemberController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Member $member, Contact $contact)
     {
-        //
+        foreach ($member->contacts as $item)
+        {
+            if($item->id == $contact->id)
+            {
+                $link = $item->pivot->link;
+            }
+        }
+        $contacts = Contact::all();
+        return view('member-contact.edit', compact('member', 'contact', 'link', 'contacts'));
     }
 
     /**

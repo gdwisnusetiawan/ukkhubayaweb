@@ -88,14 +88,14 @@
 	            </div>
 	          </div>
 	          <div class="form-group row">
-	            <label for="member_id" class="col-sm-2 col-form-label">Panitia</label>
+	            <label for="member" class="col-sm-2 col-form-label">Panitia</label>
 	            <div class="col-sm-10">
-	              <select class="form-control select2bs4 @error('member_id') is-invalid @enderror" name="member[]" required style="width: 100%;" multiple="multiple">
+	              <select class="form-control select2bs4 @error('member') is-invalid @enderror" name="member[]" required style="width: 100%;" multiple="multiple">
 	              	@foreach ($members as $member)
 	              		<option value="{{ $member->id }}">{{ $member->name }}</option>
 	              	@endforeach
                 </select>
-	              @error('member_id')
+	              @error('member')
 	                <span class="invalid-feedback" role="alert">
 	                  <strong>{{ $message }}</strong>
 	                </span>

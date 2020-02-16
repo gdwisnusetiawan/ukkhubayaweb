@@ -140,6 +140,12 @@ class CommitteeController extends Controller
      */
     public function destroy(Committee $committee)
     {
-        //
+        $event = $committee->event->id;
+        foreach ($committee->members as $member) {
+            $committee->members()->detach($member);
+        }
+        $committee->delete();
+
+        return redirect()->route('events.show', $event)->with('status', 'Sukses menghapus data.');
     }
 }

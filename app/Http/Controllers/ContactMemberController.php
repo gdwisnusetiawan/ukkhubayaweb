@@ -41,9 +41,15 @@ class ContactMemberController extends Controller
             'link' => 'required|max:255',
         ]);
 
-        $member->contacts()->attach($request->get('contact_id'), ['link' => $request->get('link')]);
-
-        $request->session()->flash('status', 'Sukses menambah data.');
+        if(!$member->contacts->contains($request->get('contact_id')))
+        {
+            $member->contacts()->attach($request->get('contact_id'), ['link' => $request->get('link')]);
+            $request->session()->flash('status', 'Sukses menambah data.');
+        }
+        else
+        {
+            $request->session()->flash('error', 'Gagal menambah data. Tidak dapat menambah jenis kontak yang sama.');
+        }
         return redirect()->route('members.show', $member);
     }
 
@@ -84,7 +90,7 @@ class ContactMemberController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Member $member, Contact $contact)
     {
         //
     }

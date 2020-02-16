@@ -328,6 +328,12 @@
 	        title: '{{ session("status") }}'
 	      })
 	    }
+      if('{{ session("error") }}') {
+        Toast.fire({
+          type: 'error',
+          title: '{{ session("error") }}'
+        })
+      }
 	  });
 	</script>
 @endpush

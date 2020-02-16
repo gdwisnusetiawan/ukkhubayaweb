@@ -63,7 +63,7 @@ class CommitteeController extends Controller
             'position_id' => 'required|exists:positions,id',
             'job' => 'required',
             'information' => 'nullable',
-            'member_id' => 'required|exists:members,id',
+            'member' => 'required|exists:members,id|array|min:1',
             'role' => 'required|in:none,head,staff',
         ]);
 
@@ -73,8 +73,11 @@ class CommitteeController extends Controller
             ['job' => $request->get('job'), 'information' => $request->get('information')]
         );
         // Attach a member with the role to the committee
-        $committee->members()->attach($request->get('member_id'), ['role' => $request->get('role')]);
-        $committee->save();
+        foreach($request->get('member') as $member)
+        {
+            $committee->members()->attach($member, ['role' => $request->get('role')]);
+            $committee->save();
+        }
 
         $event = Event::find($request->get('event_id'));
         return redirect('committees')->with('status', 'Sukses menambah data.');

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Member;
 use App\Faculty;
+use App\Contact;
 use Illuminate\Http\Request;
 
 class MemberController extends Controller
@@ -68,7 +69,8 @@ class MemberController extends Controller
      */
     public function show(Member $member)
     {
-        return view('members.show', compact('member'));
+        $contacts = Contact::all();
+        return view('members.show', compact('member', 'contacts'));
     }
 
     /**

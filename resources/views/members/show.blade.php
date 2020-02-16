@@ -89,29 +89,96 @@
 
           	<hr>
 
-          	<strong><i class="fas fa-pencil-alt mr-1"></i> Kontak</strong>
+            <div class="d-flex justify-content-between align-items-center">
+            	<strong><i class="fas fa-pencil-alt mr-1"></i>Kontak</strong>
+              <button type="button" class="btn btn-primary m-1" data-toggle="modal" data-target="#modal-add"><i class="fas fa-plus"></i> Tambah</button>
+              <!-- Modal Add -->
+              @component('components.modal')
+                @slot('id') modal-add @endslot
+                @slot('title') Tambah Kontak @endslot
+                @slot('button_type') primary @endslot
+                @slot('button_name') Tambah @endslot
+                @slot('form_id') form-add @endslot
+
+                <form action="{{ route('member.contact.create', $member) }}" method="post" id="form-add">
+                  @csrf
+
+                  <div class="form-group row">
+                    <label for="name" class="col-sm-2 col-form-label">Kontak</label>
+                    <div class="col-sm-10">
+                      <select class="form-control select2bs4 @error('contact_id') is-invalid @enderror" name="contact_id" required style="width: 100%;">
+                        @foreach ($contacts as $contact)
+                          <option value="{{ $contact->id }}" {{ $contact->id == old('contact_id') ? 'selected' : '' }}>{{ $contact->name }}</option>
+                        @endforeach
+                      </select>
+                      @error('contact_id')
+                        <span class="invalid-feedback" role="alert">
+                          <strong>{{ $message }}</strong>
+                        </span>
+                      @enderror
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="body" class="col-sm-2 col-form-label">Isi</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control @error('body') is-invalid @enderror" name="body" value="{{ old('body') }}" required autocomplete="body" placeholder="Isi sesuai jenis kontak">
+                      @error('body')
+                        <span class="invalid-feedback" role="alert">
+                          <strong>{{ $message }}</strong>
+                        </span>
+                      @enderror
+                    </div>
+                  </div>
+                </form>
+              @endcomponent
+              <!-- /.modal -->
+            </div>
           	<ul class="list-group my-3">
+              @forelse($member->contacts as $contact)
           		<li class="list-group-item d-flex justify-content-between align-items-center">
-          	    <span><i class="fas fa-phone"></i> &nbsp; Telepon &nbsp;</span><a href="">087 xxx xxx xxx</a>
+          	    <span><i class="{{ $contact->icon }}"></i> &nbsp; {{ $contact->name }} &nbsp;</span>
+                <span>
+                  <a href="">{{ $contact->pivot->body }}</a>
+                  <button type="button" class="btn btn-outline-primary btn-sm m-1" data-toggle="modal" data-target="#modal-edit-{{ $contact->id }}"><i class="fas fa-trash"></i></button>
+                  <button type="button" class="btn btn-outline-danger btn-sm m-1" data-toggle="modal" data-target="#modal-delete-{{ $contact->id }}"><i class="fas fa-trash"></i></button>
+                </span>
           	  </li>
-          	  <li class="list-group-item d-flex justify-content-between align-items-center">
-          	    <span><i class="fas fa-envelope"></i> &nbsp; Email &nbsp;</span><a href="">gedewisnusetiawan@gmail.com</a>
-          	  </li>
-          	  <li class="list-group-item d-flex justify-content-between align-items-center">
-          	    <span><i class="fab fa-whatsapp"></i> &nbsp; Whatsapp &nbsp;</span><a href="">087 xxx xxx xxx</a>
-          	  </li>
-          	  <li class="list-group-item d-flex justify-content-between align-items-center">
-          	    <span><i class="fab fa-instagram"></i> &nbsp; Instagram &nbsp;</span><a href="">gdwisnusetiawan</a>
-          	  </li>
-          	  <li class="list-group-item d-flex justify-content-between align-items-center">
-          	    <span><i class="fab fa-facebook"></i> &nbsp; Facebook &nbsp;</span><a href="">Wisnu Setiawan</a>
-          	  </li>
-          	  <li class="list-group-item d-flex justify-content-between align-items-center">
-          	    <span><i class="fab fa-twitter"></i> &nbsp; Twitter &nbsp;</span><a href="">@gdwisnusetiawan</a>
-          	  </li>
-          	  <li class="list-group-item d-flex justify-content-between align-items-center">
-          	    <span><i class="fab fa-linkedin"></i> &nbsp; LinkedIn &nbsp;</span><a href="">gdwisnusetiawan</a>
-          	  </li>
+              @empty
+              <p class="text-center w-100">Tidak ada kontak.</p>
+              @endforelse
+
+              @foreach ($member->contacts as $contact)
+                <!-- Modal Edit -->
+                @component('components.modal')
+                  @slot('id') modal-edit-{{ $contact->id }} @endslot
+                  @slot('title') Hapus Kontak @endslot
+                  @slot('button_type') danger @endslot
+                  @slot('button_name') Hapus @endslot
+                  @slot('form_id') form-edit-{{ $contact->id }} @endslot
+
+                  <p>Apakah Anda yakin ingin menghapus data <strong>{{ $contact->name }}</strong>?</p>
+                  <form action="{{ route('member.contact.destroy', [$member, $contact]) }}" method="post" id="form-edit-{{ $contact->id }}">
+                    @csrf
+                    @method('put')
+                  </form>
+                @endcomponent
+                <!-- /.modal -->
+                <!-- Modal Delete -->
+                @component('components.modal')
+                  @slot('id') modal-delete-{{ $contact->id }} @endslot
+                  @slot('title') Hapus Kontak @endslot
+                  @slot('button_type') danger @endslot
+                  @slot('button_name') Hapus @endslot
+                  @slot('form_id') form-delete-{{ $contact->id }} @endslot
+
+                  <p>Apakah Anda yakin ingin menghapus data <strong>{{ $contact->name }}</strong>?</p>
+                  <form action="{{ route('member.contact.destroy', [$member, $contact]) }}" method="post" id="form-delete-{{ $contact->id }}">
+                    @csrf
+                    @method('delete')
+                  </form>
+                @endcomponent
+                <!-- /.modal -->
+              @endforeach
           	</ul>
 
           	<hr>

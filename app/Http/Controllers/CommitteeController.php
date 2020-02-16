@@ -58,7 +58,26 @@ class CommitteeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'event_id' => 'required|exists:events,id',
+            'position_id' => 'required|exists:positions,id',
+            'job' => 'required',
+            'information' => 'nullable',
+            'member_id' => 'required|exists:members,id',
+            'role' => 'required|in:none,head,staff',
+        ]);
+
+        // Retrieve committee by event and position, or create it with the job and information
+        $committee = Committee::firstOrCreate(
+            ['event_id' => $request->get('event_id'), 'position_id' => $request->get('position_id')],
+            ['job' => $request->get('job'), 'information' => $request->get('information')]
+        );
+        // Attach a member with the role to the committee
+        $committee->members()->attach($request->get('member_id'), ['role' => $request->get('role')]);
+        $committee->save();
+
+        $event = Event::find($request->get('event_id'));
+        return redirect('committees')->with('status', 'Sukses menambah data.');
     }
 
     /**

@@ -92,7 +92,15 @@ class ContactMemberController extends Controller
      */
     public function update(Request $request, Member $member, Contact $contact)
     {
-        //
+        $validatedData = $request->validate([
+            'member_id' => 'required|exists:members,id',
+            'contact_id' => 'required|exists:contacts,id',
+            'link' => 'required|max:255',
+        ]);
+
+        $member->contacts()->updateExistingPivot($request->get('contact_id'), ['link' => $request->get('link')]);
+        $request->session()->flash('status', 'Sukses mengubah data.');
+        return redirect()->route('members.show', $member);
     }
 
     /**

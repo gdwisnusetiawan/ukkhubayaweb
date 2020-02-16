@@ -109,8 +109,10 @@ class ContactMemberController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, Member $member, Contact $contact)
     {
-        //
+        $member->contacts()->detach($contact);
+        $request->session()->flash('status', 'Sukses menghapus data.');
+        return redirect()->route('members.show', $member);
     }
 }

@@ -27,7 +27,7 @@
 	            <label for="event_id" class="col-sm-2 col-form-label">Anggota</label>
 	            <div class="col-sm-10">
 	            	<input type="text" class="form-control" value="{{ $member->name }}" readonly>
-	              <input type="hidden" class="form-control @error('member_id') is-invalid @enderror" name="member_id" value="{{ $member->id }}" required autocomplete="member_id" placeholder="Periode">
+	              <input type="hidden" class="form-control @error('member_id') is-invalid @enderror" name="member_id" value="{{ $member->id }}" required autocomplete="member_id" placeholder="Anggota">
 	              @error('member_id')
 	                <span class="invalid-feedback" role="alert">
 	                  <strong>{{ $message }}</strong>
@@ -38,11 +38,8 @@
 	        	<div class="form-group row">
               <label for="name" class="col-sm-2 col-form-label">Kontak</label>
               <div class="col-sm-10">
-                <select class="form-control select2bs4 @error('contact_id') is-invalid @enderror" name="contact_id" required style="width: 100%;">
-                  @foreach ($contacts as $item)
-                    <option value="{{ $item->id }}" {{ $item->id == $contact->id ? 'selected' : '' }}>{{ $item->name }}</option>
-                  @endforeach
-                </select>
+                <input type="text" class="form-control" value="{{ $contact->name }}" readonly>
+	              <input type="hidden" class="form-control @error('contact_id') is-invalid @enderror" name="contact_id" value="{{ $contact->id }}" required autocomplete="member_id" placeholder="Kontak">
                 @error('contact_id')
                   <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>

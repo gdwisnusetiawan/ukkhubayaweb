@@ -79,8 +79,7 @@ class ContactMemberController extends Controller
                 $link = $item->pivot->link;
             }
         }
-        $contacts = Contact::all();
-        return view('member-contact.edit', compact('member', 'contact', 'link', 'contacts'));
+        return view('member-contact.edit', compact('member', 'contact', 'link'));
     }
 
     /**

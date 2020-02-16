@@ -52,7 +52,7 @@
       	    </div>
       	  </div>
       	  @empty
-      	  <p>Tidak ada data.</p>
+      	  <p class="text-center w-100">Tidak ada data.</p>
 	      	@endforelse
 
 	      	@foreach ($contacts as $contact)

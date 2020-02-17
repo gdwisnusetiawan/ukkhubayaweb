@@ -98,8 +98,9 @@ class ManagementMemberController extends Controller
      * @param  \App\ManagementMembers  $managementMembers
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ManagementMembers $managementMembers)
+    public function destroy(Management $management, Member $member)
     {
-        //
+        $management->members()->detach($member);
+        return redirect('managements')->with('status', 'Sukses menghapus data.');
     }
 }

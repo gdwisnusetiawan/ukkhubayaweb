@@ -34,8 +34,7 @@ Route::resource('committee.member', 'CommitteeMemberController');
 Route::resource('contacts', 'ContactController');
 Route::resource('member.contact', 'ContactMemberController');
 
+// create management from period show page
 Route::get('managements/create/{period}', 'ManagementController@create')->name('managements.createPeriod');
-Route::get('managements/{management}/edit/{period}', 'ManagementController@edit')->name('managements.editPeriod');
-
+// create committee from event show page
 Route::get('committees/create/{event}', 'CommitteeController@create')->name('committees.createEvent');
-Route::get('committees/{committee}/edit/{member}', 'CommitteeController@edit')->name('committees.editMember');

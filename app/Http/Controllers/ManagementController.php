@@ -145,6 +145,12 @@ class ManagementController extends Controller
      */
     public function destroy(Management $management)
     {
-        //
+        $period = $management->period->id;
+        foreach ($management->members as $member) {
+            $management->members()->detach($member);
+        }
+        $management->delete();
+        
+        return redirect()->route('periods.show', $period)->with('status', 'Sukses menghapus data.');
     }
 }

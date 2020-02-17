@@ -142,7 +142,7 @@
                 @slot('button_name') Hapus @endslot
                 @slot('form_id') form-delete-{{ $staff->id }} @endslot
 
-                <p>Apakah Anda yakin ingin menghapus data <strong>({{ $staff->id }}) {{ $staff->name }}</strong>?</p>
+                <p>Apakah Anda yakin ingin menghapus data <strong>({{ $staff->id }}) {{ $staff->name }}</strong> sebagai <strong>{{ $staff->pivot->role }}</strong>?</p>
                 <form action="{{ route('committee.member.destroy', [$committee,$staff]) }}" method="post" id="form-delete-{{ $staff->id }}">
                   @csrf
                   @method('delete')

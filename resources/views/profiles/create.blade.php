@@ -72,6 +72,18 @@
                 </div>
               </div>
             </div>
+            <div class="form-group row">
+	            <label for="address" class="col-sm-2 col-form-label">Alamat</label>
+	            <div class="col-sm-10">
+	              <textarea class="form-control @error('address') is-invalid @enderror" name="address" autocomplete="address"
+                          style="font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">{{ old('address') }}</textarea>
+	              @error('address')
+	                <span class="invalid-feedback" role="alert">
+	                  <strong>{{ $message }}</strong>
+	                </span>
+	              @enderror
+	            </div>
+	          </div>
 	          <div class="form-group row">
 	            <label for="vision" class="col-sm-2 col-form-label">Visi</label>
 	            <div class="col-sm-10">

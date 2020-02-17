@@ -18,9 +18,10 @@ class CreateProfilesTable extends Migration
             $table->string('name');
             $table->string('logo');
             $table->longtext('vision');
-            $table->longtext('mision');
+            $table->longtext('mission');
             $table->longtext('history');
             $table->date('established');
+            $table->string('address');
             $table->longtext('description');
             $table->timestamps();
         });

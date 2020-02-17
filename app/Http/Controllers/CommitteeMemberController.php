@@ -24,9 +24,11 @@ class CommitteeMemberController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Committee $committee)
     {
-        //
+        $roles = CommitteeMember::getEnumValues();
+        $members = Member::all();
+        return view('committee-member.create', compact('committee', 'roles', 'members'));
     }
 
     /**

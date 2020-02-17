@@ -95,9 +95,16 @@ class ManagementMemberController extends Controller
      * @param  \App\ManagementMembers  $managementMembers
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ManagementMembers $managementMembers)
+    public function update(Request $request, Management $management, Member $member)
     {
-        //
+        $validatedData = $request->validate([
+            'management_id' => 'required|exists:managements,id',
+            'member_id' => 'required|exists:members,id',
+            'role' => 'required|in:none,head,staff',
+        ]);
+
+        $management->members()->updateExistingPivot($request->get('member_id'), ['role' => $request->get('role')]);
+        return redirect('managements')->with('status', 'Sukses mengubah data.');
     }
 
     /**

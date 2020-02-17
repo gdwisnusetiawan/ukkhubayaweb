@@ -69,7 +69,7 @@
 			              	    alt="User profile picture">
 			              </div>
 			              <div class="col-7">
-			              	<h4 class="text-muted"><i class="{{ $committee->position->icon }}"></i> {{ $committee->position->name }}</h4>
+			              	<h4 class="text-muted"><a href="{{ route('committees.show', $committee) }}"><i class="{{ $committee->position->icon }}"></i> {{ $committee->position->name }}</a></h4>
 			              	@if (strlen($member->name) > 30)
 			              		<h5><b>{{ $member->name }}</b></h5>
 			              	@else

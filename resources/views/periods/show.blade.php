@@ -36,7 +36,7 @@
         <h3 class="text-center">{{ $period->name() }}</h3>
         <ul class="list-group list-group-unbordered mb-3">
           <li class="list-group-item">
-            <b>Anggota</b> <a class="float-right">0</a>
+            <b>Anggota</b> <a class="float-right">{{ $membersCount }}</a>
           </li>
         </ul>
       </div>

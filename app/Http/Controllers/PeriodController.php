@@ -76,7 +76,11 @@ class PeriodController extends Controller
         $managements = $period->managements->sortBy(function($managements) {
             return $managements->position->order;
         });
-        return view('periods.show', compact('managements', 'period'));
+        $membersCount = 0;
+        foreach ($managements as $management) {
+            $membersCount += $management->members->count();
+        }
+        return view('periods.show', compact('managements', 'period', 'membersCount'));
     }
 
     /**

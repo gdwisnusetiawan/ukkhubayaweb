@@ -27,6 +27,7 @@
       	<form action="{{ route('committee.member.store', $committee) }}" method="post" class="form-horizontal" id="form-add">
 	        	@csrf
 
+	        	<input type="hidden" name="committee_id" value="{{ $committee->id }}">
 	        	<div class="form-group row">
 	            <label for="event_id" class="col-sm-2 col-form-label">Kegiatan</label>
 	            <div class="col-sm-10">

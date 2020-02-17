@@ -37,9 +37,25 @@ class CommitteeMemberController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Committee $committee)
     {
-        //
+        $validatedData = $request->validate([
+            'committee_id' => 'required|exists:committees,id',
+            'member' => 'required|exists:members,id|array|min:1',
+            'role' => 'required|in:none,head,staff',
+        ]);
+
+        // Attach a member with the role to the committee
+        foreach($request->get('member') as $member)
+        {
+            if(!$committee->members->contains($member))
+            {
+                $committee->members()->attach($member, ['role' => $request->get('role')]);
+                $committee->save();
+            }
+        }
+        $request->session()->flash('status', 'Sukses menambah data.');
+        return redirect()->route('committees.show', $committee);
     }
 
     /**

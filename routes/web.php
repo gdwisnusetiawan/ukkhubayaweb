@@ -27,6 +27,7 @@ Route::resource('periods', 'PeriodController');
 Route::resource('positions', 'PositionController');
 Route::resource('programs', 'ProgramController');
 Route::resource('managements', 'ManagementController');
+Route::resource('management.member', 'ManagementMemberController');
 Route::resource('events', 'EventController');
 Route::resource('committees', 'CommitteeController');
 Route::resource('committee.member', 'CommitteeMemberController');

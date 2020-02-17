@@ -30,7 +30,7 @@
         <!-- Add icons to the links using the .nav-icon class
              with font-awesome or any other icon font library -->
         <li class="nav-item has-treeview
-          @if (request()->is('home*') || request()->is('managements*') || request()->is('events*') || request()->is('committees*'))
+          @if (request()->is('home*'))
             {{ 'menu-open' }}
           @endif
         ">
@@ -54,10 +54,52 @@
                 <p>Organisasi</p>
               </a>
             </li>
+          </ul>
+        </li>
+        <li class="nav-item has-treeview
+          @if (request()->is('periods*') || request()->is('managements*'))
+            {{ 'menu-open' }}
+          @endif
+        ">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-users"></i>
+            <p>
+              Kepengurusan
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="{{ route('periods.index') }}" class="nav-link {{ (request()->is('periods*')) ? 'active' : '' }}">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Periode</p>
+              </a>
+            </li>
             <li class="nav-item">
               <a href="{{ route('managements.index') }}" class="nav-link {{ (request()->is('managements*')) ? 'active' : '' }}">
                 <i class="far fa-circle nav-icon"></i>
-                <p>Kepengurusan</p>
+                <p>Pengurus</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item has-treeview
+          @if (request()->is('events*') || request()->is('committees*') || request()->is('programs*'))
+            {{ 'menu-open' }}
+          @endif
+        ">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-clipboard"></i>
+            <p>
+              Kepanitiaan
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="{{ route('programs.index') }}" class="nav-link {{ (request()->is('programs*')) ? 'active' : '' }}">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Program Kerja</p>
               </a>
             </li>
             <li class="nav-item">
@@ -69,13 +111,13 @@
             <li class="nav-item">
               <a href="{{ route('committees.index') }}" class="nav-link {{ (request()->is('committees*')) ? 'active' : '' }}">
                 <i class="far fa-circle nav-icon"></i>
-                <p>Kepanitiaan</p>
+                <p>Panitia</p>
               </a>
             </li>
           </ul>
         </li>
         <li class="nav-item has-treeview
-          @if (request()->is('users*') || request()->is('members*') || request()->is('faculties*') || request()->is('periods*') || request()->is('positions*') || request()->is('programs*'))
+          @if (request()->is('users*') || request()->is('members*') || request()->is('faculties*') || request()->is('positions*'))
             {{ 'menu-open' }}
           @endif
         ">
@@ -90,7 +132,7 @@
             <li class="nav-item">
               <a href="{{ route('users.index') }}" class="nav-link {{ (request()->is('users*')) ? 'active' : '' }}">
                 <i class="far fa-circle nav-icon"></i>
-                <p>Users</p>
+                <p>Akun</p>
               </a>
             </li>
             <li class="nav-item">
@@ -106,30 +148,26 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{ route('periods.index') }}" class="nav-link {{ (request()->is('periods*')) ? 'active' : '' }}">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Periode</p>
-              </a>
-            </li>
-            <li class="nav-item">
               <a href="{{ route('positions.index') }}" class="nav-link {{ (request()->is('positions*')) ? 'active' : '' }}">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Posisi</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="{{ route('programs.index') }}" class="nav-link {{ (request()->is('programs*')) ? 'active' : '' }}">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Program Kerja</p>
               </a>
             </li>
           </ul>
         </li>
         <li class="nav-item">
           <a href="#" class="nav-link">
-            <i class="nav-icon fas fa-link"></i>
+            <i class="nav-icon fas fa-question-circle"></i>
             <p>
-              Sample link
+              Help
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-info-circle"></i>
+            <p>
+              About
             </p>
           </a>
         </li>

@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\ManagementMembers;
+use App\ManagementMember;
+use App\Management;
+use App\Member;
 use Illuminate\Http\Request;
 
-class ManagementMembersController extends Controller
+class ManagementMemberController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -22,9 +24,11 @@ class ManagementMembersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Management $management)
     {
-        //
+        $roles = ManagementMember::getEnumValues();
+        $members = Member::all();
+        return view('management-member.create', compact('management', 'roles', 'members'));
     }
 
     /**

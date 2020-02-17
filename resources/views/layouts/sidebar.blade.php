@@ -1,10 +1,10 @@
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
   <!-- Brand Logo -->
-  <a href="{{ route('home') }}" class="brand-link">
+  <a href="{{ url('/') }}" class="brand-link">
     <img src="{{ asset('admin-lte/dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
          style="opacity: .8">
-    <span class="brand-text font-weight-light">UKKH UBAYA</span>
+    <span class="brand-text font-weight-light">{{ config('app.name', 'UKKH UBAYA') }}</span>
   </a>
 
   <!-- Sidebar -->
@@ -12,11 +12,15 @@
     <!-- Sidebar user panel (optional) -->
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
       <div class="image">
-        <img src="https://my.ubaya.ac.id/img/mhs/160416119_m.jpg" class="rounded elevation-2" alt="User Image">
+        @if (Auth::user()->id == 'admin1')
+          <img src="{{ asset('admin-lte/dist/img/avataaars.png') }}" class="rounded elevation-2 bg-light" alt="User Image">
+        @else
+          <img src="https://my.ubaya.ac.id/img/mhs/{{ Auth::user()->id }}_m.jpg" class="rounded elevation-2" alt="User Image">
+        @endif
       </div>
-      <div class="info">
-        <a href="#" class="d-block">Gede Wisnu Setiawan</a>
-        <p class="text-muted m-0 p-0">160416119</p>
+      <div class="info mt-0 pt-0">
+        <a href="#" class="d-block">{{ Auth::user()->name }}</a>
+        <p class="text-muted m-0 p-0">{{ Auth::user()->id }}</p>
       </div>
     </div>
 

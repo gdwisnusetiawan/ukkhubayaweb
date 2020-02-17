@@ -105,10 +105,9 @@ class ManagementController extends Controller
      * @param  \App\Management  $management
      * @return \Illuminate\Http\Response
      */
-    public function edit(Management $management, Period $period)
+    public function edit(Management $management)
     {
-        $positions = Position::all();
-        return view('managements.edit', compact('management', 'period', 'positions'));
+        return view('managements.edit', compact('management'));
     }
 
     /**
@@ -150,7 +149,7 @@ class ManagementController extends Controller
             $management->members()->detach($member);
         }
         $management->delete();
-        
+
         return redirect()->route('periods.show', $period)->with('status', 'Sukses menghapus data.');
     }
 }

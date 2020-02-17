@@ -34,9 +34,9 @@
 	            <div class="col-sm-10">
 	            	@isset($period->id)
 		            	<input type="text" class="form-control" value="{{ $period->name() }}" readonly>
-		              <input type="hidden" class="form-control @error('period_id') is-invalid @enderror" name="period_id" value="{{ $period->id }}" required autocomplete="period_id" placeholder="Periode" readonly>
+		              <input type="hidden" class="form-control @error('period_id') is-invalid @enderror" name="period_id" value="{{ $period->id }}" required autocomplete="period_id" placeholder="Periode">
 	              @else
-		              <select class="form-control select2bs4 @error('period_id') is-invalid @enderror" name="period_id" required style="width: 100%;">
+		              <select class="form-control select-single @error('period_id') is-invalid @enderror" name="period_id" required style="width: 100%;">
 		              	@foreach ($periods as $item)
 		              		<option value="{{ $item->id }}" {{ $period->id == $item->id ? 'selected' : '' }}>{{ $item->name() }}</option>
 		              	@endforeach
@@ -52,7 +52,7 @@
 	          <div class="form-group row">
 	            <label for="position_id" class="col-sm-2 col-form-label">Posisi</label>
 	            <div class="col-sm-10">
-	              <select class="form-control select2bs4 @error('position_id') is-invalid @enderror" name="position_id" required style="width: 100%;">
+	              <select class="form-control select-single @error('position_id') is-invalid @enderror" name="position_id" required style="width: 100%;">
 	              	@foreach ($positions as $position)
 	              		<option value="{{ $position->id }}">{{ $position->name }}</option>
 	              	@endforeach
@@ -62,24 +62,6 @@
 	                  <strong>{{ $message }}</strong>
 	                </span>
 	              @enderror
-	            </div>
-	          </div>
-	          <div class="form-group row">
-	            <label for="member_id" class="col-sm-2 col-form-label">Pengurus</label>
-	            <div class="col-sm-10">
-	              <select class="form-control select2bs4 @error('member_id') is-invalid @enderror" name="member_id" required style="width: 100%;">
-	              	@foreach ($members as $member)
-	              		<option value="{{ $member->id }}">{{ $member->name }}</option>
-	              	@endforeach
-                </select>
-	              @error('member_id')
-	                <span class="invalid-feedback" role="alert">
-	                  <strong>{{ $message }}</strong>
-	                </span>
-	              @enderror
-	              <small class="form-text text-muted">
-	                Pilih orang yang mengisi posisi ini
-	              </small>
 	            </div>
 	          </div>
 	          <div class="form-group row">
@@ -102,6 +84,24 @@
 	              @enderror
 	              <small class="form-text text-muted">
 	                Jika posisi bukan suatu divisi, pilih 'none'
+	              </small>
+	            </div>
+	          </div>
+	          <div class="form-group row">
+	            <label for="member" class="col-sm-2 col-form-label">Pengurus</label>
+	            <div class="col-sm-10">
+	              <select class="form-control select2bs4 @error('member') is-invalid @enderror" name="member[]" required style="width: 100%;" multiple="multiple">
+	              	@foreach ($members as $member)
+	              		<option value="{{ $member->id }}">{{ $member->name }}</option>
+	              	@endforeach
+                </select>
+	              @error('member')
+	                <span class="invalid-feedback" role="alert">
+	                  <strong>{{ $message }}</strong>
+	                </span>
+	              @enderror
+	              <small class="form-text text-muted">
+	                Pilih orang yang mengisi posisi ini
 	              </small>
 	            </div>
 	          </div>
@@ -151,9 +151,39 @@
 	<script>
 	  $(document).ready(function () {
 	    //Initialize Select2 Elements
-	    $('.select2bs4').select2({
-	      theme: 'bootstrap4',
-	    });
+	    $('.select-single').select2({
+  		  theme: 'bootstrap4',
+  		});
+  		$('.select2bs4').select2({
+  		  theme: 'bootstrap4',
+  		  placeholder: "Pilih anggota",
+  		  tags: true,
+  		  maximumSelectionLength: 1,
+  		});
+	  	var maxSelectLength;
+	  	$('input[name="role"]').click(function(){
+  	    if ($(this).is(':checked')){
+  	    	if($(this).val() == 'staff'){
+  		  		$('.select2bs4').select2({
+  		  		  theme: 'bootstrap4',
+  		  		  placeholder: "Pilih anggota",
+  		  		  tags: true,
+  		  		});
+  	    	}
+  	    	else
+  	    	{
+  	    		$('.select2bs4').select2({
+  		  		  theme: 'bootstrap4',
+  		  		  placeholder: "Pilih anggota",
+  		  		  tags: true,
+  		  		  maximumSelectionLength: 1,
+  		  		});
+  		  		if($('.select2bs4').select2('data').length > 1){
+  		  			$('.select2bs4').val(null).trigger('change');
+  		  		}
+  	    	}
+  	    }
+  	  });
 
 	    // Summernote
 	    $('.textarea').summernote({

@@ -62,18 +62,25 @@ class ManagementController extends Controller
             'position_id' => 'required|exists:positions,id',
             'job' => 'required',
             'information' => 'nullable',
-            'member_id' => 'required|exists:members,id',
+            'member' => 'required|exists:members,id|array|min:1',
             'role' => 'required|in:none,head,staff',
         ]);
 
-        // Retrieve flight by period and position, or create it with the job and information
+        // Retrieve management by period and position, or create it with the job and information
         $management = Management::firstOrCreate(
             ['period_id' => $request->get('period_id'), 'position_id' => $request->get('position_id')],
             ['job' => $request->get('job'), 'information' => $request->get('information')]
         );
+
         // Attach a member with the role to the management
-        $management->members()->attach($request->get('member_id'), ['role' => $request->get('role')]);
-        $management->save();
+        foreach($request->get('member') as $member)
+        {
+            if(!$management->members->contains($member))
+            {
+                $management->members()->attach($member, ['role' => $request->get('role')]);
+                $management->save();
+            }
+        }
 
         $period = Period::find($request->get('period_id'));
         return redirect('managements')->with('status', 'Sukses menambah data.');

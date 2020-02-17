@@ -91,7 +91,65 @@
           </div>
           <!-- /.tab-pane -->
           <div class="tab-pane" id="member">
-            
+            Anggota : <strong>{{ $staffs->count() }} orang</strong>
+            <a href="{{ route('management.member.create', $management) }}" class="btn btn-primary float-right"><i class="fas fa-plus"></i><span class="button-text"> Tambah</span></a>
+            <div class="table-responsive">
+              <table id="example1" class="table mt-3">
+                <thead>
+                <tr>
+                  <th>NRP/NPK</th>
+                  <th>Nama</th>
+                  <th>Fakultas</th>
+                  <th>Angkatan</th>
+                  <th>Tipe</th>
+                  <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                @forelse ($staffs as $staff)
+                <tr>
+                  <td>{{ $staff->id }}</td>
+                  <td>{{ $staff->name }}</td>
+                  <td>@isset($staff->faculty) {{ $staff->faculty->name }} @endisset</td>
+                  <td>{{ $staff->year }}</td>
+                  <td>{{ ucfirst($staff->type) }}</td>
+                  <td>
+                    <a href="{{ route('members.show', $staff) }}" class="btn btn-outline-primary btn-sm m-1"><i class="fas fa-eye"></i></a>
+                    <button type="button" class="btn btn-outline-danger btn-sm m-1" data-toggle="modal" data-target="#modal-delete-{{ $staff->id }}"><i class="fas fa-trash"></i></button>
+                  </td>
+                </tr>
+                </tbody>
+                @empty
+                  <td colspan="6" class="text-center w-100">Tidak ada data</td>
+                @endforelse
+                <!-- <tfoot>
+                <tr>
+                  <th>NRP</th>
+                  <th>Nama</th>
+                  <th>Email</th>
+                  <th>Action</th>
+                </tr>
+                </tfoot> -->
+              </table>
+            </div><!-- /.table-responsive -->
+
+            @foreach ($staffs as $staff)
+              <!-- Modal Delete -->
+              @component('components.modal')
+                @slot('id') modal-delete-{{ $staff->id }} @endslot
+                @slot('title') Hapus staff @endslot
+                @slot('button_type') danger @endslot
+                @slot('button_name') Hapus @endslot
+                @slot('form_id') form-delete-{{ $staff->id }} @endslot
+
+                <p>Apakah Anda yakin ingin menghapus data <strong>({{ $staff->id }}) {{ $staff->name }}</strong> sebagai <strong>{{ $staff->pivot->role }}</strong>?</p>
+                <form action="{{ route('management.member.destroy', [$management,$staff]) }}" method="post" id="form-delete-{{ $staff->id }}">
+                  @csrf
+                  @method('delete')
+                </form>
+              @endcomponent
+              <!-- /.modal -->
+            @endforeach
           </div>
           <!-- /.tab-pane -->
         </div>

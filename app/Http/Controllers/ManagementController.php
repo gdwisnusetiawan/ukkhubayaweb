@@ -88,7 +88,8 @@ class ManagementController extends Controller
     public function show(Management $management)
     {
         $head = $management->members()->wherePivotIn('role', ['none','head'])->first();
-        return view('managements.show', compact('management', 'head'));
+        $staffs = $management->members()->where('role','staff')->get();
+        return view('managements.show', compact('management', 'head', 'staffs'));
     }
 
     /**

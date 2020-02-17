@@ -75,9 +75,17 @@ class ManagementMemberController extends Controller
      * @param  \App\ManagementMembers  $managementMembers
      * @return \Illuminate\Http\Response
      */
-    public function edit(ManagementMembers $managementMembers)
+    public function edit(Management $management, Member $member)
     {
-        //
+        foreach ($management->members as $item)
+        {
+            if($item->id == $member->id)
+            {
+                $role = $item->pivot->role;
+            }
+        }
+        $roles = ManagementMember::getEnumValues();
+        return view('management-member.edit', compact('management', 'member', 'role', 'roles'));
     }
 
     /**

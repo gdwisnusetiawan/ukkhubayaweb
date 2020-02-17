@@ -123,17 +123,16 @@ class ManagementController extends Controller
             'period_id' => 'required|exists:periods,id',
             'position_id' => 'required|exists:positions,id',
             'job' => 'required',
-            'information' => 'required|nullable',
+            'information' => 'nullable',
         ]);
 
-        $management->period()->associate($request->get('period_id'));
-        $management->position()->associate($request->get('position_id'));
         $management->job = $request->get('job');
         $management->information = $request->get('information');
         $management->save();
 
         $period = Period::find($request->get('period_id'));
-        return redirect()->route('periods.show', compact('period'))->with('status', 'Sukses mengubah data.');
+        $request->session()->flash('status', 'Sukses mengubah data.');
+        return redirect()->route('periods.show', $period);
     }
 
     /**

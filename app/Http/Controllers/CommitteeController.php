@@ -94,7 +94,9 @@ class CommitteeController extends Controller
      */
     public function show(Committee $committee)
     {
-        //
+        $head = $committee->members()->wherePivotIn('role', ['none','head'])->first();
+        $staffs = $committee->members()->where('role','staff')->get();
+        return view('committees.show', compact('committee', 'head', 'staffs'));
     }
 
     /**

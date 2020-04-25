@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Profile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rule;
 
 class ProfileController extends Controller
 {
@@ -56,7 +57,6 @@ class ProfileController extends Controller
             'address' => 'required',
             'vision' => 'nullable',
             'mission' => 'nullable',
-            'history' => 'nullable',
             'description' => 'nullable',
         ]);
 
@@ -76,7 +76,6 @@ class ProfileController extends Controller
             $profile->address = $request->get('address');
             $profile->vision = $request->get('vision');
             $profile->mission = $request->get('mission');
-            $profile->history = $request->get('history');
             $profile->description = $request->get('description');
             $profile->save();
 
@@ -107,7 +106,7 @@ class ProfileController extends Controller
      */
     public function edit(Profile $profile)
     {
-        //
+        return view('profiles.edit', compact('profile'));
     }
 
     /**
@@ -119,7 +118,38 @@ class ProfileController extends Controller
      */
     public function update(Request $request, Profile $profile)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => [
+                'required',
+                'max:255',
+                Rule::unique('profiles')->ignore($profile),
+            ],
+            'logo' => 'file|image|mimes:jpeg,png|max:1000',
+            'established' => 'required|date|date_format:Y-m-d',
+            'address' => 'required',
+            'vision' => 'nullable',
+            'mission' => 'nullable',
+            'description' => 'nullable',
+        ]);
+
+        if($request->file('logo') != null)
+        {
+            $file = $request->file('logo');
+            $name = $request->get('name');
+            $name = $name.' Logo.'.$file->getClientOriginalExtension();
+            $file->move('images/logos/', $name);
+            // $path = $request->file('logo')->store('logos');
+            $profile->logo = 'images/logos/'.$name;
+        }
+        $profile->name = $request->get('name');
+        $profile->established = $request->get('established');
+        $profile->address = $request->get('address');
+        $profile->vision = $request->get('vision');
+        $profile->mission = $request->get('mission');
+        $profile->description = $request->get('description');
+        $profile->save();
+
+        return redirect('profiles')->with('status', 'Sukses mengubah data.');
     }
 
     /**
@@ -130,6 +160,8 @@ class ProfileController extends Controller
      */
     public function destroy(Profile $profile)
     {
-        //
+        $profile->delete();
+
+        return redirect('profiles')->with('status', 'Sukses menghapus data.');
     }
 }

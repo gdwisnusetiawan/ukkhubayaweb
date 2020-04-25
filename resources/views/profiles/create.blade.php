@@ -11,7 +11,7 @@
 
 @section('breadcumb')
   <li class="breadcrumb-item">Master</li>
-  <li class="breadcrumb-item"><a href="{{ route('periods.index') }}">Profil</a></li>
+  <li class="breadcrumb-item"><a href="{{ route('profiles.index') }}">Profil</a></li>
   <li class="breadcrumb-item active">Tambah</li>
 @endsection
 
@@ -102,18 +102,6 @@
 	              <textarea class="textarea form-control @error('mission') is-invalid @enderror" name="mission" autocomplete="mission"
                           style="font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">{{ old('mission') }}</textarea>
 	              @error('mission')
-	                <span class="invalid-feedback" role="alert">
-	                  <strong>{{ $message }}</strong>
-	                </span>
-	              @enderror
-	            </div>
-	          </div>
-	          <div class="form-group row">
-	            <label for="history" class="col-sm-2 col-form-label">Sejarah</label>
-	            <div class="col-sm-10">
-	              <textarea class="textarea form-control @error('history') is-invalid @enderror" name="history" autocomplete="history"
-                          style="font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">{{ old('history') }}</textarea>
-	              @error('history')
 	                <span class="invalid-feedback" role="alert">
 	                  <strong>{{ $message }}</strong>
 	                </span>

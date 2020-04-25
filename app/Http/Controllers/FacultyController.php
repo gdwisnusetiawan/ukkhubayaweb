@@ -8,6 +8,17 @@ use Illuminate\Http\Request;
 class FacultyController extends Controller
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('verified');
+    }
+    
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -26,7 +37,8 @@ class FacultyController extends Controller
      */
     public function create()
     {
-        //
+        $colors = Faculty::colors();
+        return view('faculties.create', compact('colors'));
     }
 
     /**

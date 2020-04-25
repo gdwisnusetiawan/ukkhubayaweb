@@ -67,11 +67,8 @@
         </div>
       </form>
 
-      <p class="mb-1">
-        <a href="{{ route('login') }}">{{ __('Login') }}</a>
-      </p>
-      <p class="mb-0">
-        <a href="{{ route('register') }}" class="text-center">{{ __('Register') }}</a>
+      <p class="my-1">
+        <a href="{{ route('login') }}">{{ __('Login') }}</a> or <a href="{{ route('register') }}" class="text-center">{{ __('Register') }}</a>
       </p>
     </div>
     <!-- /.login-card-body -->

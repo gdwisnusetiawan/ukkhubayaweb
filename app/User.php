@@ -43,4 +43,17 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Get the member associated with the user.
+     */
+    public function member()
+    {
+        return $this->hasOne('App\Member');
+    }
+
+    public function isAdmin()
+    {
+        return $this->role == 'admin';
+    }
 }

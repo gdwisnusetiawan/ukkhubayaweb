@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return redirect()->route('home');
-});
+Route::get('/', 'ViewerController@index');
 
 Auth::routes(['verify' => true]);
 

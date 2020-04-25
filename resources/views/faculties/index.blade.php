@@ -21,90 +21,47 @@
     <div class="card">
       <h5 class="card-header">
       	Daftar Fakultas
-      	<button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#modal-add"><i class="fas fa-plus"></i> Tambah</button>
+      	<a href="{{ route('faculties.create') }}" class="btn btn-primary float-right"><i class="fas fa-plus"></i><span class="button-text"> Tambah</span></a>
       </h5>
       <div class="card-body">
 
       	<div class="row">
       		@forelse ($faculties as $faculty)
       	  <div class="col-md-3 mb-3">
-      	  	<a href="{{ route('faculties.edit', $faculty) }}" type="button" class="btn btn-block btn-light h-100">
-	      	    <div class="card h-100 m-0 text-center bg-{{ $faculty->color }}">
-	      	      <div class="card-body d-flex justify-content-center">
-	      	      	<span class="align-self-center">
-		      	        <h1><i class="{{ $faculty->icon }}"></i></h1>
-		      	        <h2 class="card-text">{{ strtoupper($faculty->name) }}</h2>
-	      	        </span>
-	      	      </div>
-	      	    </div>
-      	  	</a>
+      	    <div class="card h-100 m-0 text-center">
+      	      <div class="card-body d-flex justify-content-center bg-{{ $faculty->color }}">
+      	      	<span class="align-self-center">
+	      	        <h1><i class="{{ $faculty->icon }}"></i></h1>
+	      	        <h2 class="card-text">{{ strtoupper($faculty->name) }}</h2>
+      	        </span>
+      	      </div>
+      	      <div class="card-footer">
+      	      	<a href="{{ route('faculties.edit', $faculty) }}" type="button" class="btn btn-outline-primary btn-sm m-1"><i class="fas fa-edit"></i> Ubah</a>
+	      	        <button type="button" class="btn btn-outline-danger btn-sm m-1" data-toggle="modal" data-target="#modal-delete-{{ $faculty->id }}"><i class="fas fa-trash"></i> Hapus</button>
+      	      </div>
+      	    </div>
       	  </div>
       	  @empty
       	  <p>Tidak ada data.</p>
 	      	@endforelse
 
-	      	<!-- Modal Add -->
-	      	@component('components.modal')
-	      		@slot('id') modal-add @endslot
-	      		@slot('title') Tambah Fakultas @endslot
-	      		@slot('button_type') primary @endslot
-	      		@slot('button_name') Tambah @endslot
-	      		@slot('form_id') form-add @endslot
+	      	@foreach ($faculties as $faculty)
+	      	<!-- Modal Delete -->
+		      	@component('components.modal')
+		      		@slot('id') modal-delete-{{ $faculty->id }} @endslot
+		      		@slot('title') Hapus Posisi @endslot
+		      		@slot('button_type') danger @endslot
+		      		@slot('button_name') Hapus @endslot
+		      		@slot('form_id') form-delete-{{ $faculty->id }} @endslot
 
-	      		<form action="{{ route('faculties.store') }}" method="post" class="form-horizontal" id="form-add">
-		        	@csrf
-
-		          <div class="form-group row">
-		            <label for="name" class="col-sm-2 col-form-label">Nama</label>
-		            <div class="col-sm-10">
-		              <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="Nama">
-		              @error('name')
-		                <span class="invalid-feedback" role="alert">
-		                  <strong>{{ $message }}</strong>
-		                </span>
-		              @enderror
-		            </div>
-		          </div>
-		          <div class="form-group row">
-		            <label for="color" class="col-sm-2 col-form-label">Warna</label>
-		            <div class="col-sm-10">
-		              <select class="form-control select2bs4 @error('color') is-invalid @enderror" name="color" required style="width: 100%;">
-		              	@foreach ($colors as $color)
-		              		<option value="{{ $color }}" class="text-{{ $color }}">{{ $color }}</option>
-		              	@endforeach
-                  </select>
-		              @error('color')
-		                <span class="invalid-feedback" role="alert">
-		                  <strong>{{ $message }}</strong>
-		                </span>
-		              @enderror
-		            </div>
-		          </div>
-		          <div class="form-group row">
-		            <label for="icon" class="col-sm-2 col-form-label">Icon</label>
-		            <div class="col-sm-10">
-		              <input type="text" class="form-control @error('icon') is-invalid @enderror" name="icon" value="{{ old('icon') }}" required autocomplete="icon" autofocus placeholder="ex: fas fa-circle">
-		              <small class="form-text text-muted">
-		                You can see all supported icons here: <a href="https://fontawesome.com/icons?d=gallery&m=free" target="_BLANK">Font Awesome</a><br>
-		                <a href="#">How to use it?</a>
-		              </small>
-		              @error('icon')
-		                <span class="invalid-feedback" role="alert">
-		                  <strong>{{ $message }}</strong>
-		                </span>
-		              @enderror
-		            </div>
-		          </div>
-		        </form>
-	      	@endcomponent
-	      	@if ($errors->any())
-		      	@push ('js')
-		      		<script type="text/javascript">
-		      			$('#modal-add').modal('show')
-		      		</script>
-		      	@endpush
-	      	@endif
-	      	<!-- /.modal -->
+		      		<p>Apakah Anda yakin ingin menghapus data <strong>{{ $faculty->name }}</strong>?</p>
+		      		<form action="{{ route('faculties.destroy', $faculty) }}" method="post" id="form-delete-{{ $faculty->id }}">
+		      			@csrf
+		      			@method('delete')
+		      		</form>
+		      	@endcomponent
+		      	<!-- /.modal -->
+		    	@endforeach
       	</div>
       </div><!-- /.card-body -->
     </div><!-- /.card -->

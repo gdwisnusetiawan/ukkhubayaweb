@@ -13,7 +13,7 @@
 
 @section('content')
 <div class="row">
-  <div class="col-md-6">
+  <div class="col-md-12">
     <div class="card">
       <h5 class="card-header">
       	Ubah Program Kerja
@@ -24,8 +24,8 @@
 	        	@method('put')
 
 	        	<div class="form-group row">
-	            <label for="name" class="col-sm-4 col-form-label">Nama</label>
-	            <div class="col-sm-8">
+	            <label for="name" class="col-sm-2 col-form-label">Nama</label>
+	            <div class="col-sm-10">
 	              <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $program->name }}" required autocomplete="name" placeholder="Nama">
 	              @error('name')
 	                <span class="invalid-feedback" role="alert">
@@ -35,8 +35,8 @@
 	            </div>
 	          </div>
 	          <div class="form-group row">
-	            <label for="logo" class="col-sm-4 col-form-label">Logo</label>
-	            <div class="col-sm-8">
+	            <label for="logo" class="col-sm-2 col-form-label">Logo</label>
+	            <div class="col-sm-10">
 	            	<div class="custom-file">
 	            	  <input type="file" class="custom-file-input form-control @error('logo') is-invalid @enderror" id="customFile" name="logo" value="{{ $program->logo }}" required autocomplete="logo" onchange="readURL(this);">
 	            	  <label class="custom-file-label" for="customFile">Choose file</label>

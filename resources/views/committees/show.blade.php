@@ -83,11 +83,13 @@
       <div class="card-body">
         <div class="tab-content">
           <div class="active tab-pane" id="job">
-            <textarea id="textareaJob" class="textarea" name="job" disabled style="font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">{{ $committee->job }}</textarea>
+            <div id="textarea-job"></div>
+            <!-- <textarea id="textareaJob" class="textarea" name="job" disabled style="font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">{{ $committee->job }}</textarea> -->
           </div>
           <!-- /.tab-pane -->
           <div class="tab-pane" id="information">
-            <textarea id="textareaInformation" class="textarea" name="information" disabled style="font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">{{ $committee->information }}</textarea>
+            <div id="textarea-information"></div>
+            <!-- <textarea id="textareaInformation" class="textarea" name="information" disabled style="font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">{{ $committee->information }}</textarea> -->
           </div>
           <!-- /.tab-pane -->
           <div class="tab-pane" id="member">
@@ -179,6 +181,11 @@
       });
       $('#textareaJob').summernote('disable');
       $('#textareaInformation').summernote('disable');
+
+      var job = @json($committee->job);
+      var information = @json($committee->information);
+      $('#textarea-job').html(job);
+      $('#textarea-information').html(information);
 
       const Toast = Swal.mixin({
         toast: true,

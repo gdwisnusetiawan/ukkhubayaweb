@@ -30,23 +30,19 @@
 <div class="row">
   <div class="col-lg-12">
     <div class="card">
-      <h5 class="card-header">
-      	<div class="d-flex justify-content-between">
-      		<span>
-    	    <label for="event_id" class="col-form-label">Daftar Panitia</label>
-    	    <form action="{{ route('committees.index') }}" method="get" class="form-horizontal">
-			      <select class="select2bs4" name="event_id" required onchange="this.form.submit()">
-		        	@foreach ($events as $event)
-		        		<option value="{{ $event->id }}" {{ $eventLast == $event->id ? 'selected' : '' }}>{{ $event->name() }}</option>
-		        	@endforeach
-		        </select>
-	        </form>
-	        </span>
-		      <span class="float-right">
-			      <a href="{{ route('committees.create') }}" class="btn btn-primary"><i class="fas fa-plus"></i><span class="button-text"> Tambah</span></a>
-		      </span>
+      <div class="card-header">
+      	<div class="d-flex justify-content-between mb-2">
+    	    <h5 for="event_id">Daftar Panitia</h5>
+		      <a href="{{ route('committees.create') }}" class="btn btn-primary"><i class="fas fa-plus"></i><span class="button-text"> Tambah</span></a>
 	      </div>
-	  </h5>
+	      <form action="{{ route('committees.index') }}" method="get" class="form-horizontal">
+		      <select class="select2bs4" name="event_id" required onchange="this.form.submit()">
+	        	@foreach ($events as $event)
+	        		<option value="{{ $event->id }}" {{ $eventLast == $event->id ? 'selected' : '' }}>{{ $event->name() }}</option>
+	        	@endforeach
+	        </select>
+        </form>
+	  </div>
       <div class="card-body">
 
   	    <div class="row d-flex align-items-stretch">
@@ -104,7 +100,7 @@
 			      		@slot('button_name') Hapus @endslot
 			      		@slot('form_id') form-delete-{{ $member->id }} @endslot
 
-			      		<p>Apakah Anda yakin ingin menghapus data <strong>{{ $member->name }}</strong> sebagai <strong>{{ $committee->position->name }}</strong>?</p>
+			      		<p>Apakah Anda yakin ingin menghapus data <strong>{{ $member->name }}</strong> sebagai <strong>{{ $committee->position->name }} {{ $committee->event->name() }}</strong>?</p>
 			      		<form action="{{ route('committee.member.destroy', [$committee, $member]) }}" method="post" id="form-delete-{{ $member->id }}">
 			      			@csrf
 			      			@method('delete')

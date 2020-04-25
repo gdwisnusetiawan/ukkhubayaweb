@@ -13,7 +13,7 @@
 
 @section('content')
 <div class="row">
-  <div class="col-md-6">
+  <div class="col-md-12">
     <div class="card">
       <h5 class="card-header">
       	Ubah Posisi
@@ -24,8 +24,8 @@
 	        	@method('put')
 
 	        	<div class="form-group row">
-	            <label for="name" class="col-sm-4 col-form-label">Nama</label>
-	            <div class="col-sm-8">
+	            <label for="name" class="col-sm-2 col-form-label">Nama</label>
+	            <div class="col-sm-10">
 	              <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $position->name }}" required autocomplete="name" placeholder="Nama">
 	              @error('name')
 	                <span class="invalid-feedback" role="alert">
@@ -35,8 +35,8 @@
 	            </div>
 	          </div>
 	          <div class="form-group row">
-	            <label for="icon" class="col-sm-4 col-form-label">Icon</label>
-	            <div class="col-sm-8">
+	            <label for="icon" class="col-sm-2 col-form-label">Icon</label>
+	            <div class="col-sm-10">
 	              <input type="text" class="form-control @error('icon') is-invalid @enderror" name="icon" value="{{ $position->icon }}" required autocomplete="icon" placeholder="ex: fas fa-circle">
 	              <small class="form-text text-muted">
 	                You can see all supported icons here: <a href="https://fontawesome.com/icons?d=gallery&m=free" target="_BLANK">Font Awesome</a><br>
@@ -50,8 +50,8 @@
 	            </div>
 	          </div>
 	          <div class="form-group row">
-	            <label for="order" class="col-sm-4 col-form-label">Urutan</label>
-	            <div class="col-sm-8">
+	            <label for="order" class="col-sm-2 col-form-label">Urutan</label>
+	            <div class="col-sm-10">
 	              <input type="number" class="form-control @error('order') is-invalid @enderror" name="order" value="{{ $position->order }}" required autocomplete="order" placeholder="Urutan" min="0" step="1">
 	              @error('order')
 	                <span class="invalid-feedback" role="alert">

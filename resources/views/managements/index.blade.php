@@ -30,23 +30,19 @@
 <div class="row">
   <div class="col-lg-12">
     <div class="card">
-      <h5 class="card-header">
-      	<div class="d-flex justify-content-between">
-      		<span>
-    	    <label for="period_id" class="col-form-label">Daftar Pengurus</label>
-    	    <form action="{{ route('managements.index') }}" method="get" class="form-horizontal">
-			      <select class="select2bs4" name="period_id" required onchange="this.form.submit()">
-		        	@foreach ($periods as $period)
-		        		<option value="{{ $period->id }}" {{ $periodLast == $period->id ? 'selected' : '' }}>Periode {{ $period->name() }}</option>
-		        	@endforeach
-		        </select>
-	        </form>
-	        </span>
-		      <span class="float-right">
-			      <a href="{{ route('managements.create') }}" class="btn btn-primary"><i class="fas fa-plus"></i><span class="button-text"> Tambah</span></a>
-		      </span>
+      <div class="card-header">
+      	<div class="d-flex justify-content-between mb-2">
+    	    <h5 for="period_id">Daftar Pengurus</h5>
+		      <a href="{{ route('managements.create') }}" class="btn btn-primary"><i class="fas fa-plus"></i><span class="button-text"> Tambah</span></a>
 	      </div>
-	  </h5>
+	      <form action="{{ route('managements.index') }}" method="get" class="form-horizontal">
+		      <select class="select2bs4" name="period_id" required onchange="this.form.submit()">
+	        	@foreach ($periods as $period)
+	        		<option value="{{ $period->id }}" {{ $periodLast == $period->id ? 'selected' : '' }}>Periode {{ $period->name() }}</option>
+	        	@endforeach
+	        </select>
+        </form>
+	  </div>
       <div class="card-body">
 
   	    <div class="row d-flex align-items-stretch">

@@ -16,7 +16,7 @@
 
 @section('content')
 <div class="row">
-  <div class="col-md-6">
+  <div class="col-md-12">
     <div class="card">
       <h5 class="card-header">
       	Ubah Fakultas
@@ -71,26 +71,9 @@
 	        <div class="float-right">
 	          <a href="{{ url()->current() == url()->previous() ? route('faculties.index') : url()->previous() }}" type="button" class="btn btn-default">Kembali</a>
 	          <button type="submit" class="btn btn-primary" form="form-edit">Ubah</button>
-	          <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-delete">Hapus</button>
 	        </div>
       </div><!-- /.card-body -->
     </div><!-- /.card -->
-
-    <!-- Modal Delete -->
-    @component('components.modal')
-    	@slot('id') modal-delete @endslot
-    	@slot('title') Hapus Fakultas @endslot
-    	@slot('button_type') danger @endslot
-    	@slot('button_name') Hapus @endslot
-    	@slot('form_id') form-delete @endslot
-
-    	<p>Apakah Anda yakin ingin menghapus data <strong>{{ $faculty->name }}</strong>?</p>
-    	<form action="{{ route('faculties.destroy', $faculty) }}" method="post" class="form-horizontal" id="form-delete">
-    		@csrf
-    		@method('delete')
-    	</form>
-    @endcomponent
-    <!-- /.modal -->
   </div>
   <!-- /.col-md-12 -->
 </div>

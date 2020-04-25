@@ -83,11 +83,13 @@
       <div class="card-body">
         <div class="tab-content">
           <div class="active tab-pane" id="job">
-            <textarea id="textareaJob" class="textarea" name="job" disabled style="font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">{{ $management->job }}</textarea>
+            <div id="textarea-job"></div>
+            <!-- <textarea id="textareaJob" class="textarea" name="job" disabled style="font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">{{ $management->job }}</textarea> -->
           </div>
           <!-- /.tab-pane -->
           <div class="tab-pane" id="information">
-            <textarea id="textareaInformation" class="textarea" name="information" disabled style="font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">{{ $management->information }}</textarea>
+            <div id="textarea-information"></div>
+            <!-- <textarea id="textareaInformation" class="textarea" name="information" disabled style="font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">{{ $management->information }}</textarea> -->
           </div>
           <!-- /.tab-pane -->
           <div class="tab-pane" id="member">
@@ -170,6 +172,7 @@
   <script src="{{ asset('admin-lte/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
   <!-- page script -->
   <script>
+    
     $(document).ready(function () {
       // Summernote
       $('.textarea').summernote({
@@ -179,6 +182,11 @@
       });
       $('#textareaJob').summernote('disable');
       $('#textareaInformation').summernote('disable');
+
+      var job = @json($management->job);
+      var information = @json($management->information);
+      $('#textarea-job').html(job);
+      $('#textarea-information').html(information);
 
       const Toast = Swal.mixin({
         toast: true,

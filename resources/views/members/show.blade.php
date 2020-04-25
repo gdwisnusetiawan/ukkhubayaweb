@@ -61,6 +61,8 @@
             <b>Fakultas</b> <a class="float-right">{{ $member->faculty->name }}</a>
           </li>
           @endif
+
+          <a href="{{ route('members.edit', $member) }}" class="btn btn-primary btn-block"><b>Ubah profil</b></a>
         </ul>
       </div>
       <!-- /.card-body -->

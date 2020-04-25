@@ -3,6 +3,8 @@
 @push('css')
   <!-- DataTables -->
   <link rel="stylesheet" href="{{ asset('admin-lte/plugins/datatables-bs4/css/dataTables.bootstrap4.css') }}">
+  <!-- iCheck for checkboxes and radio inputs -->
+  <link rel="stylesheet" href="{{ asset('admin-lte/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
 
   <style type="text/css">
   	table.dataTable tbody td {
@@ -31,6 +33,7 @@
 	            <th>NRP</th>
 	            <th>Nama</th>
 	            <th>Email</th>
+	            <th>Role</th>
 	            <th>Action</th>
 	          </tr>
 	          </thead>
@@ -40,8 +43,9 @@
 	            <td>{{ $user->id }}</td>
 	            <td>{{ $user->name }}</td>
 	            <td>{{ $user->email }}</td>
+	            <td>{{ ucfirst($user->role) }}</td>
 	            <td>
-	            	<button type="button" class="btn btn-outline-primary btn-sm m-1" data-toggle="modal" data-target="#modal-edit-{{ $user->id }}" disabled><i class="fas fa-edit"></i></button>
+	            	<a href="{{ route('users.edit', $user) }}" class="btn btn-outline-primary btn-sm m-1"><i class="fas fa-edit"></i></a>
 	            	<button type="button" class="btn btn-outline-danger btn-sm m-1" data-toggle="modal" data-target="#modal-delete-{{ $user->id }}"><i class="fas fa-trash"></i></button>
 	            </td>
 	          </tr>
@@ -61,62 +65,6 @@
       	</div><!-- /.table-responsive -->
 
       	@foreach ($users as $user)
-	      	<!-- Modal Edit -->
-	      	@component('components.modal')
-	      		@slot('id') modal-edit-{{ $user->id }} @endslot
-	      		@slot('title') Ubah User @endslot
-	      		@slot('button_type') primary @endslot
-	      		@slot('button_name') Ubah @endslot
-	      		@slot('form_id') form-edit-{{ $user->id }} @endslot
-
-	      		<form action="{{ route('users.update', $user) }}" method="post" class="form-horizontal" id="form-edit-{{ $user->id }}">
-		        	@csrf
-		        	@method('put')
-
-		          <div class="form-group row">
-		            <label for="id" class="col-sm-2 col-form-label">ID</label>
-		            <div class="col-sm-10">
-		              <input id="id" type="text" class="form-control @error('id') is-invalid @enderror" name="id" value="{{ $user->id }}" required autocomplete="id" autofocus placeholder="ID / NRP">
-		              @error('id')
-		                <span class="invalid-feedback" role="alert">
-		                  <strong>{{ $message }}</strong>
-		                </span>
-		              @enderror
-		            </div>
-		          </div>
-		          <div class="form-group row">
-		            <label for="name" class="col-sm-2 col-form-label">Nama</label>
-		            <div class="col-sm-10">
-		              <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $user->name }}" required autocomplete="name" placeholder="Nama">
-		              @error('name')
-		                <span class="invalid-feedback" role="alert">
-		                  <strong>{{ $message }}</strong>
-		                </span>
-		              @enderror
-		            </div>
-		          </div>
-		          <div class="form-group row">
-		            <label for="email" class="col-sm-2 col-form-label">Email</label>
-		            <div class="col-sm-10">
-		              <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $user->email }}" required autocomplete="email" placeholder="Email">
-		              @error('email')
-		                <span class="invalid-feedback" role="alert">
-		                  <strong>{{ $message }}</strong>
-		                </span>
-		              @enderror
-		            </div>
-		          </div>
-		        </form>
-	      	@endcomponent
-	      	@if ($errors->any())
-		      	@push ('js')
-		      		<script type="text/javascript">
-		      			$('#modal-edit-{{ $user->id }}').modal('show')
-		      		</script>
-		      	@endpush
-	      	@endif
-	      	<!-- /.modal -->
-
 	      	<!-- Modal Delete -->
 	      	@component('components.modal')
 	      		@slot('id') modal-delete-{{ $user->id }} @endslot

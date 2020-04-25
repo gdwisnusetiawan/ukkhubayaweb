@@ -68,9 +68,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        //
+        return view('users.edit', compact('user'));
     }
 
     /**
@@ -80,21 +80,23 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
         $validatedData = $request->validate([
             'id' => 'required|max:255',
             'name' => 'required|max:255',
             'email' => 'required|email|ends_with:gmail.com',
+            'role' => 'required|in:admin,viewer',
         ]);
 
-        $user = User::find($id);
-        $user->id = $request->get('id');
-        $user->name = $request->get('name');
-        $user->email = $request->get('email');
+        // $user = User::find($id);
+        // $user->id = $request->get('id');
+        // $user->name = $request->get('name');
+        // $user->email = $request->get('email');
+        $user->role = $request->get('role');
         $user->save();
 
-        return redirect('users')->with('status', 'test');
+        return redirect('users')->with('status', 'Berhasil mengubah data');
     }
 
     /**
@@ -103,8 +105,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        //
+        $user->save();
+
+        return redirect('users')->with('status', 'Berhasil menghapus data');
     }
 }

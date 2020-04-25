@@ -29,7 +29,7 @@
 	        	<div class="form-group row">
 	            <label for="id" class="col-sm-2 col-form-label">ID (NRP/NPK)</label>
 	            <div class="col-sm-10">
-	              <input type="text" class="form-control @error('id') is-invalid @enderror" name="id" value="{{ $member->id }}" required autocomplete="id" placeholder="ID (NRP/NPK)">
+	              <input type="text" class="form-control @error('id') is-invalid @enderror" name="id" value="{{ $member->id }}" required autocomplete="id" placeholder="ID (NRP/NPK)" readonly>
 	              @error('id')
 	                <span class="invalid-feedback" role="alert">
 	                  <strong>{{ $message }}</strong>

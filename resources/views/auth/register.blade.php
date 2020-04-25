@@ -85,18 +85,11 @@
           </div>
         </div>
 
-        <div class="row">
-          <!-- /.col -->
-          <div class="col-4 offset-8">
-            <button type="submit" class="btn btn-primary btn-block">{{ __('Register') }}</button>
-          </div>
-          <!-- /.col -->
+        <div class="d-flex justify-content-between">
+            <a href="{{ route('login') }}" class="text-center">{{ __('Login') }}</a>
+            <button type="submit" class="btn btn-primary">{{ __('Register') }}</button>
         </div>
       </form>
-
-      <p class="mb-0">
-        <a href="{{ route('login') }}" class="text-center">{{ __('Login') }}</a>
-      </p>
     </div>
     <!-- /.login-card-body -->
   </div>

@@ -37,6 +37,7 @@ class CommitteeMemberController extends Controller
      */
     public function create(Committee $committee)
     {
+        $this->authorize('create', CommitteeMember::class);
         $roles = CommitteeMember::getEnumValues();
         $members = Member::all();
         return view('committee-member.create', compact('committee', 'roles', 'members'));
@@ -50,6 +51,7 @@ class CommitteeMemberController extends Controller
      */
     public function store(Request $request, Committee $committee)
     {
+        $this->authorize('create', CommitteeMember::class);
         $validatedData = $request->validate([
             'committee_id' => 'required|exists:committees,id',
             'member' => 'required|exists:members,id|array|min:1',
@@ -88,6 +90,7 @@ class CommitteeMemberController extends Controller
      */
     public function edit(Committee $committee, Member $member)
     {
+        $this->authorize('update', $committee->committeeMember($member));
         foreach ($committee->members as $item)
         {
             if($item->id == $member->id)
@@ -108,6 +111,7 @@ class CommitteeMemberController extends Controller
      */
     public function update(Request $request, Committee $committee, Member $member)
     {
+        $this->authorize('update', $committee->committeeMember($member));
         $validatedData = $request->validate([
             'committee_id' => 'required|exists:committees,id',
             'member_id' => 'required|exists:members,id',
@@ -126,6 +130,7 @@ class CommitteeMemberController extends Controller
      */
     public function destroy(Committee $committee, Member $member)
     {
+        $this->authorize('delete', $committee->committeeMember($member));
         $committee->members()->detach($member);
         return redirect('committees')->with('status', 'Sukses menghapus data.');
     }

@@ -20,6 +20,7 @@ class ManagementController extends Controller
     {
         $this->middleware('auth');
         $this->middleware('verified');
+        $this->authorizeResource(Management::class);
     }
     
     /**
@@ -43,6 +44,7 @@ class ManagementController extends Controller
         ->sortBy(function($management) {
             return $management->position->order;
         });
+
         return view('managements.index', compact('managements', 'periods', 'periodLast'));
     }
 

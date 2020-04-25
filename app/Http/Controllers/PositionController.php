@@ -17,6 +17,7 @@ class PositionController extends Controller
     {
         $this->middleware('auth');
         $this->middleware('verified');
+        $this->authorizeResource(Position::class);
     }
 
     /**

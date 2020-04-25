@@ -17,6 +17,7 @@ class ContactController extends Controller
     {
         $this->middleware('auth');
         $this->middleware('verified');
+        $this->authorizeResource(Contact::class);
     }
     
     /**

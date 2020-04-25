@@ -37,6 +37,7 @@ class ManagementMemberController extends Controller
      */
     public function create(Management $management)
     {
+        $this->authorize('create', CommitteeMember::class);
         $roles = ManagementMember::getEnumValues();
         $members = Member::all();
         return view('management-member.create', compact('management', 'roles', 'members'));
@@ -50,6 +51,7 @@ class ManagementMemberController extends Controller
      */
     public function store(Request $request, Management $management)
     {
+        $this->authorize('create', CommitteeMember::class);
         $validatedData = $request->validate([
             'management_id' => 'required|exists:managements,id',
             'member' => 'required|exists:members,id|array|min:1',
@@ -88,6 +90,7 @@ class ManagementMemberController extends Controller
      */
     public function edit(Management $management, Member $member)
     {
+        $this->authorize('update', $management->managementMember($member));
         foreach ($management->members as $item)
         {
             if($item->id == $member->id)
@@ -108,6 +111,7 @@ class ManagementMemberController extends Controller
      */
     public function update(Request $request, Management $management, Member $member)
     {
+        $this->authorize('update', $management->managementMember($member));
         $validatedData = $request->validate([
             'management_id' => 'required|exists:managements,id',
             'member_id' => 'required|exists:members,id',
@@ -126,6 +130,7 @@ class ManagementMemberController extends Controller
      */
     public function destroy(Management $management, Member $member)
     {
+        $this->authorize('delete', $management->managementMember($member));
         $management->members()->detach($member);
         return redirect('managements')->with('status', 'Sukses menghapus data.');
     }

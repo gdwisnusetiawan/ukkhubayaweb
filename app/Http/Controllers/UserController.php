@@ -16,6 +16,7 @@ class UserController extends Controller
     {
         $this->middleware('auth');
         $this->middleware('verified');
+        $this->authorizeResource(User::class);
     }
     
     /**

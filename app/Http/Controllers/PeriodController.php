@@ -17,6 +17,7 @@ class PeriodController extends Controller
     {
         $this->middleware('auth');
         $this->middleware('verified');
+        $this->authorizeResource(Period::class);
     }
     
     /**

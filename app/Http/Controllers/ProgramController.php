@@ -18,6 +18,7 @@ class ProgramController extends Controller
     {
         $this->middleware('auth');
         $this->middleware('verified');
+        $this->authorizeResource(Program::class);
     }
     
     /**

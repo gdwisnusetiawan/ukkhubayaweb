@@ -8,25 +8,23 @@
 @endsection
 
 @section('content')
-<div class="row">
-  <div class="col-lg-12">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Dashboard</h5>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">Dashboard</div>
 
-        @if (session('status'))
-            <div class="alert alert-success" role="alert">
-                {{ session('status') }}
+                <div class="card-body">
+                    @if (session('status'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+
+                    You are logged in!
+                </div>
             </div>
-        @endif
-
-        <p class="card-text">
-          You are logged in!
-        </p>
-      </div><!-- /.card-body -->
-    </div><!-- /.card -->
-  </div>
-  <!-- /.col-md-12 -->
+        </div>
+    </div>
 </div>
-<!-- /.row -->
 @endsection

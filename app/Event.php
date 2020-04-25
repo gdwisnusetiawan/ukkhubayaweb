@@ -46,4 +46,9 @@ class Event extends Model
     {
         return $this->hasMany('App\Committee');
     }
+
+    public function isActive()
+    {
+        return $this->period->active == 'yes';
+    }
 }

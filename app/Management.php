@@ -38,4 +38,24 @@ class Management extends Model
     {
         return $this->belongsToMany('App\Member')->withPivot('role')->withTimestamps();
     }
+
+    /**
+     * Get the managementMember for the management.
+     */
+    public function managementMember(Member $member = null)
+    {
+        if($member != null)
+        {
+            return $this->hasMany('App\ManagementMember')->where('member_id', $member->id)->get()->first();
+        }
+        else
+        {
+            return $this->hasMany('App\ManagementMember');
+        }
+    }
+
+    public function isActive()
+    {
+        return $this->period->active == 'yes';
+    }
 }

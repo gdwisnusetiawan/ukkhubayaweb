@@ -62,4 +62,34 @@ class Member extends Model
     {
         return $this->belongsToMany('App\Contact')->withPivot('link')->withTimestamps();
     }
+
+    /**
+     * Get the user that owns the member.
+     */
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
+
+    public function managementPermission($positions)
+    {
+        $active = $this->managements->contains(function ($item, $key) {
+            return $item->isActive();
+        });
+        $role = $this->managements->contains(function ($item, $key) use ($positions){
+            return $item->position->whereIn('name', $positions)->get()->isNotEmpty();
+        });
+        return $active && $role;
+    }
+
+    public function committeePermission($positions)
+    {
+        $active = $this->committees->contains(function ($item, $key) {
+            return $item->event->isActive();
+        });
+        $role = $this->committees->contains(function ($item, $key) use ($positions){
+            return $item->position->whereIn('name', $positions)->get()->isNotEmpty();
+        });
+        return $this->managementPermission($positions) || ($active && $role);
+    }
 }

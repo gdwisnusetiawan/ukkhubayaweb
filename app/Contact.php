@@ -22,4 +22,12 @@ class Contact extends Model
     {
         return $this->belongsToMany('App\Member')->withPivot('link')->withTimestamps();
     }
+
+    /**
+     * The profiles that belong to the contact.
+     */
+    public function profiles()
+    {
+        return $this->belongsToMany('App\Profile')->withPivot('link')->withTimestamps();
+    }
 }

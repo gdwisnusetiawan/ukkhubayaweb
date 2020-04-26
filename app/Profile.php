@@ -14,4 +14,12 @@ class Profile extends Model
     protected $guarded = [
         'id',
     ];
+
+    /**
+     * The contacts that belong to the member.
+     */
+    public function contacts()
+    {
+        return $this->belongsToMany('App\Contact')->withPivot('link')->withTimestamps();
+    }
 }

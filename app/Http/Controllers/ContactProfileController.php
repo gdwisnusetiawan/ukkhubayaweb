@@ -61,7 +61,7 @@ class ContactProfileController extends Controller
         {
             $request->session()->flash('error', 'Gagal menambah data. Tidak dapat menambah jenis kontak yang sama.');
         }
-        return redirect()->route('profiles.index', $profile);
+        return redirect()->route('profiles.index');
     }
 
     /**
@@ -110,7 +110,7 @@ class ContactProfileController extends Controller
 
         $profile->contacts()->updateExistingPivot($request->get('contact_id'), ['link' => $request->get('link')]);
         $request->session()->flash('status', 'Sukses mengubah data.');
-        return redirect()->route('profiles.index', $profile);
+        return redirect()->route('profiles.index');
     }
 
     /**
@@ -123,6 +123,6 @@ class ContactProfileController extends Controller
     {
         $profile->contacts()->detach($contact);
         $request->session()->flash('status', 'Sukses menghapus data.');
-        return redirect()->route('profiles.index', $profile);
+        return redirect()->route('profiles.index');
     }
 }

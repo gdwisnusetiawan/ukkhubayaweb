@@ -3,7 +3,7 @@
 @section('title', 'ORGANISASI')
 
 @section('breadcumb')
-  <li class="breadcrumb-item">Master</li>
+  <li class="breadcrumb-item">Beranda</li>
   <li class="breadcrumb-item"><a href="{{ route('profiles.index') }}">Profil Organisasi</a></li>
   <li class="breadcrumb-item active">Tambah</li>
 @endsection

@@ -6,6 +6,7 @@ use App\Member;
 use App\Faculty;
 use App\Contact;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class MemberController extends Controller
 {
@@ -112,20 +113,26 @@ class MemberController extends Controller
             'name' => 'required|max:255',
             'year' => 'required|digits:4|integer',
             'type' => 'required',
+            'place_of_birth' => 'nullable',
+            'date_of_birth' => 'nullable',
+            'original_address' => 'nullable',
+            'residence_address' => 'nullable',
+            'hobby' => 'nullable',
         ]);
 
         $member->id = $request->get('id');
         $member->name = $request->get('name');
         $member->year = $request->get('year');
         $member->type = $request->get('type');
-        if($request->get('faculty') != 'none')
-        {
-            $member->faculty()->associate($request->get('faculty'));
-        }
-        else
-        {
-            $member->faculty()->dissociate();
-        }
+        $member->place_of_birth = $request->get('place_of_birth');
+        $member->date_of_birth = $request->get('date_of_birth');
+        $member->original_address = $request->get('original_address');
+        $member->residence_address = $request->get('residence_address');
+        $member->hobby = $request->get('hobby');
+        // if($request->get('faculty') != 'none')
+        // {
+        //     $member->faculty()->associate($request->get('faculty'));
+        // }
         $member->save();
 
         return redirect('members')->with('status', 'Sukses mengubah data.');
@@ -137,10 +144,19 @@ class MemberController extends Controller
      * @param  \App\Member  $member
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Member $member)
+    public function destroy(Request $request, Member $member)
     {
-        $member->delete();
+        $validatedData = $request->validate([
+            'id' => [
+                'required',
+                Rule::in([$member->id]),
+            ],
+            'sure' => 'required'
+        ]);
+        $member->user()->dissociate(auth()->user());
+        $member->save();
+        auth()->user()->delete();
 
-        return redirect('members')->with('status', 'Sukses menghapus data.');
+        return redirect('/');
     }
 }

@@ -2,10 +2,9 @@
   <div id="topbar">
     <div class="container">
       <div class="social-links">
-        <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
-        <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
-        <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
-        <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
+        @foreach($profile->contacts as $contact)
+          <a href="{{ $contact->pivot->link }}" target="_blank" class="{{ str_replace(['fab fa-', 'fas fa-', 'far fa-'], '', $contact->icon) }}"><i class="{{ $contact->icon }}"></i></a>
+        @endforeach
       </div>
     </div>
   </div>

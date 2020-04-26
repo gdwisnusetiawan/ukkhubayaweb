@@ -18,7 +18,9 @@
   <link href="{{ asset('rapid/lib/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
 
   <!-- Libraries CSS Files -->
-  <link href="{{ asset('rapid/lib/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="{{ asset('admin-lte/plugins/fontawesome-free/css/all.min.css') }}">
+  <!-- <link href="{{ asset('rapid/lib/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet"> -->
   <link href="{{ asset('rapid/lib/animate/animate.min.css') }}" rel="stylesheet">
   <link href="{{ asset('rapid/lib/ionicons/css/ionicons.min.css') }}" rel="stylesheet">
   <link href="{{ asset('rapid/lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">

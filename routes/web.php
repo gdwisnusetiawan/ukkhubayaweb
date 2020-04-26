@@ -32,6 +32,7 @@ Route::resource('committee.member', 'CommitteeMemberController');
 Route::resource('contacts', 'ContactController');
 Route::resource('member.contact', 'ContactMemberController');
 Route::resource('profiles', 'ProfileController');
+Route::resource('profile.contact', 'ContactProfileController');
 
 // create management from period show page
 Route::get('managements/create/{period}', 'ManagementController@create')->name('managements.createPeriod');

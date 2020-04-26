@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Profile;
+use App\Contact;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
@@ -28,8 +29,9 @@ class ProfileController extends Controller
      */
     public function index()
     {
+        $contacts = Contact::all();
         $profile = Profile::all()->first();
-        return view('profiles.index', compact('profile'));
+        return view('profiles.index', compact('profile', 'contacts'));
     }
 
     /**

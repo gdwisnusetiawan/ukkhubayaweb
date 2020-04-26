@@ -1,5 +1,6 @@
 @extends('layouts.master')
 
+@section('title', 'CONFIRM PASSWORD')
 @section('body-class', 'login-page')
 
 @section('content')

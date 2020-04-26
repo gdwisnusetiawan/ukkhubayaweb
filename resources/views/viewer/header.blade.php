@@ -44,6 +44,8 @@
           </ul>
         </li> -->
         <li><a href="#footer">Hubungi Kami</a></li>
+        <li><a href="{{ route('login') }}" class="btn-primary">Login</a></li>
+        <li><a href="{{ route('register') }}" class="btn-primary">Register</a></li>
       </ul>
     </nav><!-- .main-nav -->
     

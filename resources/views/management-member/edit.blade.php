@@ -1,10 +1,5 @@
 @extends('layouts.master')
 
-@push('css')
-  <!-- iCheck for checkboxes and radio inputs -->
-  <link rel="stylesheet" href="{{ asset('admin-lte/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
-@endpush
-
 @section('title', 'PENGURUS')
 
 @section('breadcumb')
@@ -100,14 +95,3 @@
 </div>
 <!-- /.row -->
 @endsection
-
-@push('js')
-	<!-- Summernote -->
-	<script src="{{ asset('admin-lte/plugins/summernote/summernote-bs4.min.js') }}"></script>
-	<!-- page script -->
-	<script>
-	  $(document).ready(function () {
-
-	  });
-	</script>
-@endpush

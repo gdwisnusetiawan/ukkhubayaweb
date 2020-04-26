@@ -1,9 +1,6 @@
 @extends('layouts.master')
 
-@push('css')
-@endpush
-
-@section('title', 'ANGGOTA')
+@section('title', 'PERIODE')
 
 @section('breadcumb')
   <li class="breadcrumb-item">Master</li>
@@ -56,6 +53,3 @@
 </div>
 <!-- /.row -->
 @endsection
-
-@push('js')
-@endpush

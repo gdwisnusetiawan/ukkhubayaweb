@@ -1,14 +1,10 @@
 @extends('layouts.master')
 
-@push('css')
-	<!-- iCheck for checkboxes and radio inputs -->
-  <link rel="stylesheet" href="{{ asset('admin-lte/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
-@endpush
-
-@section('title', 'ANGGOTA')
+@section('title', 'PENGGUNA')
 
 @section('breadcumb')
-  <li class="breadcrumb-item">Profil</li>
+  <li class="breadcrumb-item">Master</li>
+  <li class="breadcrumb-item">Pengguna</li>
   <li class="breadcrumb-item active">Ubah</li>
 @endsection
 
@@ -88,10 +84,3 @@
 </div>
 <!-- /.row -->
 @endsection
-
-@push('js')
-<script type="text/javascript">
-	$(document).ready(function () {
-
-</script>
-@endpush

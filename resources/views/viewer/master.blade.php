@@ -26,6 +26,35 @@
 
   <!-- Main Stylesheet File -->
   <link href="{{ asset('rapid/css/style.css') }}" rel="stylesheet">
+  <style type="text/css">
+    .main-nav a.btn-primary,
+    .main-nav li.btn-primary > a.btn-primary {
+      font-family: "Montserrat", sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      display: inline-block;
+      padding: 10px 15px;
+      margin: 1px 2px;
+      border-radius: 4px;
+      transition: 0.5s;
+      color: #fff;
+      background: #1bb1dc;
+      color: #fff;
+    }
+    .main-nav a.btn-primary:hover,
+    .main-nav li.btn-primary:hover > a.btn-primary:hover {
+      background: #0a98c0;
+      color: #fff;
+    }
+    @media (max-width: 767px) {
+      .mobile-nav a.btn-primary,
+      .mobile-nav li.btn-primary > a.btn-primary {
+        background: none;
+      }
+    }
+  </style>
   @stack('css')
   <!-- =======================================================
     Theme Name: Rapid

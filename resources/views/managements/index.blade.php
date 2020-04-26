@@ -1,12 +1,6 @@
 @extends('layouts.master')
 
 @push('css')
-  <!-- Select2 -->
-  <link rel="stylesheet" href="{{ asset('admin-lte/plugins/select2/css/select2.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('admin-lte/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
-  <!-- SweetAlert2 -->
-  <link rel="stylesheet" href="{{ asset('admin-lte/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css') }}">
-
   <style type="text/css">
   	table.dataTable tbody td {
   	  vertical-align: middle;
@@ -22,7 +16,7 @@
 @section('title', 'PENGURUS')
 
 @section('breadcumb')
-  <li class="breadcrumb-item"><a href="#">Master</a></li>
+  <li class="breadcrumb-item">Kepengurusan</li>
   <li class="breadcrumb-item active">Pengurus</li>
 @endsection
 

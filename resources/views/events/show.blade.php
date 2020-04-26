@@ -1,9 +1,6 @@
 @extends('layouts.master')
 
 @push('css')
-  <!-- SweetAlert2 -->
-  <link rel="stylesheet" href="{{ asset('admin-lte/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css') }}">
-
   <style type="text/css">
   	table.dataTable tbody td {
   	  vertical-align: middle;
@@ -102,8 +99,6 @@
 @endsection
 
 @push('js')
-	<!-- SweetAlert2 -->
-	<script src="{{ asset('admin-lte/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
 	<!-- page script -->
 	<script>
 	  $(function () {

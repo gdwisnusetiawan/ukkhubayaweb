@@ -1,11 +1,6 @@
 @extends('layouts.master')
 
 @push('css')
-  <!-- DataTables -->
-  <link rel="stylesheet" href="{{ asset('admin-lte/plugins/datatables-bs4/css/dataTables.bootstrap4.css') }}">
-  <!-- iCheck for checkboxes and radio inputs -->
-  <link rel="stylesheet" href="{{ asset('admin-lte/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
-
   <style type="text/css">
   	table.dataTable tbody td {
   	  vertical-align: middle;
@@ -13,11 +8,11 @@
   </style>
 @endpush
 
-@section('title', 'USERS')
+@section('title', 'PENGGUNA')
 
 @section('breadcumb')
-  <li class="breadcrumb-item"><a href="#">Master</a></li>
-  <li class="breadcrumb-item active">Users</li>
+  <li class="breadcrumb-item">Master</li>
+  <li class="breadcrumb-item active">Pengguna</li>
 @endsection
 
 @section('content')
@@ -91,9 +86,6 @@
 @endsection
 
 @push('js')
-	<!-- DataTables -->
-	<script src="{{ asset('admin-lte/plugins/datatables/jquery.dataTables.js') }}"></script>
-	<script src="{{ asset('admin-lte/plugins/datatables-bs4/js/dataTables.bootstrap4.js') }}"></script>
 	<!-- page script -->
 	<script>
 	  $(function () {

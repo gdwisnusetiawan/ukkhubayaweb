@@ -1,10 +1,6 @@
 @extends('layouts.master')
 
-@push('css')
-  <!-- icheck bootstrap -->
-  <link rel="stylesheet" href="{{ asset('admin-lte/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
-@endpush
-
+@section('title', 'REGISTER')
 @section('body-class', 'register-page')
 
 @section('content')
@@ -35,20 +31,6 @@
         </div>
 
         <div class="input-group mb-3">
-          <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="{{ __('Name') }}">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-user"></span>
-            </div>
-          </div>
-          @error('name')
-            <span class="invalid-feedback" role="alert">
-              <strong>{{ $message }}</strong>
-            </span>
-          @enderror
-        </div>
-
-        <div class="input-group mb-3">
           <input id="email" type="text" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="{{ __('E-Mail Address') }}">
           <div class="input-group-append">
             <div class="input-group-text">
@@ -60,6 +42,7 @@
               <strong>{{ $message }}</strong>
             </span>
           @enderror
+          <small class="text-muted">Gunakan email Gooaya untuk dapat mendaftarkan diri dan pastikan Anda adalah anggota UKKH UBAYA</small>
         </div>
 
         <div class="input-group mb-3">
@@ -96,3 +79,12 @@
 </div>
 <!-- /.login-box -->
 @endsection
+
+@push('js')
+<script type="text/javascript">
+  $('#id').on('keyup', function() {
+    var id = $('#id').val();
+    $('#email').val('s'+id+'@student.ubaya.ac.id');
+  });
+</script>
+@endpush

@@ -1,14 +1,6 @@
 @extends('layouts.master')
 
 @push('css')
-  <!-- Select2 -->
-  <link rel="stylesheet" href="{{ asset('admin-lte/plugins/select2/css/select2.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('admin-lte/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
-  <!-- summernote -->
-  <link rel="stylesheet" href="{{ asset('admin-lte/plugins/summernote/summernote-bs4.css') }}">
-  <!-- SweetAlert2 -->
-  <link rel="stylesheet" href="{{ asset('admin-lte/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css') }}">
-
   <style type="text/css">
   	table.dataTable tbody td {
   	  vertical-align: middle;
@@ -24,8 +16,8 @@
 @section('title', 'Profil')
 
 @section('breadcumb')
-  <li class="breadcrumb-item"><a href="#">Beranda</a></li>
-  <li class="breadcrumb-item active">Profil</li>
+  <li class="breadcrumb-item">Beranda</li>
+  <li class="breadcrumb-item active">Profil Organisasi</li>
 @endsection
 
 @section('content')
@@ -75,6 +67,7 @@
           <li class="nav-item"><a class="nav-link active" href="#address" data-toggle="tab">Deskripsi</a></li>
           <li class="nav-item"><a class="nav-link" href="#vision" data-toggle="tab">Visi</a></li>
           <li class="nav-item"><a class="nav-link" href="#mission" data-toggle="tab">Misi</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact" data-toggle="tab">Kontak</a></li>
         </ul>
       </div><!-- /.card-header -->
       <div class="card-body">
@@ -93,6 +86,83 @@
 	          <label for="textareaMission">Misi</label>
 	            <div id="textareaMission"></div>
 	            <!-- <textarea id="textareaMission" class="textarea" name="mission" disabled style="font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">{{ $profile->mission }}</textarea> -->
+	        </div>
+          <!-- /.tab-pane -->
+          <div class="tab-pane" id="contact">
+	          <label for="contact">Kontak</label>&nbsp;
+	          <button type="button" class="btn btn-primary m-1" data-toggle="modal" data-target="#modal-add"><i class="fas fa-plus"></i> Tambah</button>
+	          <!-- Modal Add -->
+	          @component('components.modal')
+	            @slot('id') modal-add @endslot
+	            @slot('title') Tambah Kontak @endslot
+	            @slot('button_type') primary @endslot
+	            @slot('button_name') Tambah @endslot
+	            @slot('form_id') form-add @endslot
+
+	            <form action="{{ route('profile.contact.store', $profile) }}" method="post" id="form-add">
+	              @csrf
+
+	              <div class="form-group row">
+	                <label for="name" class="col-sm-2 col-form-label">Kontak</label>
+	                <div class="col-sm-10">
+	                  <select class="form-control select2bs4 @error('contact_id') is-invalid @enderror" name="contact_id" required style="width: 100%;">
+	                    @foreach ($contacts as $contact)
+	                      <option value="{{ $contact->id }}" {{ $contact->id == old('contact_id') ? 'selected' : '' }}>{{ $contact->name }}</option>
+	                    @endforeach
+	                  </select>
+	                  @error('contact_id')
+	                    <span class="invalid-feedback" role="alert">
+	                      <strong>{{ $message }}</strong>
+	                    </span>
+	                  @enderror
+	                </div>
+	              </div>
+	              <div class="form-group row">
+	                <label for="link" class="col-sm-2 col-form-label">Link</label>
+	                <div class="col-sm-10">
+	                  <input type="text" class="form-control @error('link') is-invalid @enderror" name="link" value="{{ old('link') }}" required autocomplete="link" placeholder="Link menuju kontak">
+	                  @error('link')
+	                    <span class="invalid-feedback" role="alert">
+	                      <strong>{{ $message }}</strong>
+	                    </span>
+	                  @enderror
+	                </div>
+	              </div>
+	            </form>
+	          @endcomponent
+	          <!-- /.modal -->
+	          @forelse($profile->contacts as $contact)
+          		<li class="list-group-item d-flex justify-content-between align-items-center">
+          	    <span>
+                  <i class="{{ $contact->icon }}"></i> &nbsp; 
+                  <a href="{{ $contact->pivot->link }}" target="_BLANK">{{ $contact->name }}</a> &nbsp;
+                </span>
+                <span>
+                  <a href="{{ route('profile.contact.edit', [$profile, $contact]) }}" class="btn btn-outline-primary btn-sm m-1"><i class="fas fa-edit"></i></a>
+                  <button type="button" class="btn btn-outline-danger btn-sm m-1" data-toggle="modal" data-target="#modal-delete-{{ $contact->id }}"><i class="fas fa-trash"></i></button>
+                </span>
+          	  </li>
+              @empty
+              <p class="text-center w-100">Tidak ada kontak.</p>
+              @endforelse
+
+              @foreach ($profile->contacts as $contact)
+                <!-- Modal Delete -->
+                @component('components.modal')
+                  @slot('id') modal-delete-{{ $contact->id }} @endslot
+                  @slot('title') Hapus Kontak @endslot
+                  @slot('button_type') danger @endslot
+                  @slot('button_name') Hapus @endslot
+                  @slot('form_id') form-delete-{{ $contact->id }} @endslot
+
+                  <p>Apakah Anda yakin ingin menghapus data <strong>{{ $contact->name }}</strong>?</p>
+                  <form action="{{ route('profile.contact.destroy', [$profile, $contact]) }}" method="post" id="form-delete-{{ $contact->id }}">
+                    @csrf
+                    @method('delete')
+                  </form>
+                @endcomponent
+                <!-- /.modal -->
+              @endforeach
 	        </div>
           <!-- /.tab-pane -->
         </div>
@@ -116,12 +186,6 @@
 @endsection
 
 @push('js')
-	<!-- Select2 -->
-	<script src="{{ asset('admin-lte/plugins/select2/js/select2.full.min.js') }}"></script>
-	<!-- Summernote -->
-  <script src="{{ asset('admin-lte/plugins/summernote/summernote-bs4.min.js') }}"></script>
-	<!-- SweetAlert2 -->
-	<script src="{{ asset('admin-lte/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
 	<!-- page script -->
 	<script>
 	  $(function () {

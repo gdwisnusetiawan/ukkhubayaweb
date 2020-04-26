@@ -1,11 +1,6 @@
 @extends('layouts.master')
 
 @push('css')
-  <!-- summernote -->
-  <link rel="stylesheet" href="{{ asset('admin-lte/plugins/summernote/summernote-bs4.css') }}">
-  <!-- SweetAlert2 -->
-  <link rel="stylesheet" href="{{ asset('admin-lte/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css') }}">
-
   <style type="text/css">
     table.dataTable tbody td {
       vertical-align: middle;
@@ -21,8 +16,8 @@
 @section('title', 'PANITIA')
 
 @section('breadcumb')
-  <li class="breadcrumb-item">Master</li>
-  <li class="breadcrumb-item"><a href="#">Panitia</a></li>
+  <li class="breadcrumb-item">Kepanitiaan</li>
+  <li class="breadcrumb-item">Panitia</li>
   <li class="breadcrumb-item active">Lihat</li>
 @endsection
 
@@ -166,10 +161,6 @@
 @endsection
 
 @push('js')
-  <!-- Summernote -->
-  <script src="{{ asset('admin-lte/plugins/summernote/summernote-bs4.min.js') }}"></script>
-  <!-- SweetAlert2 -->
-  <script src="{{ asset('admin-lte/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
   <!-- page script -->
   <script>
     $(document).ready(function () {

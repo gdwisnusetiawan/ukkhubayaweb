@@ -1,18 +1,10 @@
 @extends('layouts.master')
 
-@push('css')
-  <!-- Select2 -->
-  <link rel="stylesheet" href="{{ asset('admin-lte/plugins/select2/css/select2.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('admin-lte/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
-  <!-- summernote -->
-  <link rel="stylesheet" href="{{ asset('admin-lte/plugins/summernote/summernote-bs4.css') }}">
-@endpush
-
 @section('title', 'PENGURUS')
 
 @section('breadcumb')
-  <li class="breadcrumb-item">Master</li>
-  <li class="breadcrumb-item"><a href="{{ route('faculties.index') }}">Divisi Pengurus</a></li>
+  <li class="breadcrumb-item">Kepengurusan</li>
+  <li class="breadcrumb-item"><a href="{{ route('managements.index') }}">Pengurus</a></li>
   <li class="breadcrumb-item active">Ubah</li>
 @endsection
 
@@ -90,10 +82,6 @@
 @endsection
 
 @push('js')
-	<!-- Select2 -->
-	<script src="{{ asset('admin-lte/plugins/select2/js/select2.full.min.js') }}"></script>
-	<!-- Summernote -->
-	<script src="{{ asset('admin-lte/plugins/summernote/summernote-bs4.min.js') }}"></script>
 	<!-- page script -->
 	<script>
 	  $(document).ready(function () {

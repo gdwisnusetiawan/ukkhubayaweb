@@ -1,10 +1,6 @@
 @extends('layouts.master')
 
-@push('css')
-  <!-- icheck bootstrap -->
-  <link rel="stylesheet" href="{{ asset('admin-lte/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
-@endpush
-
+@section('title', 'RESET PASSWORD')
 @section('body-class', 'login-page')
 
 @section('content')

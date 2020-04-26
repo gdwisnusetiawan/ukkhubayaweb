@@ -1,13 +1,10 @@
 @extends('layouts.master')
 
-@push('css')
-@endpush
-
 @section('title', 'PROGRAM KERJA')
 
 @section('breadcumb')
-  <li class="breadcrumb-item">Master</li>
-  <li class="breadcrumb-item"><a href="{{ route('periods.index') }}">Program Kerja</a></li>
+  <li class="breadcrumb-item">Kepanitiaan</li>
+  <li class="breadcrumb-item"><a href="{{ route('programs.index') }}">Program Kerja</a></li>
   <li class="breadcrumb-item active">Ubah</li>
 @endsection
 

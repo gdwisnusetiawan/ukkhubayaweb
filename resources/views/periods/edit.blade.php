@@ -1,8 +1,5 @@
 @extends('layouts.master')
 
-@push('css')
-@endpush
-
 @section('title', 'PERIODE')
 
 @section('breadcumb')
@@ -57,6 +54,3 @@
 </div>
 <!-- /.row -->
 @endsection
-
-@push('js')
-@endpush

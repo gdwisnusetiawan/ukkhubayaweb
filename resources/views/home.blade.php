@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'Beranda')
+@section('title', 'BERANDA')
 
 @section('breadcumb')
   <li class="breadcrumb-item"><a href="#">Beranda</a></li>

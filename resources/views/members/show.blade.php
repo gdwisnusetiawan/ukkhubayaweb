@@ -1,11 +1,6 @@
 @extends('layouts.master')
 
 @push('css')
-  <!-- DataTables -->
-  <link rel="stylesheet" href="{{ asset('admin-lte/plugins/datatables-bs4/css/dataTables.bootstrap4.css') }}">
-  <!-- SweetAlert2 -->
-  <link rel="stylesheet" href="{{ asset('admin-lte/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css') }}">
-
   <style type="text/css">
   	table.dataTable tbody td {
   	  vertical-align: middle;
@@ -18,11 +13,11 @@
   </style>
 @endpush
 
-@section('title', 'ANGGOTA')
+@section('title', 'PROFIL')
 
 @section('breadcumb')
   <li class="breadcrumb-item">Master</li>
-  <li class="breadcrumb-item"><a href="#">Anggota</a></li>
+  <li class="breadcrumb-item"><a href="{{ route('members.index') }}">Profil</a></li>
   <li class="breadcrumb-item active">Lihat</li>
 @endsection
 
@@ -62,8 +57,42 @@
           </li>
           @endif
 
-          <a href="{{ route('members.edit', $member) }}" class="btn btn-primary btn-block"><b>Ubah profil</b></a>
+          <a href="{{ route('members.edit', $member) }}" class="btn btn-primary btn-block"><b>Ubah Profil</b></a>
+          <button type="button" class="btn btn-danger btn-block" data-toggle="modal" data-target="#modal-delete"><b>Hapus Akun</b></button>
         </ul>
+
+        <!-- Modal Delete -->
+        @component('components.modal')
+          @slot('id') modal-delete @endslot
+          @slot('title') Hapus Akun @endslot
+          @slot('button_type') danger @endslot
+          @slot('button_name') Hapus @endslot
+          @slot('form_id') form-delete @endslot
+
+          <p>Apakah Anda yakin ingin menghapus akun Anda (<strong>{{ $member->name }}</strong>)?</p>
+          <form action="{{ route('members.destroy', $member) }}" method="post" id="form-delete">
+            @csrf
+            @method('delete')
+            <input type="text" class="form-control @error('id') is-invalid @enderror" name="id" required placeholder="Isikan NRP Anda disini">
+            @error('id')
+              <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+              </span>
+              @push('js')
+              <script type="text/javascript">
+                // Show the Modal on load
+                  $("#modal-delete").modal("show");
+              </script>
+              @endpush
+            @enderror
+            <small>Isi NRP Anda untuk menghapus akun</small>
+            <div class="icheck-danger">
+              <input type="checkbox" name="sure" id="sure" required {{ old('sure') ? 'checked' : '' }}>
+              <label for="sure">Saya setuju dan yakin untuk menghapus akun saya</label>
+            </div>
+          </form>
+        @endcomponent
+        <!-- /.modal -->
       </div>
       <!-- /.card-body -->
     </div>
@@ -82,14 +111,25 @@
         <div class="tab-content">
           <div class="active tab-pane" id="activity">
           	<strong><i class="fas fa-book mr-1"></i> Tempat, Tanggal Lahir</strong>
-          	<p class="text-muted">Mataram, 12 Februari 1999</p>
+          	<p class="text-muted">
+              @if ($member->place_of_birth && $member->date_of_birth)
+              {{ $member->place_of_birth . ', '. $member->date_of_birth }}
+              @else
+              Belum ada data.
+              @endif
+            </p>
 
           	<hr>
 
-          	<strong><i class="fas fa-map-marker-alt mr-1"></i> Alamat</strong>
-          	<p class="text-muted">Jalan Rungkut Harapan Blok D No.10, Rungkut, Surabaya</p>
+          	<strong><i class="fas fa-map-marker-alt mr-1"></i> Alamat Asal</strong>
+          	<p class="text-muted">{{ $member->original_address ?? 'Belum ada data.' }}</p>
 
           	<hr>
+
+            <strong><i class="fas fa-map-marker-alt mr-1"></i> Alamat Domisili</strong>
+            <p class="text-muted">{{ $member->residence_address ?? 'Belum ada data.' }}</p>
+
+            <hr>
 
             <div class="d-flex justify-content-between align-items-center">
             	<strong><i class="fas fa-pencil-alt mr-1"></i>Kontak</strong>
@@ -172,9 +212,9 @@
 
           	<hr>
 
-          	<strong><i class="far fa-file-alt mr-1"></i> Catatan</strong>
+          	<strong><i class="far fa-file-alt mr-1"></i> Hobi</strong>
 
-          	<p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque.</p>
+          	<p class="text-muted">{{ $member->hobby ?? 'Belum ada data.' }}</p>
           </div>
           <!-- /.tab-pane -->
           <div class="tab-pane" id="timeline">
@@ -299,11 +339,6 @@
 @endsection
 
 @push('js')
-	<!-- DataTables -->
-	<script src="{{ asset('admin-lte/plugins/datatables/jquery.dataTables.js') }}"></script>
-	<script src="{{ asset('admin-lte/plugins/datatables-bs4/js/dataTables.bootstrap4.js') }}"></script>
-	<!-- SweetAlert2 -->
-	<script src="{{ asset('admin-lte/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
 	<!-- page script -->
 	<script>
 	  $(function () {

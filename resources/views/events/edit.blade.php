@@ -1,15 +1,5 @@
 @extends('layouts.master')
 
-@push('css')
-  <!-- Select2 -->
-  <link rel="stylesheet" href="{{ asset('admin-lte/plugins/select2/css/select2.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('admin-lte/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
-  <!-- iCheck for checkboxes and radio inputs -->
-  <link rel="stylesheet" href="{{ asset('admin-lte/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
-  <!-- Tempusdominus Bbootstrap 4 -->
-  <link rel="stylesheet" href="{{ asset('admin-lte/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
-@endpush
-
 @section('title', 'KEGIATAN')
 
 @section('breadcumb')
@@ -196,13 +186,6 @@
 @endsection
 
 @push('js')
-	<!-- Select2 -->
-	<script src="{{ asset('admin-lte/plugins/select2/js/select2.full.min.js') }}"></script>
-	<!-- InputMask -->
-	<script src="{{ asset('admin-lte/plugins/moment/moment.min.js') }}"></script>
-	<script src="{{ asset('admin-lte/plugins/inputmask/min/jquery.inputmask.bundle.min.js') }}"></script>
-	<!-- Tempusdominus Bootstrap 4 -->
-	<script src="{{ asset('admin-lte/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
 	<!-- page script -->
 	<script>
 	  $(document).ready(function () {

@@ -1,14 +1,9 @@
 @extends('layouts.master')
 
-@push('css')
-  <!-- iCheck for checkboxes and radio inputs -->
-  <link rel="stylesheet" href="{{ asset('admin-lte/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
-@endpush
-
 @section('title', 'PANITIA')
 
 @section('breadcumb')
-  <li class="breadcrumb-item">Master</li>
+  <li class="breadcrumb-item">Kepanitiaan</li>
   <li class="breadcrumb-item"><a href="{{ route('committees.index') }}">Panitia</a></li>
   <li class="breadcrumb-item active">Ubah</li>
 @endsection
@@ -100,14 +95,3 @@
 </div>
 <!-- /.row -->
 @endsection
-
-@push('js')
-	<!-- Summernote -->
-	<script src="{{ asset('admin-lte/plugins/summernote/summernote-bs4.min.js') }}"></script>
-	<!-- page script -->
-	<script>
-	  $(document).ready(function () {
-
-	  });
-	</script>
-@endpush

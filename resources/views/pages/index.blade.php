@@ -1,5 +1,7 @@
 @extends('viewer.master')
 
+@section('title', 'WELCOME')
+
 @push('css')
 <style type="text/css">
   #intro {

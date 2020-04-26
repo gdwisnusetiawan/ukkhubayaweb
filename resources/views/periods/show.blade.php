@@ -1,9 +1,6 @@
 @extends('layouts.master')
 
 @push('css')
-  <!-- SweetAlert2 -->
-  <link rel="stylesheet" href="{{ asset('admin-lte/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css') }}">
-
   <style type="text/css">
   	table.dataTable tbody td {
   	  vertical-align: middle;
@@ -20,7 +17,7 @@
 
 @section('breadcumb')
   <li class="breadcrumb-item">Master</li>
-  <li class="breadcrumb-item"><a href="#">Periode</a></li>
+  <li class="breadcrumb-item"><a href="{{ route('periods.index') }}">Periode</a></li>
   <li class="breadcrumb-item active">Lihat</li>
 @endsection
 
@@ -102,8 +99,6 @@
 @endsection
 
 @push('js')
-	<!-- SweetAlert2 -->
-	<script src="{{ asset('admin-lte/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
 	<!-- page script -->
 	<script>
 	  $(function () {

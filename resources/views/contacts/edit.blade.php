@@ -1,13 +1,10 @@
 @extends('layouts.master')
 
-@push('css')
-@endpush
-
 @section('title', 'KONTAK')
 
 @section('breadcumb')
   <li class="breadcrumb-item">Master</li>
-  <li class="breadcrumb-item"><a href="{{ route('periods.index') }}">Kontak</a></li>
+  <li class="breadcrumb-item"><a href="{{ route('contacts.index') }}">Kontak</a></li>
   <li class="breadcrumb-item active">Ubah</li>
 @endsection
 
@@ -61,6 +58,3 @@
 </div>
 <!-- /.row -->
 @endsection
-
-@push('js')
-@endpush

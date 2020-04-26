@@ -122,7 +122,7 @@
           </ul>
         </li>
 
-        @if (request()->is('users*') || request()->is('members*') || request()->is('faculties*') || request()->is('positions*'))
+        @if (request()->is('users*') || request()->is('members*') || request()->is('faculties*') || request()->is('positions*') || request()->is('contacts*'))
           <li class="nav-item has-treeview menu-open">
             <a href="#" class="nav-link active">
         @else
@@ -158,6 +158,12 @@
               <a href="{{ route('positions.index') }}" class="nav-link {{ (request()->is('positions*')) ? 'active' : '' }}">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Posisi</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{ route('contacts.index') }}" class="nav-link {{ (request()->is('contacts*')) ? 'active' : '' }}">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Kontak</p>
               </a>
             </li>
           </ul>

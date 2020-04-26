@@ -1,17 +1,10 @@
 @extends('layouts.master')
 
-@push('css')
-	<!-- summernote -->
-  <link rel="stylesheet" href="{{ asset('admin-lte/plugins/summernote/summernote-bs4.css') }}">
-  <!-- Tempusdominus Bbootstrap 4 -->
-  <link rel="stylesheet" href="{{ asset('admin-lte/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
-@endpush
-
-@section('title', 'PROFIL')
+@section('title', 'ORGANISASI')
 
 @section('breadcumb')
   <li class="breadcrumb-item">Master</li>
-  <li class="breadcrumb-item"><a href="{{ route('profiles.index') }}">Profil</a></li>
+  <li class="breadcrumb-item"><a href="{{ route('profiles.index') }}">Profil Organisasi</a></li>
   <li class="breadcrumb-item active">Tambah</li>
 @endsection
 
@@ -134,14 +127,6 @@
 @endsection
 
 @push('js')
-	<!-- Summernote -->
-	<script src="{{ asset('admin-lte/plugins/summernote/summernote-bs4.min.js') }}"></script>
-	<!-- InputMask -->
-	<script src="{{ asset('admin-lte/plugins/moment/moment.min.js') }}"></script>
-	<script src="{{ asset('admin-lte/plugins/inputmask/min/jquery.inputmask.bundle.min.js') }}"></script>
-	<!-- Tempusdominus Bootstrap 4 -->
-	<script src="{{ asset('admin-lte/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
-
 	<script type="text/javascript">
 		$(document).ready(function () {
 			$('#customFile').on('change',function(){

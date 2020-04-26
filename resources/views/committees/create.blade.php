@@ -1,20 +1,10 @@
 @extends('layouts.master')
 
-@push('css')
-  <!-- Select2 -->
-  <link rel="stylesheet" href="{{ asset('admin-lte/plugins/select2/css/select2.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('admin-lte/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
-  <!-- iCheck for checkboxes and radio inputs -->
-  <link rel="stylesheet" href="{{ asset('admin-lte/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
-  <!-- summernote -->
-  <link rel="stylesheet" href="{{ asset('admin-lte/plugins/summernote/summernote-bs4.css') }}">
-@endpush
-
 @section('title', 'PANITIA')
 
 @section('breadcumb')
-  <li class="breadcrumb-item">Master</li>
-  <li class="breadcrumb-item"><a href="{{ route('committees.index') }}">Divisi Panitia</a></li>
+  <li class="breadcrumb-item">Kepanitiaan</li>
+  <li class="breadcrumb-item"><a href="{{ route('committees.index') }}">Panitia</a></li>
   <li class="breadcrumb-item active">Tambah</li>
 @endsection
 
@@ -143,10 +133,6 @@
 @endsection
 
 @push('js')
-	<!-- Select2 -->
-	<script src="{{ asset('admin-lte/plugins/select2/js/select2.full.min.js') }}"></script>
-	<!-- Summernote -->
-	<script src="{{ asset('admin-lte/plugins/summernote/summernote-bs4.min.js') }}"></script>
 	<!-- page script -->
 	<script>
 	  $(document).ready(function () {

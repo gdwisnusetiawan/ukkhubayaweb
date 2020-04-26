@@ -1,11 +1,5 @@
 @extends('layouts.master')
 
-@push('css')
-	<!-- Select2 -->
-  <link rel="stylesheet" href="{{ asset('admin-lte/plugins/select2/css/select2.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('admin-lte/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
-@endpush
-
 @section('title', 'FAKULTAS')
 
 @section('breadcumb')
@@ -80,9 +74,6 @@
 @endsection
 
 @push('js')
-	<!-- Select2 -->
-	<script src="{{ asset('admin-lte/plugins/select2/js/select2.full.min.js') }}"></script>
-
 	<script>
 	  $(document).ready(function () {
 	    function formatState (state) {

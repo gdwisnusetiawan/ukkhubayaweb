@@ -1,16 +1,10 @@
 @extends('layouts.master')
 
-@push('css')
-  <!-- Select2 -->
-  <link rel="stylesheet" href="{{ asset('admin-lte/plugins/select2/css/select2.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('admin-lte/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
-@endpush
-
 @section('title', 'ANGGOTA')
 
 @section('breadcumb')
   <li class="breadcrumb-item">Master</li>
-  <li class="breadcrumb-item"><a href="{{ route('faculties.index') }}">Anggota</a></li>
+  <li class="breadcrumb-item"><a href="{{ route('members.index') }}">Anggota</a></li>
   <li class="breadcrumb-item active">Tambah</li>
 @endsection
 
@@ -103,8 +97,6 @@
 @endsection
 
 @push('js')
-	<!-- Select2 -->
-	<script src="{{ asset('admin-lte/plugins/select2/js/select2.full.min.js') }}"></script>
 	<!-- page script -->
 	<script>
 	  $(document).ready(function () {

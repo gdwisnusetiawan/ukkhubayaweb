@@ -1,13 +1,10 @@
 @extends('layouts.master')
 
-@push('css')
-@endpush
-
-@section('title', 'ANGGOTA')
+@section('title', 'PROFIL')
 
 @section('breadcumb')
   <li class="breadcrumb-item">Master</li>
-  <li class="breadcrumb-item"><a href="{{ route('periods.index') }}">Kontak Anggota</a></li>
+  <li class="breadcrumb-item"><a href="{{ route('members.show', auth()->user()->member()) }}">Profil</a></li>
   <li class="breadcrumb-item active">Ubah</li>
 @endsection
 
@@ -70,6 +67,3 @@
 </div>
 <!-- /.row -->
 @endsection
-
-@push('js')
-@endpush

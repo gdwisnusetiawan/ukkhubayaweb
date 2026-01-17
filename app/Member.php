@@ -13,6 +13,7 @@ class Member extends Model
      * @var array
      */
     public $incrementing = false;
+    protected $keyType = 'string';
 
     /**
      * The attributes that are mass assignable.
@@ -21,11 +22,12 @@ class Member extends Model
      */
     protected $guarded = [];
 
-    public static function getEnumValues(){
+    public static function getEnumValues()
+    {
         $type = DB::select(DB::raw('SHOW COLUMNS FROM members WHERE Field = "type"'))[0]->Type;
         preg_match('/^enum\((.*)\)$/', $type, $matches);
         $values = array();
-        foreach(explode(',', $matches[1]) as $value){
+        foreach (explode(',', $matches[1]) as $value) {
             $values[] = trim($value, "'");
         }
         return $values;
@@ -76,7 +78,7 @@ class Member extends Model
         $active = $this->managements->contains(function ($item, $key) {
             return $item->isActive();
         });
-        $role = $this->managements->contains(function ($item, $key) use ($positions){
+        $role = $this->managements->contains(function ($item, $key) use ($positions) {
             return $item->position->whereIn('name', $positions)->get()->isNotEmpty();
         });
         return $active && $role;
@@ -87,7 +89,7 @@ class Member extends Model
         $active = $this->committees->contains(function ($item, $key) {
             return $item->event->isActive();
         });
-        $role = $this->committees->contains(function ($item, $key) use ($positions){
+        $role = $this->committees->contains(function ($item, $key) use ($positions) {
             return $item->position->whereIn('name', $positions)->get()->isNotEmpty();
         });
         return $this->managementPermission($positions) || ($active && $role);

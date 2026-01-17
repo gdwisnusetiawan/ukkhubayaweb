@@ -16,6 +16,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     public $incrementing = false;
+    protected $keyType = 'string';
 
     /**
      * The attributes that are mass assignable.
@@ -23,7 +24,10 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'id', 'name', 'email', 'password',
+        'id',
+        'name',
+        'email',
+        'password',
     ];
 
     /**
@@ -32,7 +36,8 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password',
+        'remember_token',
     ];
 
     /**

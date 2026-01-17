@@ -3,7 +3,9 @@
     <div class="container">
       <div class="social-links">
         @foreach($profile->contacts as $contact)
-          <a href="{{ $contact->pivot->link }}" target="_blank" class="{{ str_replace(['fab fa-', 'fas fa-', 'far fa-'], '', $contact->icon) }}"><i class="{{ $contact->icon }}"></i></a>
+          <a href="{{ $contact->pivot->link }}" target="_blank"
+            class="{{ str_replace(['fab fa-', 'fas fa-', 'far fa-'], '', $contact->icon) }}"><i
+              class="{{ $contact->icon }}"></i></a>
         @endforeach
       </div>
     </div>
@@ -13,8 +15,9 @@
 
     <div class="logo float-left">
       <!-- Uncomment below if you prefer to use an image logo -->
-      <h1 class="text-light"><a href="#intro" class="scrollto"><span>UKKH UBAYA</span></a></h1>
-      <!-- <a href="#header" class="scrollto"><img src="img/logo.png" alt="" class="img-fluid"></a> -->
+      <!-- <h1 class="text-light"><a href="#intro" class="scrollto"><span>UKKH UBAYA</span></a></h1> -->
+      <a href="#header" class="scrollto"><img src="{{ asset('images/logos/UKKH UBAYA Logo.png') }}" alt=""
+          class="img-fluid"></a>
     </div>
 
     <nav class="main-nav float-right d-none d-lg-block" id="navbar">
@@ -47,7 +50,7 @@
         <li><a href="{{ route('register') }}" class="btn-primary">Register</a></li>
       </ul>
     </nav><!-- .main-nav -->
-    
+
   </div>
 </header><!-- #header -->
 
@@ -65,7 +68,7 @@
       </div>
 
       <div class="col-md-6 intro-img order-md-last order-first">
-        <img src="{{ asset('rapid/img/undraw_stand_out.svg') }}" alt="" class="img-fluid">
+        <img src="{{ asset('rapid/img/undraw_imagination.svg') }}" alt="" class="img-fluid">
       </div>
     </div>
 

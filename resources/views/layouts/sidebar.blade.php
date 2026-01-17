@@ -2,7 +2,8 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
   <!-- Brand Logo -->
   <a href="{{ url('/') }}" class="brand-link">
-    <img src="{{ asset('admin-lte/dist/img/ukkhubayalogo.png') }}" alt="Ukkh Ubaya Logo" class="brand-image img-circle elevation-3" style="background: #fff;">
+    <img src="{{ asset('images/logos/UKKH UBAYA Logo.png') }}" alt="Ukkh Ubaya Logo"
+      class="brand-image img-circle elevation-3" style="background: #fff;">
     <span class="brand-text font-weight-light">{{ config('app.name', 'UKKH UBAYA') }}</span>
   </a>
 
@@ -12,30 +13,39 @@
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
       <div class="image">
         @if (Auth::user()->id == 'admin1')
-          <img src="{{ asset('admin-lte/dist/img/avataaars.png') }}" class="rounded elevation-2 bg-light" alt="User Image">
+          <img src="{{ asset('admin-lte/dist/img/avataaars.png') }}" class="rounded elevation-2 bg-light"
+            alt="User Image">
         @else
-          <img src="https://my.ubaya.ac.id/img/mhs/{{ Auth::user()->id }}_m.jpg" class="rounded elevation-2" alt="User Image">
+          <img src="{{ asset('admin-lte/dist/img/avataaars.png') }}" class="rounded elevation-2 bg-light"
+            alt="User Image">
+          <!-- <img src="https://my.ubaya.ac.id/img/mhs/{{ Auth::user()->id }}_m.jpg" class="rounded elevation-2"
+                  alt="User Image"> -->
         @endif
       </div>
       <div class="info mt-0 pt-0">
-        <a href="{{ route('members.show', auth()->user()->member) }}" class="d-block">{{ Auth::user()->name }}</a>
+        @if (Auth::user()->member)
+          <a href="{{ route('members.show', auth()->user()->member) }}" class="d-block">{{ Auth::user()->name }}</a>
+        @else
+          <a href="#" class="d-block">{{ Auth::user()->name }}</a>
+        @endif
         <p class="text-muted m-0 p-0">{{ Auth::user()->id }}</p>
       </div>
     </div>
 
     <!-- Sidebar Menu -->
     <nav class="mt-2">
-      <ul class="nav nav-pills nav-sidebar flex-column nav-child-indent" data-widget="treeview" role="menu" data-accordion="true">
+      <ul class="nav nav-pills nav-sidebar flex-column nav-child-indent" data-widget="treeview" role="menu"
+        data-accordion="true">
         <!-- Add icons to the links using the .nav-icon class
              with font-awesome or any other icon font library -->
-        
-      @if (request()->is('home*') || (request()->is('profiles*')))
-        <li class="nav-item has-treeview menu-open">
-          <a href="#" class="nav-link active">
-      @else
-        <li class="nav-item has-treeview">
-          <a href="#" class="nav-link">
-      @endif
+
+        @if (request()->is('home*') || (request()->is('profiles*')))
+          <li class="nav-item has-treeview menu-open">
+            <a href="#" class="nav-link active">
+        @else
+              <li class="nav-item has-treeview">
+                <a href="#" class="nav-link">
+            @endif
             <i class="nav-icon fas fa-home"></i>
             <p>
               Beranda
@@ -50,7 +60,8 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{ route('profiles.index') }}" class="nav-link {{ (request()->is('profiles*')) ? 'active' : '' }}">
+              <a href="{{ route('profiles.index') }}"
+                class="nav-link {{ (request()->is('profiles*')) ? 'active' : '' }}">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Organisasi</p>
               </a>
@@ -62,9 +73,9 @@
           <li class="nav-item has-treeview menu-open">
             <a href="#" class="nav-link active">
         @else
-          <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
-        @endif
+              <li class="nav-item has-treeview">
+                <a href="#" class="nav-link">
+            @endif
             <i class="nav-icon fas fa-users"></i>
             <p>
               Kepengurusan
@@ -79,7 +90,8 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{ route('managements.index') }}" class="nav-link {{ (request()->is('managements*')) ? 'active' : '' }}">
+              <a href="{{ route('managements.index') }}"
+                class="nav-link {{ (request()->is('managements*')) ? 'active' : '' }}">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Pengurus</p>
               </a>
@@ -91,9 +103,9 @@
           <li class="nav-item has-treeview menu-open">
             <a href="#" class="nav-link active">
         @else
-          <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
-        @endif
+              <li class="nav-item has-treeview">
+                <a href="#" class="nav-link">
+            @endif
             <i class="nav-icon fas fa-clipboard"></i>
             <p>
               Kepanitiaan
@@ -102,7 +114,8 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="{{ route('programs.index') }}" class="nav-link {{ (request()->is('programs*')) ? 'active' : '' }}">
+              <a href="{{ route('programs.index') }}"
+                class="nav-link {{ (request()->is('programs*')) ? 'active' : '' }}">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Program Kerja</p>
               </a>
@@ -114,7 +127,8 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{ route('committees.index') }}" class="nav-link {{ (request()->is('committees*')) ? 'active' : '' }}">
+              <a href="{{ route('committees.index') }}"
+                class="nav-link {{ (request()->is('committees*')) ? 'active' : '' }}">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Panitia</p>
               </a>
@@ -126,9 +140,9 @@
           <li class="nav-item has-treeview menu-open">
             <a href="#" class="nav-link active">
         @else
-          <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
-        @endif
+              <li class="nav-item has-treeview">
+                <a href="#" class="nav-link">
+            @endif
             <i class="nav-icon fas fa-th"></i>
             <p>
               Master
@@ -149,19 +163,22 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{ route('faculties.index') }}" class="nav-link {{ (request()->is('faculties*')) ? 'active' : '' }}">
+              <a href="{{ route('faculties.index') }}"
+                class="nav-link {{ (request()->is('faculties*')) ? 'active' : '' }}">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Fakultas</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{ route('positions.index') }}" class="nav-link {{ (request()->is('positions*')) ? 'active' : '' }}">
+              <a href="{{ route('positions.index') }}"
+                class="nav-link {{ (request()->is('positions*')) ? 'active' : '' }}">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Posisi</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{ route('contacts.index') }}" class="nav-link {{ (request()->is('contacts*')) ? 'active' : '' }}">
+              <a href="{{ route('contacts.index') }}"
+                class="nav-link {{ (request()->is('contacts*')) ? 'active' : '' }}">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Kontak</p>
               </a>

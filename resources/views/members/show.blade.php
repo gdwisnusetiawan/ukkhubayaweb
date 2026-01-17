@@ -31,6 +31,7 @@
     	</div>
       <div class="card-body box-profile">
         <div class="text-center">
+          @if(false)
           <img class="img-fluid"
           	@if ($member->type == 'student')
               src="https://my.ubaya.ac.id/img/mhs/{{ $member->id }}_m.jpg"
@@ -38,6 +39,10 @@
           		src="https://my.ubaya.ac.id/img/krwyn/{{ $member->id }}_m.jpg"
           	@endif
               alt="User profile picture">
+          @else
+          <img class="img-fluid rounded" src="{{ asset('admin-lte/dist/img/avataaars.png') }}"
+              alt="User profile picture">	
+          @endif
         </div>
 
         <h3 class="profile-username text-center">{{ $member->name }}</h3>

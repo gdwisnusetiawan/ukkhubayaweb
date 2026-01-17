@@ -11,8 +11,18 @@ class Management extends Model
      *
      * @var array
      */
+    protected $table = 'managements';
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     protected $fillable = [
-        'job', 'information', 'period_id', 'position_id',
+        'job',
+        'information',
+        'period_id',
+        'position_id',
     ];
 
     /**
@@ -44,12 +54,9 @@ class Management extends Model
      */
     public function managementMember(Member $member = null)
     {
-        if($member != null)
-        {
+        if ($member != null) {
             return $this->hasMany('App\ManagementMember')->where('member_id', $member->id)->get()->first();
-        }
-        else
-        {
+        } else {
             return $this->hasMany('App\ManagementMember');
         }
     }

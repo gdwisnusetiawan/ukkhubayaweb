@@ -50,6 +50,7 @@
 			          <div class="card-body pt-0">
 			            <div class="row">
 			            	<div class="col-5 text-center">
+							@if(false)
 			              	<img class="img-fluid rounded"
 			              		@if ($member->type == 'student')
 			              	    src="https://my.ubaya.ac.id/img/mhs/{{ $member->id }}_m.jpg"
@@ -57,6 +58,10 @@
 			              			src="https://my.ubaya.ac.id/img/krwyn/{{ $member->id }}_m.jpg"
 			              		@endif
 			              	    alt="User profile picture">
+							@else
+							<img class="img-fluid rounded" src="{{ asset('admin-lte/dist/img/avataaars.png') }}"
+			              	    alt="User profile picture">	
+							@endif
 			              </div>
 			              <div class="col-7">
 			              	<h4 class="text-muted"><a href="{{ route('managements.show', $management) }}"><i class="{{ $management->position->icon }}"></i> {{ $management->position->name }}</a></h4>

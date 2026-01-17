@@ -15,9 +15,11 @@ class CreateManagementMembersTable extends Migration
     {
         Schema::create('management_member', function (Blueprint $table) {
             $table->unsignedBigInteger('management_id');
-            $table->unsignedBigInteger('member_id');
+            $table->string('member_id');
             $table->enum('role', ['none', 'head', 'staff']);
             $table->timestamps();
+
+            $table->foreign('member_id')->references('id')->on('members');
         });
     }
 
